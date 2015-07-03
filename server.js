@@ -445,11 +445,11 @@ app.use(function(err, req, res, next) {
 });
 */
 db_config = {
-  host     : '127.8.72.130',
+  host     : '127.13.120.2',
   port     : '3306',
-  user     : 'admin',
-  password : 'pass',
-  database : 'gameofshipyard',
+  user     : 'adminmPNjwgk',
+  password : 'dhby1WSwYuxP',
+  database : 'graostocznie',
   multipleStatements: true 
 };
 

@@ -438,10 +438,10 @@ router.get('/logowanie', function(req, res){
     res.redirect('/');
   }
   else{
-    //var query = "SELECT * from test;";
-    //connection.query(query, function(err,rows){
-      res.render("index.html", {info:info});
-    //});
+    var query = "SELECT * from test;";
+    connection.query(query, function(err,rows){
+      res.render("index.html", {info:info,rows:rows});
+    });
     
   }
 });
