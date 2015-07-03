@@ -183,7 +183,7 @@ var tiger;
     ciastka=req.cookies.remember;
 
   /* UWAGA po czyszczeniu serwera bazy zdjec trzeba tutaj zmienic id na koncu drugiego selecta na id pierwszego postu w bazie danych*/
-    connection.query("select tabela_postow.id, tytul,tresc, nick, data_dodania, imie, nazwisko from users,tabela_postow where nick=users.id and strona='"+req.params.strona+"' ORDER BY data_dodania;SELECT idpost,pathfile FROM tabfile;select tabela_postow.id , tytul,tresc, nick, data_dodania, ilosc_click, imie, nazwisko from users,tabela_postow where tabela_postow.id="+connection.escape(471)+" and strona='"+req.params.strona+"'", function(err, result) {
+    connection.query("select tabela_postow.id, IF(punkty.suma_punktow IS NULL, 0, punkty.suma_punktow) as suma_punktow_post, tytul,tresc, nick, data_dodania, imie, nazwisko from users,tabela_postow  LEFT JOIN (SELECT item_id, SUM(rate) as suma_punktow FROM rating group by item_id) as punkty ON punkty.item_id = tabela_postow.id where nick=users.id and strona='"+req.params.strona+"' ORDER BY data_dodania ASC;SELECT idpost,pathfile FROM tabfile;select tabela_postow.id , tytul,tresc, nick, data_dodania, ilosc_click, imie, nazwisko from users,tabela_postow where tabela_postow.id="+connection.escape(471)+" and strona='"+req.params.strona+"'", function(err, result) {
       if (err) throw err;
        
        
