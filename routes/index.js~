@@ -1,0 +1,279 @@
+var express = require('express');
+var router = express.Router();
+
+var zalogowano = false;
+var info = "";
+
+router.get('/error', function(req,res){
+
+  res.render("error.html");
+});
+
+
+router.post('/add_user', function(req,res){
+  if(req.body.haslo===req.body.phaslo){
+  
+  var post  = {imie: req.body.imie, nazwisko: req.body.nazwisko,email: req.body.email,haslo: req.body.haslo};
+  
+  connection.query('INSERT INTO users SET ?', post, function(err, result)
+        {
+          if (err)
+              console.log("Error inserting : %s ",err );
+         
+          info = "Zarejestrowano. Możesz się teraz zalogować";
+          res.redirect('/logowanie');
+          
+        });
+  
+  }else{
+  
+  info = "Hasła nie są takie same.";
+  res.redirect('/logowanie');
+  
+  
+  }
+});
+
+
+router.post('/add_post', function(req,res){
+  if (req.cookies.remember){
+  var post = {tytul: req.body.tytul, tresc: req.body.tresc, nick: req.cookies.id};
+  connection.query('INSERT INTO tabela_postow SET ?', post, function(err, result){
+    if (err)
+      console.log("Error inserting : %s ",err );
+    res.redirect('/przeszlosc');
+  });
+
+  }
+  else{
+    res.redirect('/logowanie');
+  }
+});
+
+
+
+
+router.get('/forget', function(req, res){
+  res.clearCookie('remember');
+  info = "";
+  res.redirect('back');
+});
+
+
+
+
+router.get('/logowanie', function(req, res){
+  if(req.cookies.remember){
+    res.redirect('/');
+  }
+  else{
+    res.render("index.html", {info:info});
+  }
+});
+
+
+router.get('/przeszlosc', function (req, res)
+{
+  var postulaty;
+  if (req.cookies.remember){
+    ciastka=req.cookies.remember;
+    connection.query("select tabela_postow.id, tytul,tresc, nick, data_dodania, ilosc_click, ilosc_komentarzy, imie, nazwisko from users,tabela_postow where nick=users.id;", function(err, rows, fields) {
+    if (err) throw err;
+    res.render('przeszlosc.html', {title: 'Przeszłość', postulaty:rows, ciasta:ciastka, id: rows.length-1}); // tutaj przekazanie zmiennej do widoku
+    });
+  }
+  else{
+    res.redirect('/logowanie');
+  }
+
+});
+
+router.get('/przeszlosc/:id?', function(req,res){
+  console.log(req.params.id);
+   var postulaty;
+  if (req.cookies.remember){
+    ciastka=req.cookies.remember;
+    connection.query("select tabela_postow.id, tytul,tresc, nick, data_dodania, ilosc_click, ilosc_komentarzy, imie, nazwisko from users,tabela_postow where nick=users.id;", function(err, rows, fields) {
+    if (err) throw err;
+    res.render('przeszlosc.html', {title: 'Przeszłość', postulaty:rows, ciasta:ciastka, id: req.params.id}); // tutaj przekazanie zmiennej do widoku
+    });
+  }
+  else{
+    res.redirect('/logowanie');
+  }
+});
+
+router.get('/przyszlosc', function(req, res){
+    if(req.cookies.remember){
+      res.render('przyszlosc.html', {
+        title: ciastka
+      });
+    }
+    else{
+      res.redirect('/logowanie');
+    }
+
+});
+
+
+router.post('/log', function(req,res){
+  var lemail = req.body.lemail;
+  var lhaslo = req.body.lhaslo;
+  var query = 'SELECT * FROM users';
+  console.log(' lemail:',req.body.lemail,'lhaslo:',lhaslo);
+  connection.query(query, function(err, rows, fields) {
+    if (err) throw err;
+      var data;
+      var minute = 600 * 1000; 
+      for (var i in rows) {
+          
+          if(rows[i].email===lemail && rows[i].haslo===lhaslo){
+           res.cookie('remember', lemail, { maxAge: minute });
+           res.cookie('id', rows[i].id);
+           zalogowano = true;
+           info = "";
+           res.redirect('/'+i);
+
+         }
+      }
+
+      if(zalogowano != true){ 
+          info = "Nieprawidłowy login lub hasło.";
+          res.redirect('/logowanie');
+      }
+  });
+});
+var ciastka;
+
+router.get('/', function(req, res){
+  if(req.cookies.remember){
+
+    
+    res.redirect('/'+ 0);
+
+
+  }
+  else{
+    res.redirect('/logowanie');
+  }
+});
+
+router.get('/:id', function(req, res) {
+
+  var data;
+  if (req.cookies.remember){
+    ciastka=req.cookies.remember;
+    connection.query('SELECT * FROM users;', function(err, rows, fields) {
+    if (err) throw err;
+      
+    if(isNaN(req.params.id)==false){
+      if(req.params.id >= 0 && req.params.id <= rows.length){
+        res.render('kolonia.html', {title: 'Kolonia', data:rows, ciasta:ciastka, user_id: req.params.id}); // tutaj przekazanie zmiennej do widoku
+      }
+
+      else{
+        res.redirect('/error');
+      }
+    }
+    else{
+      res.redirect('/error');
+    }
+    
+    });
+  }
+  else{
+    res.redirect('/logowanie');
+  }
+
+});
+
+
+
+
+
+
+
+
+router.post('/delete', function(req,res){
+  var post = req.body.delete_nr;
+  var query = 'DELETE FROM users WHERE nr=' + post ;
+  connection.query(query, function(err, result)
+  {
+    if(err)
+      console.log("Error deleting from users");
+
+    res.redirect('/');
+
+  });
+});
+
+router.post('/uaktualnij', function(req,res){
+ 
+  
+  var post  = { imie: req.body.imie, nazwisko: req.body.nazwisko};
+        connection.query('UPDATE users SET ? WHERE email='+connection.escape(req.cookies.remember), post, function(err, result)
+          {
+            if (err)
+            console.log("Error inserting : %s ",err );
+            res.redirect('/');
+          });
+});
+
+
+module.exports = router;
+
+
+//zostaw  mi te komentarze jeszcze ich będę potrzebował
+/*router.post('/create', function(req,res){
+    connection.query('ALTER TABLE users ADD id INT UNSIGNED NOT NULL AUTO_INCREMENT,ADD INDEX (id);',function(err, result)
+        {
+          if (err)
+              console.log("Error creating : %s ",err );
+         
+          res.redirect('/');
+          
+        });
+})*/
+/*router.post('/zmianatypukolumny', function(req,res){
+ connection.query('ALTER TABLE users MODIFY email VARCHAR(40);',function(err, result)
+        {
+          if (err)
+              console.log("Error creating : %s ",err );
+         
+          res.redirect('/');
+          
+        });
+});*/
+/*
+router.post('/zmianawartoscipoczatkowejkolumny', function(req,res){
+  var sciecha='/uploads/profilowy.jpg'
+ connection.query( 'ALTER TABLE users ALTER sciezka SET DEFAULT '+connection.escape(sciecha),function(err, result)
+        {
+          if (err)
+              console.log("Error creating : %s ",err );
+          res.redirect('/');
+         //'ALTER TABLE users ALTER sciezka SET DEFAULT /uploads/profilowy.jpg' 
+        });
+});
+
+router.post('/dodaniekolumny', function(req,res){
+ connection.query('ALTER TABLE users ADD sciezka varchar(200) after punkty;',function(err, result)
+        {
+          if (err)
+              console.log("Error creating : %s ",err );
+         
+          res.redirect('/');
+          
+        });
+});
+
+router.post('/create', function(req,res){
+    connection.query('CREATE TABLE users(nr int, imie varchar(20));',function(err, result)
+        {
+          if (err)
+              console.log("Error creating : %s ",err );
+         
+          res.redirect('/');
+          
+        });
+})*/

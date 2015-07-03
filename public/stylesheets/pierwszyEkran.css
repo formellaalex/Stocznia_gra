@@ -1,0 +1,200 @@
+/*.carousel-example-generic{
+	width:100vw;
+	height:100vh;
+}*/
+body{	
+overflow-y: hidden;
+overflow-x: hidden;
+}
+
+.tlo1{
+	height:100vh;
+	background-image: url('../images/pierwszyEkran/tlo1.jpg');
+	width:100%;
+	background-repeat:no-repeat;
+	background-size:100% 100%;
+	background-position: center center;
+
+}
+.tlo2{
+	height:100vh;
+	background-image: url('../images/pierwszyEkran/tlo2.jpg');
+	width:100%;
+	background-repeat:no-repeat;
+	background-size:100% 100%;
+	background-position: center center;
+
+}
+.tlo3{
+	height:100vh;
+	background-image: url('../images/pierwszyEkran/tlo3.jpg');
+	width:100%;
+	background-repeat:no-repeat;
+	background-size:100% 100%;
+	background-position: center center;
+
+}
+.tlo4{
+	height:100vh;
+	background-image: url('../images/pierwszyEkran/tlo4.jpg');
+	width:100%;
+	background-repeat:no-repeat;
+	background-size:100% 100%;
+	background-position: center center;
+
+}
+.tlo5{
+	height:100vh;
+	background-image: url('../images/pierwszyEkran/tlo5.jpg');
+	width:100%;
+	background-repeat:no-repeat;
+	background-size:100% 100%;
+	background-position: center center;
+
+}
+.tlo6{
+	height:100vh;
+	background-image: url('../images/pierwszyEkran/tlo6.jpg');
+	width:100%;
+	background-repeat:no-repeat;
+	background-size:100% 100%;
+	background-position: center center;
+
+}
+
+.tlo2 .carousel-caption, .tlo3 .carousel-caption, .tlo4 .carousel-caption, .tlo5 .carousel-caption, .tlo6 .carousel-caption {
+    right: 0%;
+    left: 5%;
+    text-align:left;
+    padding-bottom: 5vh;
+
+}
+/*wyjątek*/
+.tlo1 .carousel-caption {
+    right: 0%;
+    left: 0%;
+    padding-bottom: 0px;
+}
+.tlo1 .carousel-caption .container{
+    width:100%;
+}
+
+@media (min-width:768px){
+.tloButton{
+background-image: url('../images/pierwszyEkran/buttontlo.png');
+background-repeat:no-repeat;
+background-position: center center;
+background-size:100% 100%;
+min-height: 80px;
+}
+.tloButton:hover{
+background-image: url('../images/pierwszyEkran/buttontlohover.png');
+background-repeat:no-repeat;
+background-position: center center;
+background-size:100% 100%;
+min-height: 80px;
+cursor:pointer;
+}
+}
+@media (max-width:768px){ 
+.tloButton{ text-shadow:3px 0px 1px black;
+min-height: 40px;
+}
+.tloButton:hover{
+min-height: 40px;
+cursor:pointer;
+}
+}
+@media (min-width:320px){
+
+.carousel-control .glyphicon-chevron-left, .carousel-control .icon-prev {
+    margin-left: -30px;
+}
+.carousel-control .glyphicon-chevron-left, .carousel-control .glyphicon-chevron-right, .carousel-control .icon-next, .carousel-control .icon-prev {
+    width: 60px;
+    height: 60px;
+    margin-top: -30px;
+    font-size: 60px;
+}
+.carousel-control .glyphicon-chevron-right, .carousel-control .icon-next {
+    margin-right: -30px;
+}
+.carousel-control {
+    font-size: 20px;
+    color: #FFF;
+    text-align: center;
+    text-shadow: 2px 4px 6px rgba(0, 0, 0, 1);
+}
+
+/*wyjątek dla pierwszego elementu*/
+.tlo1 .carousel-control .glyphicon-chevron-left, .tlo1 .carousel-control .icon-prev {
+    margin-left: -15x;
+}
+.tlo1 .carousel-control .glyphicon-chevron-left, .tlo1 .carousel-control .glyphicon-chevron-right, .tlo1 .carousel-control .icon-next, .tlo1 .carousel-control .icon-prev {
+    width: 30px;
+    height: 30px;
+    margin-top: -15px;
+    font-size: 30px;
+}
+.tlo1 .carousel-control .glyphicon-chevron-right,.tlo1 .carousel-control .icon-next {
+    margin-right: -15px;
+}
+.carousel-control {
+    font-size: 10px;
+    color: #FFF;
+    text-align: center;
+    text-shadow: 2px 4px 6px rgba(0, 0, 0, 1);
+}
+}
+
+
+
+.carousel-caption h3{
+line-height:50px;
+font-size:50px;
+font-style:bold;
+}
+.przerywnik{
+	width:5%;
+	border-width: 5px 0px 0px;
+	border-style: solid none none;
+}
+.carousel-caption p{
+line-height:80px;
+font-size:25px;	
+}
+
+@media (min-width:200px) and (max-width: 768px){
+.carousel-caption h3{
+line-height:25px;
+font-size:25px;
+font-style:bold;
+}
+.przerywnik{
+	width:80px;
+	border-width: 5px 0px 0px;
+	border-style: solid none none;
+}
+.carousel-caption p{
+line-height:20px;
+font-size:15px;	
+}
+}
+.formSize{
+    width:100px;
+    position: relative;
+    opacity: 0.5;
+    -webkit-opacity: 0.5;
+    -moz-opacity: 0.5;
+    transition: 0.5s ease;
+    -webkit-transition: 0.5s ease;
+    -moz-transition: 0.5s ease;
+    
+}
+.formSize:hover{
+    -webkit-transform: scale(1.5,1.5);
+    -moz-transform:scale(1.5,1.5);
+    opacity: 1;
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+}

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'/>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+        <link rel='stylesheet' href='/Zurb/css/foundation.css' />
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+
+        <script  src='/javascripts/jquery-1.11.1.js'></script>       
+        <script src='/javascripts/funkcje_ajax.js'></script>
+        <!--tutaj mamy od crop-->
+        <link rel="stylesheet" type="text/css" href="/stylesheets/imgareaselect-default.css" />
+        <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+        <script type="text/javascript" src="/javascripts/jquery.imgareaselect.pack.js"></script>
+<style>
+</style>
+
+
+
+    </head>
+    <body>
+
+<div class="row" style="height:10%">
+            <div class="contain-to-grid">
+                <div class="fixed">
+                    <ul class="button-group even-3">
+                        <a id="head_przeszlosc_button" href="/forum/przeszlosc"></a>
+                        <a id="head_kolonia_button" href="/"></a>
+                        <a id="head_przyszlosc_button" href="/forum/przyszlosc"></a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    <div class="row" style="margin-bottom: 5%;color: white">
+        <div class="large-3 middle-3 small-12 columns" style="float: right !important;">
+             <% if(data.length){ %>
+
+                  <div>  <img src="<%=data[0].profilowe%>"   id="zdjecie" width="100" heigth="200" alt="Błąd" />
+                  </div>
+                <div style="width: 100%; height: 100%">  <label class="users" style="text-align: left"> Imie nazwsko </label>  
+                        <p class="users" style="text-align: left"><%=data[0].imie+" "+data[0].nazwisko%></p>  
+                        <label class="users" style="text-align: left"> Email </label>
+                        <p class="users" style="text-align: left"><%=data[0].email%></p>
+                        <label class="users" style="text-align: left"> Punkty </label>
+                        <p class="users" style="text-align: left"><% if(list.length){for(var i=0;i<list.length;i++){ if(list[i].user_id==user_id){ if(list[i].rating!=null){%> <%=list[i].rating%><% }else{ %> Brak punktów <%}break; }}} if(i==list.length){ %> Brak punktow <% } %> </p>
+                        <%if(tiger_profilowy===0){%>
+                        <form style="width: 100%; height: auto" action="/edit"> <button id="edit_profile"> </button> </form>
+                        <%}%>
+                </div>
+               
+
+        <%
+        
+         }%>
+        </div>
+        <div class="large-4 middle-4 small-12 columns" style="float: left !important;">
+            <h3 style="color: white"> Ranking kolonijny </h3>
+            <% if(list.length){ %>
+                <ul class="no-bullet">
+                    <%for(var i = 0;i < list.length;i++) { 
+                        if(list[i].email===ciasta){%>  
+                        <%}else{%>
+                        <li class="users" style="text-align: left"><%=list[i].imie%>  <%=list[i].nazwisko%> -  <%if(list[i].rating == null){%> Brak punktów <%}else{%> <%=list[i].rating%>  <%}%> </li>
+                        <%}
+                    }%>
+                </ul>        
+            <% }else{ %>
+             <tr>
+                <td colspan="3">No user</td>
+             </tr>
+        <% } %>
+        </div>
+
+    </div>
+
+<script>
+ /*function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function (e) {
+                $('.ferret').attr('src', e.target.result);
+            }
+            
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    
+function preview(img, selection) {
+    var scaleX = 100 / (selection.width || 1);
+    var scaleY = 100 / (selection.height || 1);
+  var img= document.getElementById("ferret");
+var w = img.width;
+var h = img.height;
+    $('#ferret + div > img').css({
+        width: Math.round(scaleX * w) + 'px',
+        height: Math.round(scaleY * h) + 'px',
+        marginLeft: '-' + Math.round(scaleX * selection.x1) + 'px',
+        marginTop: '-' + Math.round(scaleY * selection.y1) + 'px'
+    });
+}
+$(document).ready(function () {
+   $('<div> <img class="ferret" src="#" alt="your image" style="position: relative; /><div>')
+    //$('<div><img src="/uploads/ferret.jpg" style="position: relative;" /><div>')
+        .css({
+            float: 'left',
+            position: 'relative',
+            overflow: 'hidden',
+            width: '100px',
+            height: '100px'
+        })
+        .insertAfter($('#ferret'));
+//var img = document.createElement("img");
+    $('#ferret').imgAreaSelect({ aspectRatio: '1:1', onSelectChange: preview });
+});
+    $("#imgInp").change(function(){
+        readURL(this);
+    });
+*/
+</script>
+        <footer id="sentence_bottom"></footer>
+    </body>
+
+</html>

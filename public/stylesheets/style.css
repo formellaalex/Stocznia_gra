@@ -1,0 +1,360 @@
+
+html, body{
+	width: 100%;
+	height: 100%;
+    font-size: 100%;
+}
+body {
+    background: url("/images/layout/background.png");
+    background-size: 100%;
+    background-attachment: fixed;
+}
+a:hover, a:focus {
+    color: #800000;
+}
+:focus {outline:none;}
+::-moz-focus-inner {border:0;}
+#logowanie body {
+    background: url("/images/layout/background1.png");
+    background-size: 100%;
+    background-attachment: fixed;
+}
+
+#B1:hover #test_div{
+    display: block;
+}
+#header{
+    background: url("/images/layout/logo.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 80%;
+    height: 0;
+    padding-top: 14.37%;
+}
+
+#edit_profile{
+    background: url("/images/layout_addons/edytuj.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    border: none;
+    width: 30%;
+}
+
+label{
+    color: white;
+}
+
+.vote{
+
+}
+/* przybory do navigation-bar */
+#head_przeszlosc_button{
+	background: url("/images/layout/przeszlosc.png");
+    background-size: 100%;
+}
+#head_przeszlosc_button1{
+    background: url("/images/layout/pz.png");
+    background-size: 100%;
+}
+#head_kolonia_button{
+	background: url("/images/layout/kolonia.png");
+    background-size: 100%;
+}
+#head_kolonia_button1{
+    background: url("/images/layout/koloniastoczniazaznaczone.png");
+    background-size: 100%;
+}
+#head_przyszlosc_button{
+	background: url("/images/layout/przyszlosc.png");
+    background-size: 100%;
+}
+#head_przyszlosc_button1{
+    background: url("/images/layout/przyszlosczaznaczone.png");
+    background-size: 100%;
+}
+#head_przeszlosc_button, #head_kolonia_button, #head_przyszlosc_button,#head_przeszlosc_button1,#head_kolonia_button1,#head_przyszlosc_button1{
+    background-repeat: no-repeat;
+    border: none;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 33.3333%;
+    height: 0;
+    padding-top: 5%;
+    display: inline-block;
+    margin: 0;
+}
+.button-group > a {
+margin: 0;
+float: left; }
+
+
+#zaloguj{
+    background: url("/images/layout_addons/zaloguj.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    border: none;
+    width: 30%;
+
+}
+
+#zarejestruj{
+    background: url("/images/layout_addons/stworz_konto.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    border: none;
+    width: 70%;
+
+}
+#row_above_maps{
+  /*  background: url('/images/layout/tablica_background.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;*/
+}
+#maps_row{
+    background: url('/images/layout/mapazaloguj.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.iloscpodkom{
+    border:none;
+    background-color: Transparent;
+    background-repeat:no-repeat;
+}
+.kolonia_button{
+    width: 100%;
+    height: 100%;
+    font-family: 'stocznia_important_links';
+    color: black;
+    border: none;
+    background: none;
+    text-align: center;
+}
+#przeszlosc_start{
+    background: url("/images/layout/przeszlosc.png");
+}
+#kolonia_start{
+    background: url("/images/layout/kolonia.png");
+}
+#przyszlosc_start{
+    background: url("/images/layout/przyszlosc.png");
+}
+#przeszlosc_start, #kolonia_start, #przyszlosc_start{
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 0;
+    padding-top: 15.94%;
+}
+
+@font-face {
+    font-family: 'stocznia_body';
+    src: url('/fonts/body_+_nazwy_ulic/capture-smallz/Capsmall_clean.ttf') format('truetype');
+    /*src: local('Capture Smallz');*/
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'stocznia_important_links';
+    src: url('/fonts/important_links/rafika/rafika.ttf') format('truetype');
+    /*src: local('Rafika');*/
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'stocznia_users';
+    src: url('/fonts/uzytkownicy/top_secret/top_secret.otf') format('truetype');
+    /*src: local('Top Secret');*/
+    font-weight: normal;
+    font-style: normal;
+}
+
+.postulat{
+    font-family: 'stocznia_important_links', Helvetica;
+    color: black;
+    font-size: 1.3rem;
+}
+.white{
+    color: white;
+}
+
+.black{
+    color: black;
+}
+
+.users{
+    text-align: center;
+    font-size: 1rem;
+    letter-spacing: 0.1rem;
+    font-family: 'stocznia_users', Helvetica;
+}
+
+.tytul{
+    font-family: 'stocznia_body',Helvetica;
+    text-align: center;
+    letter-spacing: 0.15rem;
+}
+
+.important_link{
+    font-family: 'stocznia_important_links', Arial, sans-serif;
+    font-size: 1.4em;
+    color: white;
+}
+
+.opis{
+    color: white;
+    font-family: 'stocznia_body', Helvetica, sans-serif;
+    letter-spacing: 0.1em;
+}
+
+.kolonia_options{
+    font-family: 'stocznia_body', Helvetica, sans-serif;
+    color: black;
+    display: block;
+    text-align: center;
+
+}
+.kolonia_options:hover{
+    
+    color: #800000;
+ 
+
+}
+.kolonia_options:first-letter{
+    color: #800000;
+}
+
+
+.prostokat{
+    border-top-style: solid;
+    border-top-color: black;
+}
+
+
+h3{
+    font-family: 'stocznia_body',Helvetica, sans-serif;
+}
+
+#log_div{
+	display: none;
+}
+
+
+#sentence_bottom{ 
+    width:100% ;
+    position:fixed;
+    bottom: 0;
+    background: url('/images/layout/stopka.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 0;
+    padding-top: 4.3%;
+    z-index: 900;
+}
+#sentence_bottomm{ 
+    width:100% ;
+    position:fixed;
+    bottom: 0;
+    background: url('/images/layout/pasekdolny.jpg');
+    
+    background-repeat: no-repeat;
+    height: 0;
+    padding-top: 4.3%;
+    z-index: 900;
+}
+
+
+
+
+
+label, input{
+	display: inline-block;
+}
+
+.wykuj_postulat{
+    background: url('/images/layout_addons/dodaj_postulat.png');background-size: 100%;background-repeat: no-repeat; border: none;
+    width: 110%;
+}
+
+.wykuj_postulat:hover{
+    background: url('/images/layout_addons/dodaj_postulat.png');background-size: 100%;background-repeat: no-repeat; border: none;
+
+}
+#lista_postulatow{
+    max-height: 60%;
+    margin-bottom: 5%;
+}
+@media screen and (min-width: 1024px){
+    .kolonia_options{
+        font-size: 1.6rem;
+        margin-bottom: 10%;
+    }
+    .kolonia_button{
+        font-size: 1rem;
+    }
+    #lista_postulatow{
+        position: fixed;
+        height: auto;
+        margin-bottom: 0;
+    }
+    #headerwidth{
+        height: 11%;
+    }
+}
+@media screen and (max-width: 1024px){
+    .kolonia_options{
+        font-size: 1.6rem;
+        margin-bottom: 10%;
+    }
+    .kolonia_button{
+        font-size: 1.2rem;
+    }
+    html{
+        font-size: 90%;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .kolonia_options{
+        font-size: 1.3rem;
+        margin-bottom: 25%;
+    }
+    .wykuj_postulat{
+        width: 200%;
+        float: right;
+    }
+    html{
+        font-size: 60%;
+    }
+}
+@media screen and (max-width: 480px){
+    .kolonia_options{
+        margin-bottom: 35%;
+    }
+    #row_above_maps{
+        height: 70%;
+    }
+    .kolonia_button{
+        width: 5rem;
+    }
+    .wykuj_postulat{
+        width: 300%;
+        float: right;
+    }
+    html{
+        font-size: 50%;
+    }
+}
+
+@media screen and (max-width: 320px){
+    .kolonia_options{
+        margin-bottom: 35%;
+    }
+    #row_above_maps{
+        height: 74%;
+    }
+    html{
+        font-size: 40%;
+    }
+
+}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+
+<html class="no-js" lang="en" > 
+
+    <head>
+    
+        <meta charset="utf-8" />
+        
+        <meta name="viewport" content="width=device-width" />
+        <link rel="stylesheet" href="Zurb/css/foundation.css" />
+        <link rel="stylesheet" href="stylesheets/style.css" />
+        
+        
+        <script src="Zurb/js/vendor/custom.modernizr.js"></script>
+
+        <script src="Zurb/js/vendor/jquery.js"></script>
+        
+        <script src="Zurb/js/foundation.min.js"></script>
+        <script src="/javascripts/funkcje_ajax.js"> </script>
+
+            
+    </head>
+    <body>
+        <div class="row">
+            <div class="large-4 columns">
+                <h4> <a href="/kolonisci"> Powrót </a> </h4>
+            </div>
+        </div>
+        <h3 style="text-align:center"> Zmień dane swojego konta. Pozostaw pola puste, jeśli nie chcesz dokonywać zmian. </h3>
+        <h5 style="text-align: center"> <%= info %> </h5>
+        <div class="row">
+            <div class="small-3 small-centered columns">
+                <form action="/uaktualnij" method="post" >
+                    <div style="text-align: center">
+                        <h4> Zmiana informacji o sobie </h4>
+                        <input type="text" placeholder="Wpisz nowe imię" name="new_name"> </input>
+                        <input type="text" placeholder="Wpisz nowe nazwisko" name="new_surname"> </input>
+                        <button>Aktualizuj dane</button>
+                    </div>
+                </form>
+                
+                <form action="/zmiana_hasla" method="post" onsubmit='return validate_new_password("#password_change","#password_rep_change")'>
+                    <div style="text-align: center">
+                        <h4> Zmiana hasła </h4>
+                        <input type="text" name="old_password" id="password_old_change" placeholder="Stare hasło"> </input>
+                        <input type="text" name="new_password" id="password_change" placeholder="Nowe hasło"> </input>
+                        <input type="text" name="rep_new_password" id="password_rep_change"placeholder="Powtórz nowe hasło"> 
+                        <button>Zmień hasło</button>
+                    </div>
+                </form>
+
+                <form action="/upload" enctype="multipart/form-data" method="post">
+                    <div style="text-align: center">
+
+                        <h3> Zmiana profilówki</h3>
+                        <div class="row">
+                            <div class="small-9 small-centered columns">
+                                <input type="file" name="file">
+                            </div>
+                            </div>
+                        
+                        </br>
+                        </br>
+                        <button type="submit"> Zmień </button>
+                    </div>
+
+                </form>
+            </div>
+        </div> 
+
+
+
+    </body>
+
+
+
+
+</html>

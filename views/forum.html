@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'/>
+        <title> <%= title %> </title>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+        <link rel='stylesheet' href='/Zurb/css/foundation.css' />
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+        <script  src='/javascripts/jquery-1.11.1.js'></script>     
+        <script src='/javascripts/funkcje_ajax.js'></script>
+       
+        <script src='/javascripts/jquery-1.11.1.min.js'></script>
+        <script src='/javascripts/jquery.smoothZoom.min.js'></script>
+    
+
+        <style>
+
+        .icon{
+          max-width: 15%;
+          
+        }
+                .icon1{
+          max-width: 20px; 
+          position:inline;
+          float:right;
+        }
+        .select-style {
+    padding: 0;
+    margin: 0;
+    border: none;
+   
+   max-width:40%;
+   min-width:40%;
+
+    border-radius: 4px;
+    overflow: hidden;
+    background-color: #c9c9c9;
+       border-style: solid;
+    border-width: medium;
+
+    background: #c9c9c9 ;
+}
+
+.select-style select {
+    
+   width:130%;
+    border: none;
+    box-shadow: none;
+    background-color: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+}
+
+.select-style select:focus {
+    outline: none;
+}
+        .ukryj_dodaj_komentarz_przycisk_w_menu{
+
+          background: url('/images/layout_addons/dodaj opinie.png');
+          background-position:center;
+          background-repeat:no-repeat;
+             background-size: 100% 100%;
+             border:0;
+             min-width:20%;
+
+        }
+
+        .ukryj_dodaj_komentarz{
+
+          background: url('/images/layout_addons/dodaj opinie.png');
+          background-position:center;
+          background-repeat:no-repeat;
+             background-size: 100% 100%;
+             border:0;
+             min-width:20%;
+
+        }
+            #vote_up{
+                background: url('/images/layout_addons/like<%=vote_up%>.png');
+                background-size: 80% 100%;
+                background-repeat: no-repeat;
+                height: 4em;
+                width: auto;
+                border: none;
+            }
+            #vote_down{
+                background: url('/images/layout_addons/dislike<%=vote_down%>.png');
+                background-size: 80% 100%;
+                background-repeat: no-repeat;
+                height: 4em;
+                width: auto;
+                border: none;
+            }
+            #vote_up_kom{
+                background: url('/images/layout_addons/like.png');
+                background-size: 80% 80%;
+                background-repeat: no-repeat;
+                height: 3em;
+                width: auto;
+                border: none;
+            }
+            #vote_up_kom1{
+                background: url('/images/layout_addons/like.png');
+                background-size: 80% 80%;
+                background-repeat: no-repeat;
+                height: 4em;
+                width: auto;
+                border: none;
+            }
+            #vote_down_kom{
+                background: url('/images/layout_addons/dislike.png');
+                background-size: 80% 80%;
+                background-repeat: no-repeat;
+                height: 3em;
+                width: auto;
+                border: none;
+            }
+            #vote_down_kom1{
+                background: url('/images/layout_addons/dislike.png');
+                background-size: 80% 80%;
+                background-repeat: no-repeat;
+                height: 4em;
+                width: auto;
+                border: none;
+            }
+            img.display {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            p{
+                color: black;
+            }
+            span{
+                color: black;
+            }
+
+
+
+          html body{
+              width: 100%;
+              height: 100%;
+              font-size: 100%;
+              margin:0;
+          }
+          .smooth_zoom_preloader {
+              background-image: url("/zoom_assets/preloader.gif");
+          }   
+          .smooth_zoom_icons {
+              background-image: url("/images/layout_addons/dislike.png");
+          }
+          #int{
+              background: url("/images/map/123.png");
+              background-size: 100% 100%;
+              background-repeat: no-repeat;
+          }
+          $( "div.enterleave" )
+          .mouseenter(function() {
+          $( this ).find( "span" ).text( "mouse enter x " + n );
+          })
+          .mouseleave(function() {
+          $( this ).find( "span" ).text( "mouse leave" );
+          });
+      </style>
+      <script> 
+
+        function myAwesomeFunc(){
+        var sorttiger=0;  
+        $("#dodaj_komentarz").hide();
+          $('.hiden').each(function(){
+            $("div .hiden").hide();
+           
+        });
+         $('.hidenlevel').each(function(){
+        $("div .hidenlevel").hide();
+        });
+         $('#sortuj').each(function(){
+         if(sorttiger===0){
+         $('#sotruj').hide();
+        }
+        });
+        $("#sortuj1").click("click", function() {
+         $('#sotruj1').hide();
+            sorttiger=1;
+            $("#sortuj").show();
+         
+        });
+        $("#sortuj").click("click", function() {
+            $('#sotruj').hide();
+            sorttiger=0;
+            $("#sortuj1").show();
+        });
+        $(".klasa").click("click", function() {
+                var klasa = "";
+                var identyfikator = "";
+                
+                if ($(this).attr("class") != null) {
+                    klasa = $(this).attr("class");
+                }
+                
+                if ($(this).attr("id") != null) {
+                    identyfikator = $(this).attr("id");
+                    $('#a'+identyfikator).toggle();
+                    //alert($(this).text() + " " + klasa + identyfikator);
+                }
+                
+            });
+        var tiger=0;
+        $(".ukryj_dodaj_komentarz").click("click", function() {$("#dodaj_komentarz").toggle();});
+        $(".klasa1").click("click", function() {
+                var klasa = "";
+                var identyfikator = "";
+                
+                if ($(this).attr("class") != null) {
+                    klasa = $(this).attr("class");
+                }
+                
+                if ($(this).attr("id") != null) {
+                    identyfikator = $(this).attr("id");
+                    $('div #p'+identyfikator).each(function(){
+                      if( tiger===0){
+                       $('div #p'+identyfikator).show();
+                       
+                       }else{if( tiger===1){
+                        $('div #p'+identyfikator).hide();
+                       }
+                       }
+                    });
+                    if(tiger===0){tiger=1;}else{tiger=0;}
+                    
+        ;
+                
+                }
+                
+            });
+        }
+       window.onload = myAwesomeFunc;
+
+        //miejsce na mape
+        jQuery(function($){
+            $('#map').smoothZoom({
+                width: $(window).width()/2.1,
+                height: $(window).height()/2.1,
+                zoom_BUTTONS_SHOW: 'NO',
+                zoom_CLICK: 'NO',
+                pan_BUTTONS_SHOW: 'NO',
+                responsive: true,
+                initial_ZOOM: 30,
+                zoom_MIN: 24,
+                background_COLOR: 'transparent',
+                mouse_DOUBLE_CLICK: false,
+                zoom_OUT_TO_FIT: true,
+            });
+                
+        });
+
+
+
+
+        function zoom_in(){
+            $('#map').smoothZoom('zoomIn');
+            $('#line').smoothZoom('zoomIn');
+        }
+        function zoom_out(){
+            $('#map').smoothZoom('zoomOut');
+            $('#line').smoothZoom('zoomOut');
+        }
+
+
+        $(document).ready(function(){
+
+
+            var scale;
+
+            $('.mapping').mouseover(function() {
+                $("#test_div").css("display", "block");
+            }).mouseout(function(){
+                $("#test_div").css("display", "none");     
+            });
+
+            if($(window).height()/$(window).width() > 1){
+                scale = 2540/($(window).width()/2);
+
+            }
+            else{
+                scale = 1796/($(window).height()/2);
+            }
+
+            $(".show_zoom").click(function(){
+                $('#zoom_ratio').html("Skala: 1:"+Math.round((scale*10000)/($('#map').smoothZoom('getZoomData').ratio+1)));
+            });
+
+            $('#zoom_ratio').html("Skala: 1:"+Math.round((scale*10000)/1.17));
+
+        });
+
+      </script>   
+    </head>
+    <body>
+          
+      <div class="row" style="margin-bottom: 5%">
+          <div class="contain-to-grid">
+              <div class="fixed">
+                  <ul class="button-group even-3">
+                    <% if(strona=="przeszlosc"||strona=="mapa_przeszlosc"){%>      
+                      <a id="head_przeszlosc_button1" href="/forum/przeszlosc"></a>
+                      <a id="head_kolonia_button" href="/"></a>
+                      <a id="head_przyszlosc_button" href="/forum/przyszlosc"></a>  
+                       <%}%>
+                    <% if(strona=="przyszlosc"||strona=="mapa_przyszlosc"){%>      
+                      <a id="head_przeszlosc_button" href="/forum/przeszlosc"></a>
+                      <a id="head_kolonia_button" href="/"></a>
+                      <a id="head_przyszlosc_button1" href="/forum/przyszlosc"></a>  
+                       <%}%>
+                  </ul>
+              </div>
+          </div>
+      </div>
+      </br>
+      </br>
+      </br>
+
+      <div class='row' style="height: 100%;margin-bottom: 10%">
+          <!--lewy górny-->
+       <%if(strona==="mapa_przeszlosc"||strona==="mapa_przyszlosc"){%>
+        <div class="large-6 small-12 columns">
+            <div class="row">
+                <div class="large-12 small-12 columns">
+                    <img id="map" src="/images/map/123.png" style="position: relative; z-index:0;" usemap="#planetmap"/>   
+                  <!--  <p class="opis white" id="zoom_ratio"></p>
+                   <p style="position:absolute float:left"class="show_zoom white opis" onmousedown="zoom_in()">Zoom in! </p>
+                    <p style="position:absolute float:right" class="show_zoom white opis" onmousedown="zoom_out()">Zoom out!</p>-->
+                    <% if(postulaty2.length ){  %>
+                  <img style="max-width:100%" src="/images/metryczki/winietka_<%= postulaty2[0].tytul %>.jpg"></img>
+                  <%}%>
+                </div>
+       
+            </div>
+            <map name="planetmap">
+              <%if(strona==="mapa_przeszlosc" || strona==="mapa_przyszlosc"){%>
+                <%if(strona==="mapa_przeszlosc"){%>
+                <area shape="poly" title="151A" href="/forum/<%=strona%>/2441" onclick="151A" coords="2147,1131,2167,1158,2136,1181,2116,1153" />
+                <area shape="poly" title="88A" href="/forum/<%=strona%>/2451" onclick="88A" coords="1996,1226,2089,1167,2110,1196,2016,1255" />
+                <area shape="poly" title="1A" href="/forum/<%=strona%>/2461" onclick="1A" coords="1924,1208,1951,1255,1808,1318,1799,1260" />
+                <area shape="poly" title="2A" href="/forum/<%=strona%>/2471" onclick="2A" coords="1676,1229,1800,1263,1808,1316,1663,1270" />
+                <area shape="poly" title="76A" href="/forum/<%=strona%>/2481" onclick="76A" coords="1596,1309,1611,1312,1603,1328,1590,1321" />
+                <area shape="poly" title="89A" href="/forum/<%=strona%>/2491" onclick="89A" coords="1472,1240,1460,1281,1578,1322,1588,1280" />
+                <area shape="poly" title="503A" href="/forum/<%=strona%>/2501" onclick="503A" coords="1500,1171,1631,1223,1619,1265,1485,1224" />
+                <area shape="poly" title="44A" href="/forum/<%=strona%>/2511" onclick="44A" coords="1720,1102,1760,1117,1732,1173,1701,1158" />
+                <area shape="poly" title="62A" href="/forum/<%=strona%>/2521" onclick="62A" coords="1651,1085,1704,1098,1694,1122,1640,1135" />
+                <area shape="poly" title="162A" href="/forum/<%=strona%>/2531" onclick="162A" coords="1516,1075,1544,1084,1532,1125,1504,1116" />
+                <area shape="poly" title="505A" href="/forum/<%=strona%>/2541" onclick="505A" coords="1226,1164,1266,1183,1246,1218,1208,1202" />
+                <area shape="poly" title="156A" href="/forum/<%=strona%>/2551" onclick="156A" coords="1190,1178,1208,1183,1199,1195,1184,1190" />
+                <area shape="poly" title="136A" href="/forum/<%=strona%>/2561" onclick="136A" coords="1230,1102,1247,1111,1258,1144,1223,1129" />
+                <area shape="poly" title="131A" href="/forum/<%=strona%>/2571" onclick="131A" coords="1298,1044,1347,1081,1371,1048,1310,1022" />
+                <area shape="poly" title="138A" href="/forum/<%=strona%>/2581" onclick="138A" coords="1425,1064,1454,1087,1466,1063,1443,1048" />
+                <area shape="poly" title="173A" href="/forum/<%=strona%>/2591" onclick="173A" coords="1421,1045,1425,1050,1436,1037,1431,1033" />
+                <area shape="poly" title="139A" href="/forum/<%=strona%>/2601" onclick="139A" coords="1396,1016,1400,1002,1430,1024,1422,1034" />
+                <area shape="poly" title="150A" href="/forum/<%=strona%>/2611" onclick="150A" coords="1407,863,1418,876,1392,905,1377,892" />
+                <area shape="poly" title="128A" href="/forum/<%=strona%>/2621" onclick="128A" coords="1457,920,1476,933,1440,980,1488,1018,1480,1030,1407,983" />
+                <area shape="poly" title="175A" href="/forum/<%=strona%>/2631" onclick="175A" coords="1484,1035,1490,1020,1512,1039,1502,1050" />
+                <area shape="poly" title="39A" href="/forum/<%=strona%>/2641" onclick="39A" coords="1511,924,1539,931,1511,1014,1484,1005" />
+                <area shape="poly" title="37A" href="/forum/<%=strona%>/2651" onclick="37A" coords="1559,907,1600,918,1563,1037,1529,1026" />
+                <area shape="poly" title="38A" href="/forum/<%=strona%>/2661" onclick="38A" coords="1618,924,1645,935,1603,1051,1578,1036" />
+                <area shape="poly" title="40A" href="/forum/<%=strona%>/2671" onclick="40A" coords="1646,988,1679,999,1656,1062,1625,1054" />
+                <area shape="poly" title="43A" href="/forum/<%=strona%>/2681" onclick="43A" coords="1712,953,1665,1060,1710,1076,1746,965" />
+                <area shape="poly" title="36A" href="/forum/<%=strona%>/2691" onclick="36A" coords="1756,965,1720,1085,1762,1097,1798,979" />
+                <area shape="poly" title="42A" href="/forum/<%=strona%>/2701" coords="1810,956,1751,926,1788,860,1849,892" />
+                <area shape="poly" title="287A" href="/forum/<%=strona%>/2711" onclick="287A" coords="1796,850,1849,876,1841,886,1790,860" />
+                <area shape="poly" title="41A" href="/forum/<%=strona%>/2721" onclick="41A" coords="1758,811,1782,819,1753,898,1732,889" />
+                <area shape="poly" title="35A" href="/forum/<%=strona%>/2731" onclick="35A" coords="1718,773,1749,782,1699,930,1668,918" />
+                <area shape="poly" title="34A" href="/forum/<%=strona%>/2741" onclick="34A" coords="1641,745,1591,893,1656,914,1705,765" />
+                <area shape="poly" title="288A" href="/forum/<%=strona%>/2751" onclick="288A" coords="1576,874,1597,881,1589,893,1568,887" />
+                <area shape="poly" title="168A" href="/forum/<%=strona%>/2761" onclick="168A" coords="1608,757,1635,765,1627,778,1602,770" />
+                <area shape="poly" title="47A" href="/forum/<%=strona%>/2771" onclick="47A" coords="1601,737,1555,882,1511,867,1560,722" />
+                <area shape="poly" title="49A" href="/forum/<%=strona%>/2781" onclick="49A" coords="1518,711,1557,723,1508,870,1453,847" />
+                <area shape="poly" title="50A" href="/forum/<%=strona%>/2791" onclick="50A" coords="1486,700,1509,707,1496,739,1478,734" />
+                <area shape="poly" title="46A" href="/forum/<%=strona%>/2801" onclick="46A" coords="1263,774,1344,716,1356,737,1281,802" />
+                <area shape="poly" title="74B" href="/forum/<%=strona%>/2811" onclick="74B" coords="816,769,826,766,828,779,817,780" />
+                <area shape="poly" title="84B" href="/forum/<%=strona%>/2821" onclick="84B" coords="772,755,780,747,773,741,767,749" />
+                <area shape="poly" title="102B" href="/forum/<%=strona%>/2831" onclick="102B" coords="788,737,817,729,825,758,796,767" />
+                <area shape="poly" title="31B" href="/forum/<%=strona%>/2841" onclick="31B" coords="811,641,832,639,843,687,819,691" />
+                <area shape="poly" title="29B" href="/forum/<%=strona%>/2851" onclick="29B" coords="810,630,841,625,834,584,801,598" />
+                <area shape="poly" title="99B" href="/forum/<%=strona%>/2861" onclick="99B" coords="769,601,800,593,817,690,780,690" />
+                <area shape="poly" title="336A" href="/forum/<%=strona%>/2871" onclick="336A" coords="1091,867,1081,915,1094,912,1107,869" />
+                <area shape="poly" title="145B" href="/forum/<%=strona%>/2881" onclick="145B" coords="999,823,1027,814,1036,846,1008,850" />
+                <area shape="poly" title="504A" href="/forum/<%=strona%>/2891" onclick="504A" coords="1119,627,1139,617,1164,662,1149,668" />
+                <area shape="poly" title="33B" href="/forum/<%=strona%>/2901" onclick="33B" coords="1053,748,1083,739,1082,664,1045,667" />
+                <area shape="poly" title="90B" href="/forum/<%=strona%>/2911" onclick="90B" coords="1046,663,1102,662,1074,561,1037,568" />
+                <area shape="poly" title="48B" href="/forum/<%=strona%>/2921" onclick="48B" coords="969,656,1016,652,1026,751,980,754" />
+                <area shape="poly" title="133B" href="/forum/<%=strona%>/2931" onclick="133B" coords="844,775,846,734,869,731,863,781" />
+                <area shape="poly" title="57B" href="/forum/<%=strona%>/2941" onclick="57B" coords="863,654,894,666,894,683,864,683" />
+                <area shape="poly" title="27B" href="/forum/<%=strona%>/2951" onclick="27B" coords="941,579,975,572,933,693,902,686" />
+                <area shape="poly" title="26B" href="/forum/<%=strona%>/2961" onclick="26B" coords="937,514,934,573,973,570,973,510" />
+                <area shape="poly" title="195B" href="/forum/<%=strona%>/2971" onclick="195B" coords="789,454,782,540,823,533,815,448" />
+                <area shape="poly" title="87B" href="/forum/<%=strona%>/2981" onclick="87B" coords="680,628,691,658,745,634,730,606" />
+                <area shape="poly" title="86B" href="/forum/<%=strona%>/2991" onclick="86B" coords="734,655,763,722,735,729,711,661" />
+                <area shape="poly" title="141B" href="/forum/<%=strona%>/3001" onclick="141B" coords="649,677,729,807,711,812,637,684" />
+                <area shape="poly" title="143B" href="/forum/<%=strona%>/3011" onclick="143B" coords="598,647,616,628,638,656,618,666" />
+                <area shape="poly" title="140B" href="/forum/<%=strona%>/3021" onclick="140B" coords="543,573,561,560,595,612,586,622" />
+                <area shape="poly" title="75B" href="/forum/<%=strona%>/3031" onclick="75B" coords="538,561,549,558,538,547,528,555" />
+                <area shape="poly" title="60B" href="/forum/<%=strona%>/3041" onclick="60B" coords="513,530,531,518,543,534,524,549" />
+                <area shape="poly" title="93B" href="/forum/<%=strona%>/3051" onclick="93B" coords="471,472,504,447,535,507,502,528" />
+                <area shape="poly" title="3B" href="/forum/<%=strona%>/3061" onclick="3B" coords="527,133,477,364,537,381,588,150,520,137" />
+                <area shape="poly" title="6B" href="/forum/<%=strona%>/3071" onclick="6B" coords="334,304,370,282,474,417,439,440" />
+                <area shape="poly" title="4B" href="/forum/<%=strona%>/3081" onclick="4B" coords="408,67,302,147,372,242,483,160" />
+                <%}%>
+
+
+
+                <%if(strona==="mapa_przyszlosc"){%>
+                <area shape="poly" title="151A" href="/forum/<%=strona%>/3101" onclick="151A" coords="2147,1131,2167,1158,2136,1181,2116,1153" />
+                <area shape="poly" title="88A" href="/forum/<%=strona%>/3111" onclick="88A" coords="1996,1226,2089,1167,2110,1196,2016,1255" />
+                <area shape="poly" title="1A" href="/forum/<%=strona%>/3121" onclick="1A" coords="1924,1208,1951,1255,1808,1318,1799,1260" />
+                <area shape="poly" title="2A" href="/forum/<%=strona%>/3131" onclick="2A" coords="1676,1229,1800,1263,1808,1316,1663,1270" />
+                <area shape="poly" title="76A" href="/forum/<%=strona%>/3141" onclick="76A" coords="1596,1309,1611,1312,1603,1328,1590,1321" />
+                <area shape="poly" title="89A" href="/forum/<%=strona%>/3151" onclick="89A" coords="1472,1240,1460,1281,1578,1322,1588,1280" />
+                <area shape="poly" title="503A" href="/forum/<%=strona%>/3161" onclick="503A" coords="1500,1171,1631,1223,1619,1265,1485,1224" />
+                <area shape="poly" title="44A" href="/forum/<%=strona%>/3171" onclick="44A" coords="1720,1102,1760,1117,1732,1173,1701,1158" />
+                <area shape="poly" title="62A" href="/forum/<%=strona%>/3181" onclick="62A" coords="1651,1085,1704,1098,1694,1122,1640,1135" />
+                <area shape="poly" title="162A" href="/forum/<%=strona%>/3191" onclick="162A" coords="1516,1075,1544,1084,1532,1125,1504,1116" />
+                <area shape="poly" title="505A" href="/forum/<%=strona%>/3201" onclick="505A" coords="1226,1164,1266,1183,1246,1218,1208,1202" />
+                <area shape="poly" title="156A" href="/forum/<%=strona%>/3211" onclick="156A" coords="1190,1178,1208,1183,1199,1195,1184,1190" />
+                <area shape="poly" title="136A" href="/forum/<%=strona%>/3221" onclick="136A" coords="1230,1102,1247,1111,1258,1144,1223,1129" />
+                <area shape="poly" title="131A" href="/forum/<%=strona%>/3231" onclick="131A" coords="1298,1044,1347,1081,1371,1048,1310,1022" />
+                <area shape="poly" title="138A" href="/forum/<%=strona%>/3241" onclick="138A" coords="1425,1064,1454,1087,1466,1063,1443,1048" />
+                <area shape="poly" title="173A" href="/forum/<%=strona%>/3251" onclick="173A" coords="1421,1045,1425,1050,1436,1037,1431,1033" />
+                <area shape="poly" title="139A" href="/forum/<%=strona%>/3261" onclick="139A" coords="1396,1016,1400,1002,1430,1024,1422,1034" />
+                <area shape="poly" title="150A" href="/forum/<%=strona%>/3271" onclick="150A" coords="1407,863,1418,876,1392,905,1377,892" />
+                <area shape="poly" title="128A" href="/forum/<%=strona%>/3281" onclick="128A" coords="1457,920,1476,933,1440,980,1488,1018,1480,1030,1407,983" />
+                <area shape="poly" title="175A" href="/forum/<%=strona%>/3291" onclick="175A" coords="1484,1035,1490,1020,1512,1039,1502,1050" />
+                <area shape="poly" title="39A" href="/forum/<%=strona%>/3301" onclick="39A" coords="1511,924,1539,931,1511,1014,1484,1005" />
+                <area shape="poly" title="37A" href="/forum/<%=strona%>/3311" onclick="37A" coords="1559,907,1600,918,1563,1037,1529,1026" />
+                <area shape="poly" title="38A" href="/forum/<%=strona%>/3321" onclick="38A" coords="1618,924,1645,935,1603,1051,1578,1036" />
+                <area shape="poly" title="40A" href="/forum/<%=strona%>/3331" onclick="40A" coords="1646,988,1679,999,1656,1062,1625,1054" />
+                <area shape="poly" title="43A" href="/forum/<%=strona%>/3341" onclick="43A" coords="1712,953,1665,1060,1710,1076,1746,965" />
+                <area shape="poly" title="36A" href="/forum/<%=strona%>/3351" onclick="36A" coords="1756,965,1720,1085,1762,1097,1798,979" />
+                <area shape="poly" title="42A" href="/forum/<%=strona%>/3361" coords="1810,956,1751,926,1788,860,1849,892" />
+                <area shape="poly" title="287A" href="/forum/<%=strona%>/3371" onclick="287A" coords="1796,850,1849,876,1841,886,1790,860" />
+                <area shape="poly" title="41A" href="/forum/<%=strona%>/3381" onclick="41A" coords="1758,811,1782,819,1753,898,1732,889" />
+                <area shape="poly" title="35A" href="/forum/<%=strona%>/3391" onclick="35A" coords="1718,773,1749,782,1699,930,1668,918" />
+                <area shape="poly" title="34A" href="/forum/<%=strona%>/3401" onclick="34A" coords="1641,745,1591,893,1656,914,1705,765" />
+                <area shape="poly" title="288A" href="/forum/<%=strona%>/3411" onclick="288A" coords="1576,874,1597,881,1589,893,1568,887" />
+                <area shape="poly" title="168A" href="/forum/<%=strona%>/3421" onclick="168A" coords="1608,757,1635,765,1627,778,1602,770" />
+                <area shape="poly" title="47A" href="/forum/<%=strona%>/3431" onclick="47A" coords="1601,737,1555,882,1511,867,1560,722" />
+                <area shape="poly" title="49A" href="/forum/<%=strona%>/3441" onclick="49A" coords="1518,711,1557,723,1508,870,1453,847" />
+                <area shape="poly" title="50A" href="/forum/<%=strona%>/3451" onclick="50A" coords="1486,700,1509,707,1496,739,1478,734" />
+                <area shape="poly" title="46A" href="/forum/<%=strona%>/3461" onclick="46A" coords="1263,774,1344,716,1356,737,1281,802" />
+                <area shape="poly" title="74B" href="/forum/<%=strona%>/3471" onclick="74B" coords="816,769,826,766,828,779,817,780" />
+                <area shape="poly" title="84B" href="/forum/<%=strona%>/3481" onclick="84B" coords="772,755,780,747,773,741,767,749" />
+                <area shape="poly" title="102B" href="/forum/<%=strona%>/3491" onclick="102B" coords="788,737,817,729,825,758,796,767" />
+                <area shape="poly" title="31B" href="/forum/<%=strona%>/3501" onclick="31B" coords="811,641,832,639,843,687,819,691" />
+                <area shape="poly" title="29B" href="/forum/<%=strona%>/3511" onclick="29B" coords="810,630,841,625,834,584,801,598" />
+                <area shape="poly" title="99B" href="/forum/<%=strona%>/3521" onclick="99B" coords="769,601,800,593,817,690,780,690" />
+                <area shape="poly" title="336A" href="/forum/<%=strona%>/3531" onclick="336A" coords="1091,867,1081,915,1094,912,1107,869" />
+                <area shape="poly" title="145B" href="/forum/<%=strona%>/3541" onclick="145B" coords="999,823,1027,814,1036,846,1008,850" />
+                <area shape="poly" title="504A" href="/forum/<%=strona%>/3551" onclick="504A" coords="1119,627,1139,617,1164,662,1149,668" />
+                <area shape="poly" title="33B" href="/forum/<%=strona%>/3561" onclick="33B" coords="1053,748,1083,739,1082,664,1045,667" />
+                <area shape="poly" title="90B" href="/forum/<%=strona%>/3571" onclick="90B" coords="1046,663,1102,662,1074,561,1037,568" />
+                <area shape="poly" title="48B" href="/forum/<%=strona%>/3581" onclick="48B" coords="969,656,1016,652,1026,751,980,754" />
+                <area shape="poly" title="133B" href="/forum/<%=strona%>/3591" onclick="133B" coords="844,775,846,734,869,731,863,781" />
+                <area shape="poly" title="57B" href="/forum/<%=strona%>/3601" onclick="57B" coords="863,654,894,666,894,683,864,683" />
+                <area shape="poly" title="27B" href="/forum/<%=strona%>/3611" onclick="27B" coords="941,579,975,572,933,693,902,686" />
+                <area shape="poly" title="26B" href="/forum/<%=strona%>/3621" onclick="26B" coords="937,514,934,573,973,570,973,510" />
+                <area shape="poly" title="195B" href="/forum/<%=strona%>/3631" onclick="195B" coords="789,454,782,540,823,533,815,448" />
+                <area shape="poly" title="87B" href="/forum/<%=strona%>/3641" onclick="87B" coords="680,628,691,658,745,634,730,606" />
+                <area shape="poly" title="86B" href="/forum/<%=strona%>/3651" onclick="86B" coords="734,655,763,722,735,729,711,661" />
+                <area shape="poly" title="141B" href="/forum/<%=strona%>/3661" onclick="141B" coords="649,677,729,807,711,812,637,684" />
+                <area shape="poly" title="143B" href="/forum/<%=strona%>/3671" onclick="143B" coords="598,647,616,628,638,656,618,666" />
+                <area shape="poly" title="140B" href="/forum/<%=strona%>/3681" onclick="140B" coords="543,573,561,560,595,612,586,622" />
+                <area shape="poly" title="75B" href="/forum/<%=strona%>/3691" onclick="75B" coords="538,561,549,558,538,547,528,555" />
+                <area shape="poly" title="60B" href="/forum/<%=strona%>/3701" onclick="60B" coords="513,530,531,518,543,534,524,549" />
+                <area shape="poly" title="93B" href="/forum/<%=strona%>/3711" onclick="93B" coords="471,472,504,447,535,507,502,528" />
+                <area shape="poly" title="3B" href="/forum/<%=strona%>/3721" onclick="3B" coords="527,133,477,364,537,381,588,150,520,137" />
+                <area shape="poly" title="6B" href="/forum/<%=strona%>/3731" onclick="6B" coords="334,304,370,282,474,417,439,440" />
+                <area shape="poly" title="4B" href="/forum/<%=strona%>/3741" onclick="4B" coords="408,67,302,147,372,242,483,160" />
+                <%}%>
+              <%}%>
+            </map>
+        </div>
+      <!-- miejsce na else-->
+      <%}else{%>
+      <!-- tast-->
+      <!--tutaj
+         <div class='large-6 small-12 columns' style="background: url('/images/layout/tablica_background.png');overflow-y: auto" id="lista_postulatow">-->
+         <div class='large-6 small-12 columns' style="overflow-y: auto" id="lista_postulatow">
+                <div class="row">
+                    <div class="large-8 small-8 columns"><h3 style="font-family: 'stocznia_body', Helvetica, sans-serif;color: black;"> POSTULATY </h3></div>
+                    <div class="large-4 small-4 columns" style="padding:0"> <br><button style="background: url('/images/layout_addons/dodaj_postulat.png');background-size: 100% 100%; width: 10rem;height: auto; border: none;margin: 0;position: absolute;top:0;right: 0" class="napisz_postulat_btn"></button>  </div>
+                </div>
+                <div id="tablica_postulatow" style="height: auto%; overflow-y: auto">
+                    <div class="row" id="wykujPostulat"  style="width: 100%"> 
+                        <div class="large-10 columns">
+                            <div style="width: 100%">
+                              <form method="post" action="/multiupload" enctype="multipart/form-data" class="dodawaniePostow" style="margin: 2% 0 0 2%">
+                                    <input type="hidden" name="strona" value="<%=strona%>" />
+                                    <button class="napisz_postulat_btn" type="button" style="padding: 0;float: right"> X </button>
+                                    <input type='text' placeholder="TYTUŁ POSTULATU" name='tytul' style="text-transform: uppercase; display: inline-block"/>
+                                    <textarea name="tresc" cols="10" rows="10"  placeholder="UZASADNIENIE" style="text-transform: uppercase;"></textarea>
+                                      <input type="file" name="upload" multiple="multiple"><br>
+                                    <input type='submit' />
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="width: 100%">
+                        <div class="large-12 columns">
+                            <% if(postulaty.length){ 
+                                      
+                              for(var i = postulaty.length-1;i >=0;i--) { %>
+                              <%if(postulaty[i].id==capfile){%>
+                              <h3 class="tytul white" > <a href="/forum/<%=strona%>/<%=postulaty[i].id%>" class="postulat black"><span style="color:#800000"> <%= postulaty[i].tytul%> -  <%= postulaty[i].suma_punktow_post%><span> </a></h3>
+                                    
+                                <%}else{%>
+ 
+                                    <p class="naglowek_postu"  style="position:inline float:left width:80%"> <a href="/forum/<%=strona%>/<%=postulaty[i].id%>" class="postulat black"> <%= postulaty[i].tytul%> - <%= postulaty[i].suma_punktow_post%> </a></p>
+                                <%}%>
+                                 
+                                <% } %>
+                        
+                            <% } %>
+                        </div>
+
+                    </div>
+               </div>
+
+             </div>
+
+          <%}%>
+          <!--lewy dolny-->
+          <!--tutaj
+          <div class="large-6 small-12 columns" style="height: auto;background: url('/images/layout/tablica_background.png');margin-bottom: 8%">-->
+          <div class="large-6 small-12 columns" style="height: auto;margin-bottom: 8%">
+              <div class="post" >
+                  <% if(postulaty2.length){  %>
+                  <!--tresc gowna postulatu-->
+                  <!--if(strona==="przeszlosc"||strona==="przyszlosc"){-->
+                  <%if(strona==="mapa_przeszlosc"||strona==="mapa_przyszlosc"){%>
+                  <h3  class="tytul white" style="color:#800000 ; font-size:72px" id="tytul_postu"> <%= postulaty2[0].tytul %> </h3>
+                    <button  style="display: inline; margin-left: 5%"  class="ukryj_dodaj_komentarz" > .</button>
+                  <%}else{ %>
+                    <h3  class="tytul white" style="color:#800000" id="tytul_postu"> <%= postulaty2[0].tytul %> </h3>
+                    <h4 class="tresc_postu tytul black"> <%= postulaty2[0].tresc %> </p>
+                 
+                   
+                    <% if(postulaty1.length){
+                          for(var i = postulaty1.length-1;i >=0;i--) { %>
+                              <%if( postulaty1[i].rozszerzenie==="jpg"||postulaty1[i].rozszerzenie==="png" ){%>
+                               <img class="display" src="<%=postulaty1[i].pathfile%>" width="90%" height="auto" alt="Błąd" style="margin-bottom: 5%" />
+                              <%}else{ %>
+                              <p class="zalaczniki"> <a href="<%=postulaty1[i].pathfile%>"> <%=postulaty1[i].name_pic%></a></p><%}%>
+                            
+                          <% } %>
+                      <% } %> 
+                    <div class="row">
+                     <!-- <div style="large-12 small-12 columns ; float:left  " >-->
+                        <a href="/kolonisci/<%=postulaty2[0].nick%>"   style="display: inline; margin-left: 5%" > 
+                          <img style="display: inline" src="<%=postulaty2[0].profilowe%>" class="display" width="10%" heigth="auto" alt="brak zdjęcia" />
+
+                          <p style="display: inline; margin-left: 5%" class="users black" id="tworca_postu"><%= postulaty2[0].imie %> <%= postulaty2[0].nazwisko %> <span style="margin-left: 10%"><%=postulaty2[0].czas_dodania%></span></p>
+
+                        </a>        
+                      
+                          <button  style="display: inline; margin-left: 5%"  class="ukryj_dodaj_komentarz" > .</button>
+                   <!--   </div>-->
+                  </div> 
+
+                  <div class="row" style="text-align: center">
+                      <div class="large-9 small-9 columns">
+                          <p style="font-size: 0.8rem;display: inline;">  <%=comments_count[0].ilosc %></p>
+                          <img class="icon" src="/images/layout_addons/victoria klawiatura_vectorized.png" style="display: inline ;"></img>
+                          <p style="font-size: 0.8rem;display: inline;margin-left:3%;color:#800000"><%=comments_count[1].ilosc%> </p>
+                          <img class="icon" src="/images/layout_addons/kciuk klawiatura_vectorized.png" style="display: inline"></img>
+                          
+
+                          <p style="display: inline"><span style="color:black"> <%=vote_up_count%></span> </p>
+                          <form style="display:inline;color: white" action="/vote_up/<%=capfile%>/post/<%=capfile%>/<%=strona%>" method="post">  <button class="vote" id="vote_up" ></button> </form>
+
+                          <p style="display: inline"><span style="color:#800000"> <%=vote_down_count%> </span></p>
+                          <form style="display: inline; color: white" action="/vote_down/<%=capfile%>/post/<%=capfile%>/<%=strona%>" method="post"> <button class="vote" id="vote_down"></button></form>
+
+                          <p style="font-size: 0.8rem;display: inline;margin-left:3%;color:#800000"><%=(vote_up_count-vote_down_count)+(comments_count[0].ilosc-comments_count[1].ilosc)*5%> </p>
+                           <img class="icon" src="/images/layout_addons/gra o stocznie_vectorized.png" style="display: inline; max-width:8%"></img>
+  
+                      
+                     <!-- <div class="large-4 small-4 columns">
+                          <button style="margin-bottom: 5%; " class="ukryj_dodaj_komentarz">. ..  . . .  . .</button>
+                      </div>-->
+                  </div>
+                  <div class="large-3 small-3 columns">
+                        <div class="select-style"> 
+                          <select name="forma" style="font-size: 1rem;padding:0;margin:0" onchange="location = this.options[this.selectedIndex].value;" value="sortuj">
+                          <option selected disabled><p>Sortuj</p></option>
+                          <option value="/forum/<%=strona%>/<%=postulaty2[0].id%>">Od najmłodszej</option>
+                          <option value="/forum1/<%=strona%>/<%=postulaty2[0].id%>">Od najstarszej</option>
+                          </select>
+                        </div>
+                      </div>
+                  <!--}else{ -->      
+                     <!--<h3  class="tytul white" id="tytul_postu"> postulaty2[0].tytul </h3>
+                      <div class="large-4 small-4 columns">
+                          <select name="forma" style="max-width: 50%;height: 4%;font-size: 0.6rem;padding:0;margin:0" onchange="location = this.options[this.selectedIndex].value;" value="sortuj">
+                          <option selected disabled>Sortuj</option>
+                      <option value="/forum/identyko jak u gory>">Od najmłodszej</option>
+                          <option value="/forum1/>">Od najstarszej</option>
+                          </select>
+                      </div>
+                      <div class="large-4 small-4 columns">
+                          <button style="margin-bottom: 5%" class="ukryj_dodaj_komentarz">Twoja opinia</button>
+                      </div>-->
+                 <!-- }-->
+                     <!--zalaczniki do golownego postulatu--> 
+                  </div>
+                   <% } %> 
+                  <div id="dodaj_komentarz" style="width: 100%;margin-bottom: 15%">
+                      <button class ="ukryj_dodaj_komentarz" style="padding: 0;border:none;background: none;color: black" type="button" onclick=""> X </button>
+                      <form method="post" action="/multiuploadkomentarz" enctype="multipart/form-data" class="dodawaniePostow" style="margin: 2% 0 0 2%">
+                          <input type="hidden" name="licznik" value="-1"/>
+                          <input type="hidden" name="ukryte" value="<%=capfile%>" />
+                          <input type="hidden" name="strona" value="<%=strona%>" />
+                          <textarea class="comment_text" name="tresc" cols="10" rows="5"  placeholder="Dodaj swój komentarz"></textarea>
+                          <div class="row">
+                              <div class="large-4 small-6 columns">
+                                  <input style="display: inline" type="radio" name="comment_type" value="1" checked="checked" /> <span> Pozytywny </span>
+                              </div>
+                              <div class="large-4 small-6 columns">
+                                  <input style="display: inline" type="radio" name="comment_type" value="-1"/> <span> Negatywny </span> </br>
+                              </div>
+                              <div class="large-4 small-12 columns">
+                                  <input type="file" name="upload" multiple="multiple">
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="large-12 small-12 columns" style="text-align: center">
+                                  <button style="margin: 10% 0 10% 0"> Publikuj </button> </br>
+                                  <p> Klikając "Publikuj" akceptujesz <a href="/reguly">zasady Gry o Stocznię </a> </p>
+                              </div> 
+                          </div>
+                      </form>
+                  </div>
+                      <!--tresc pierwszych komentarzy--> 
+                      <%if(postulaty3.length){
+                           
+                          for(var i=postulaty3.length-1;i>=0;i--){ %>
+                          <% if(postulaty3[i].id_parent===null){%>
+                          <div class = "prostokat" style="width: 100%;">
+                          <!-- usuwanie postu   background-color:rgba(224, 212, 177,0.3);-->
+                          
+                          <%if(idcookies==321){%>
+                          <a href="/delete/<%=postulaty3[i].IdKomentarzu%>"><img class="icon1" src="/images/layout_addons/smietniczek_vectorized.png" >  <p></p></img></a>
+                          <%}
+                          else{%>
+                          <form action="/delete/<%=postulaty3[i].id%>" class="test_form" style=" float:right " method="post"> <input type="hidden" name="delete_message" class="message" value=""/><button class="postulat white" style="border:none; background: none; margin:0;padding: 0"><img class="icon" src="/images/layout_addons/smietniczek_vectorized.png" ></button></form>
+                          <!--
+                         <a href="/send/<%=postulaty3[i].id%>" class="postulat black"> <img class="icon1" src="/images/layout_addons/smietniczek_vectorized.png" >   <span style="color:white"><span> </img></a>-->
+                          <%}%>
+                          
+                          <p class="tresc_postu tytul black"> <%= postulaty3[i].tresc %> </p>
+                                              
+                          <div style="width: 100%;">
+                           <!--zalaczniki do pierwszych komentarzy --> 
+                              <% if(postulaty4.length){
+                                  for(var j = postulaty4.length-1;j >=0;j--) { %>
+                                      <%if( postulaty4[j].idpost_kom === postulaty3[i].IdKomentarzu){%>
+                                          <%if( postulaty4[j].rozszerzenie==="jpg"||postulaty4[j].rozszerzenie==="png" ){%>
+                                              <img src="<%=postulaty4[j].pathfile_kom%>"   class="display"  width="90%" heigth="auto" alt="Błąd" style="margin-bottom: 5%;"/>
+                                          <%}else{ %>
+                                              <p class="zalaczniki"> <a href="<%=postulaty4[j].pathfile_kom%>"> <%=postulaty4[j].name_pic%></a></p><%}%>
+                                          <%}%>
+                                  
+                                      <% } %>
+                              <% } %> 
+                              <div style="background-color:rgba(255,255,255,0.5)">
+                                <div class="row" >
+                                  <div class="large-2 columns">
+                                   <a class="klasa1 iloscpodkom" style="color:black" id="<%=postulaty3[i].IdKomentarzu%>"><%=postulaty3[i].ilosc_podkomentarzy%></a>
+                                    <!--<button class="klasa1 iloscpodkom" id="<%=postulaty3[i].IdKomentarzu%>"><%=postulaty3[i].ilosc_podkomentarzy%></button>-->
+                                  </div>
+                                <div class="large-10  columns ">
+                                  <div style="float:left">
+                                    <a href="/kolonisci/<%=postulaty3[i].nick%>"style="margin-left: 3%" > 
+                                    <img style="display: inline" src="<%=postulaty3[i].profilowe%>" class="display" width="80px" heigth="auto" alt="brak zdjęcia" /></a>
+
+                                  </div>
+                                  <a href="/kolonisci/<%=postulaty3[i].nick%>"style="margin-left: 3%" > 
+                                  <p style="display: inline" class="users black" id="tworca_postu"><%= postulaty3[i].imie %> <%= postulaty3[i].nazwisko %> 
+                                    </p></a>
+                                  <p style="margin-right:5%; float:right"> <%=postulaty3[i].czas_dodania_kom%></p>
+                                </div>
+                              </div>
+                              <!--przyciski pierwszego poziomu-->
+                              <div class="row" style="margin-left:3%" >
+                                <div class="large-2  columns"  >
+                                  <span style="color:black;"> <%=postulaty3[i].ilosc_like%></span>
+                                  <form style="display:inline;color: white" action="/vote_up/<%=postulaty3[i].IdKomentarzu%>/past_kom/<%=capfile%>/<%=strona%>" method="post"><button class="vote"   id="vote_up_kom1" ></button> </form>
+                                </div>
+                                <div class="large-2  columns" >
+                                  <span style="color:#800000"><%= postulaty3[i].ilosc_dislike %></span>
+                                  <form style="display: inline; color: white" action="/vote_down/<%=postulaty3[i].IdKomentarzu%>/past_kom/<%=capfile%>/<%=strona%>" method="post"> <button class="vote" id="vote_down_kom1"></button></form>
+                                </div>
+                                <div class="large-4  columns" >
+                                  <button class="klasa ukryj_dodaj_komentarz_przycisk_w_menu" style="min-width:30%" id="<%=postulaty3[i].IdKomentarzu%>"> . .   .  . </button>
+                                </div>
+                              </div>
+                          </div>
+                      
+                      
+                  <!--formularz odpowiedz do pierwszego poziomu-->
+                  <div class="hiden" id="a<%=postulaty3[i].IdKomentarzu%>"  style="width: 100%">
+                      <form method="post" action="/multiuploadkomentarz" enctype="multipart/form-data" class="dodawaniePostow"  style="margin: 2% 0 0 2%">
+                          <input type="hidden" name="ukryte" value="<%=capfile%>" />
+                          <input type="hidden" name="strona" value="<%=strona%>" />
+                          <input type="hidden" name="ukryteID" value="<%=postulaty3[i].IdKomentarzu%>" />
+                          <input type="hidden" name="licznik" value="<%=postulaty3[i].ilosc_podkomentarzy%>">
+                          <textarea class="comment_text" name="tresc" cols="10" rows="5"  placeholder="Dodaj swój komentarz"></textarea>
+                          <div class="row">
+                              <div class="large-4 small-6 columns">
+                                  <input style="display: inline" type="radio" name="comment_type" value="1" checked="checked" /> <span> Pozytywny </span>
+                              </div>
+                              <div class="large-4 small-6 columns">
+                                  <input style="display: inline" type="radio" name="comment_type" value="-1"/> <span> Negatywny </span> </br>
+                              </div>
+                              <div class="large-4 small-12 columns">
+                                  <input type="file" name="upload" multiple="multiple">
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="large-12 small-12 columns" style="text-align: center">
+                                  <button style="margin: 10% 0 10% 0"> Publikuj </button> </br>
+                                  <p> Klikając "Publikuj" akceptujesz <a href="/reguly">zasady Gry o Stocznię </a> </p>
+                              </div> 
+                          </div>
+                      </form>
+                  </div>
+
+                  <!-- DRUGI POZIOM-->
+
+                  <% for (var j=postulaty3.length-1;j>=0;j--){%>
+                    <%if(postulaty3[j].id_parent=== postulaty3[i].IdKomentarzu){ %> 
+                      <div class="hidenlevel" id="p<%=postulaty3[j].id_parent%>" style="border-top-style: solid; border-top-color: black;padding-bottom: 5%">
+                          <%if(321==idcookies){%>
+                            <a href="/delete/<%=postulaty3[j].IdKomentarzu%>"><img class="icon1" src="/images/layout_addons/smietniczek_vectorized.png" ><p></p></img></a>
+                            <%}else{%>
+                            <form action="/delete/<%=postulaty[i].id%>" class="test_form" style=" float:right " method="post"> <input type="hidden" name="delete_message" class="message" value=""/><button class="postulat white" style="border:none; background: none; margin:0;padding: 0"><img class="icon" src="/images/layout_addons/smietniczek_vectorized.png" ></button></form>
+                            <!--<a href="/send/<%=postulaty[i].id%>" class="postulat black"><img class="icon1" src="/images/layout_addons/smietniczek_vectorized.png" ><span style="color:white">delete<span> </img></a>-->
+                            <%}%>
+                     
+                          
+                          <p class="tresc_postu tytul black"> <%= postulaty3[j].tresc %> </p>
+                          <% if(postulaty4.length){
+                              for(var h = postulaty4.length-1;h >=0;h--) { %>
+                                  <%if( postulaty4[h].idpost_kom === postulaty3[j].IdKomentarzu){%>
+                                    
+                                   <%if( postulaty4[h].rozszerzenie==="jpg"||postulaty4[h].rozszerzenie==="png" ){%>
+                                      <img src="<%=postulaty4[h].pathfile_kom%>" class="display"    width="100%" heigth="auto" alt="Błąd" />
+                                  <%}else{ %>
+                                   <p class="zalaczniki" style="left:20px"> <a href="<%=postulaty4[h].pathfile_kom%>"> <%=postulaty4[h].name_pic%></a></p><%}%>
+                                  <%}%>
+                              <% } %>
+                          <% } %> 
+                          <a href="/kolonisci/<%=postulaty3[j].nick%>" > 
+                            <img style="display: inline" src="<%=postulaty3[j].profilowe%>" class="display" width="10%" heigth="auto" alt="brak zdjęcia" />
+                            <p style="display: inline" class="users black" id="tworca_postu"><%= postulaty3[j].imie %> <%= postulaty3[j].nazwisko %> <span style="margin-left: 10%"> <%=postulaty3[j].czas_dodania_kom%></span></p></a>
+                            <div style="float:right ">
+                          <span style="color:black"><%=postulaty3[j].ilosc_like%></span><form style="display:inline;color: white" action="/vote_up/<%=postulaty3[j].IdKomentarzu%>/kom/<%=capfile%>/<%=strona%>" method="post"><button class="vote" id="vote_up_kom" ></button> </form>
+                          <span style="color:#800000"><%= postulaty3[j].ilosc_dislike %></span><form style="display: inline; color: white" action="/vote_down/<%=postulaty3[j].IdKomentarzu%>/kom/<%=capfile%>/<%=strona%>" method="post"> <button class="vote" id="vote_down_kom"></button></form>
+                        </div>
+                      </div>
+
+
+                    <%}%>
+                  <%}%>  
+              </div>    
+
+
+                  <!--koniec drugiego poziomu-->
+
+                  <%}%>
+                  <%}%>
+                <%}%>
+              <%}
+              else{%> 
+                  <h3 class="tytul white"> Witamy w</h3>
+                  <%if(strona=="przeszlosc"){%><h3 class="tytul white">przeszłości!</h3><%}%>
+                  <%if(strona=="przyszlosc"){%><h3 class="tytul white">przyszłości!</h3><%}%>
+                  <h4 class="tytul white">Wybierz postulat albo wykuj swój własny</h4>
+              <%}%>
+  
+              </div>
+          </div>
+      </div>
+<!--
+      <footer id="sentence_bottom">
+       </footer>
+       <a id="wyloguj"href="/forget" style="width: 20.7%;position: fixed; bottom: 0; right: 0;background: url('/images/layout_addons/wyloguj.png');background-size: contain;background-repeat: no-repeat;height:0; padding-top: 4.4%;z-index: 900"></a>-->
+    </body>
+
+</html>

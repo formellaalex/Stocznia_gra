@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<link rel="stylesheet" href="stylesheets/style.css" />
+<script src="zoom_assets/jquery-1.11.1.min.js"></script>
+<script src="zoom_assets/jquery.smoothZoom.min.js"></script>
+<script src="javascripts/funkcje_ajaxjs"></script>
+</head>
+<body>
+	<style>
+	html body{
+		width: 100%;
+		height: 100%;
+		font-size: 100%;
+		margin:0;
+	}
+	.smooth_zoom_preloader {
+		background-image: url(zoom_assets/preloader.gif);
+	}	
+	.smooth_zoom_icons {
+		background-image: url(zoom_assets/icons.png);
+	}
+	#int{
+		background: url("/images/map/123.png");
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+	}
+</style>
+<script>
+
+jQuery(function($){
+	$('#map').smoothZoom({
+		width: $(window).width()/2,
+		height: $(window).height()/2,
+		zoom_BUTTONS_SHOW: 'NO',
+		zoom_CLICK: 'NO',
+		pan_LIMIT_BOUNDARY: "YES",
+		pan_BUTTONS_SHOW: 'NO',
+		background_COLOR: 'transparent',
+		mouse_DOUBLE_CLICK: false,
+		zoom_OUT_TO_FIT: true,
+	});
+		
+});
+function zoom_in(){
+	$('#map').smoothZoom('zoomIn');
+	$('#line').smoothZoom('zoomIn');
+}
+function zoom_out(){
+	$('#map').smoothZoom('zoomOut');
+	$('#line').smoothZoom('zoomOut');
+}
+
+
+$(document).ready(function(){
+
+
+	var scale;
+
+	$('.mapping').mouseover(function() {
+	    $("#test_div").css("display", "block");
+	}).mouseout(function(){
+	    $("#test_div").css("display", "none");     
+	});
+
+	if($(window).height()/$(window).width() > 1){
+		scale = 6648/($(window).width()/2);
+
+	}
+	else{
+		scale = 4700/($(window).height()/2);
+	}
+
+	$(".show_zoom").click(function(){
+ 		$('#zoom_ratio').html("Skala: 1:"+Math.round((scale*10000)/($('#map').smoothZoom('getZoomData').ratio+1)));
+	});
+
+	$('#zoom_ratio').html("Skala: 1:"+Math.round((scale*10000)/1.17));
+
+});
+
+function hover(nr_budynku){
+
+
+}
+</script>
+
+	<div class="row">
+		<div class="large-6 small-12 columns">
+			<div class="row">
+				<div class="large-12 small-12 columns">
+					<img id="map" src="/images/map/123.png" style="position: relative; right: 41%;" usemap="#planetmap"/>	
+					<p class="opis white" id="zoom_ratio"></p>
+					<p class="show_zoom white opis" onmousedown="zoom_in()">Zoom in! </p>
+					<p class="show_zoom white opis" onmousedown="zoom_out()">Zoom out!</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="large-12 small-12 columns">
+
+				</div>
+			</div>
+		</div>
+		<div class"large-6 small-12 columns">
+			<map name="planetmap">
+			<!--  <area class="mapping" id="B1" shape="rect" coords="0,0,502,506" onmousedown="zoom_out()" alt="Sun" href="sun.htm">
+			  <area shape="circle" coords="90,58,3" alt="Mercury" href="mercur.htm">
+			  <area shape="circle" coords="124,58,8" alt="Venus" href="venus.htm">-->
+			   <area shape="poly" alt="151a" coords="5626,2961,5674,3021,5593,3081,5546,3021" />
+  <area shape="poly" alt="88a" onmouseover="88a" onclick="88a" coords="5476,3050,5523,3118,5362,3222,5255,3252,5229,3217" />
+  <area shape="poly" alt="1a" onmouseover="1a" onclick="1a" coords="4713,3307,5039,3171,5101,3279,4772,3426,4760,3412,4735,3422" />
+  <area shape="poly" alt="2a" onmouseover="2a" onclick="2a" coords="4387,3220,4704,3312,4731,3425,4694,3410,4689,3437,4346,3328" />
+  <area shape="poly" alt="76a" onmouseover="76a" onclick="76a" coords="4180,3419,4215,3433,4206,3472,4163,3460" />
+  <area shape="poly" alt="89a" onmouseover="89a" onclick="89a" coords="3849,3265,3883,3281,3893,3259,3925,3272,3919,3290,4095,3345,4104,3331,4132,3340,4132,3356,4153,3367,4121,3454,3992,3412,3981,3431,3949,3416,3957,3398,3818,3354" />
+  <area shape="poly" alt="503a" onmouseover="503a" onclick="503a" coords="3938,3068,4190,3147,4180,3160,4279,3191,4245,3311,3888,3199" />
+  <area shape="poly" alt="285a" onmouseover="285a" onclick="285a" coords="3077,3190,3159,3207,3151,3258,3060,3234" />
+  <area shape="poly" alt="505a" onmouseover="505a" onclick="505a" coords="3211,3047,3306,3081,3261,3185,3168,3151" />
+  <area shape="poly" alt="156a" onmouseover="156a" onclick="156a" coords="3120,3085,3159,3093,3149,3124,3110,3110" />
+  <area shape="poly" alt="136a" onmouseover="136a" onclick="136a" coords="3218,2880,3262,2904,3248,2925,3262,2941,3289,2954,3273,2988,3192,2959" />
+  <area shape="poly" alt="131a" onmouseover="131a" onclick="131a" coords="3442,2691,3517,2746,3544,2719,3588,2753,3527,2831,3397,2731,3436,2678" />
+  <area shape="poly" alt="139a" onmouseover="139a" onclick="139a" coords="3670,2624,3741,2677,3723,2704,3654,2653" />
+  <area shape="poly" alt="173a" onmouseover="173a" onclick="173a" coords="3742,2708,3758,2720,3734,2749,3716,2735" />
+  <area shape="poly" alt="138a" onmouseover="138a" onclick="138a" coords="3779,2742,3836,2781,3802,2823,3751,2801,3751,2779" />
+  <area shape="poly" alt="175a" onmouseover="175a" onclick="175a" coords="3956,2709,3904,2667,3879,2702,3930,2742" />
+  <area shape="poly" alt="128a" onmouseover="128a" onclick="128a" coords="3819,2409,3858,2440,3765,2563,3898,2667,3878,2699,3744,2603,3739,2611,3691,2573" />
+  <area shape="poly" alt="39a" onmouseover="39a" onclick="39a" coords="3967,2420,4025,2438,3956,2654,3894,2632" />
+  <area shape="poly" alt="37a" onmouseover="37a" onclick="37a" coords="4124,2387,4189,2407,4090,2702,4006,2678,4037,2579,4018,2570,4080,2380,4118,2396" />
+  <area shape="poly" alt="38a" onmouseover="38a" onclick="38a" coords="4241,2425,4305,2445,4204,2738,4142,2720,4246,2425" />
+  <area shape="poly" alt="162a" onmouseover="162a" onclick="162a" coords="3977,2825,4039,2839,4012,2938,3950,2919" />
+  <area shape="poly" alt="62a" onmouseover="62a" onclick="62a" coords="4319,2836,4449,2875,4426,2934,4411,2929,4399,2965,4350,2953,4346,2968,4290,2948,4327,2834,4338,2843" />
+  <area shape="poly" alt="44a" onmouseover="44a" onclick="44a" coords="4499,2886,4585,2913,4573,2961,4585,2963,4561,3034,4552,3031,4541,3065,4468,3039,4469,3033,4450,3023" />
+  <area shape="poly" alt="40a" onmouseover="40a" onclick="40a" coords="4313,2591,4388,2617,4369,2648,4391,2653,4374,2682,4366,2683,4328,2782,4262,2753,4281,2691" />
+  <area shape="poly" alt="43a" onmouseover="43a" onclick="43a" coords="4476,2495,4576,2524,4480,2825,4348,2784,4373,2715,4406,2726" />
+  <area shape="poly" alt="36a" onmouseover="36a" onclick="36a" coords="4599,2537,4710,2567,4610,2865,4508,2835,4542,2727,4531,2721" />
+  <area shape="poly" alt="42a" onmouseover="42a" onclick="42a" coords="4689,2250,4834,2324,4738,2503,4588,2431,4691,2245,4698,2257,4699,2255,4698,2255,4696,2251,4696,2250,4695,2249" />
+  <area shape="poly" alt="41a" onmouseover="41a" onclick="41a" coords="4602,2128,4653,2140,4589,2347,4540,2326" />
+  <area shape="poly" alt="35a" onmouseover="35a" onclick="35a" coords="4493,2028,4565,2050,4443,2423,4369,2401" />
+  <area shape="poly" alt="34a" onmouseover="34a" onclick="34a" coords="4228,1945,4284,1965,4287,1955,4464,2010,4341,2391,4156,2334,4177,2277,4161,2270,4177,2227,4190,2232,4191,2213,4151,2198,4169,2139,4203,2150,4218,2128,4275,1994,4217,1976" />
+  <area shape="poly" alt="47a" onmouseover="47a" onclick="47a" coords="4071,1889,4196,1926,4126,2154,4141,2158,4127,2199,4112,2195,4078,2315,3950,2272" />
+  <area shape="poly" alt="49a" onmouseover="49a" onclick="49a" coords="4062,1893,3947,2274,3811,2228,3858,2082,3900,2093,3919,2031,3880,2017,3905,1934,3945,1947,3971,1860" />
+  <area shape="poly" alt="150a" onmouseover="150a" onclick="150a" coords="3618,2318,3641,2292,3651,2299,3679,2265,3705,2281,3639,2360,3616,2344,3630,2327" />
+  <area shape="poly" alt="50a" onmouseover="50a" onclick="50a" coords="3895,1838,3948,1853,3922,1927,3868,1912" />
+  <area shape="poly" alt="46a" onmouseover="46a" onclick="46a" coords="3354,1979,3510,1873,3547,1926,3396,2030,3411,2050,3358,2087,3312,2028,3364,1993" />
+  <area shape="poly" alt="29b" onmouseover="29b" onclick="29b" coords="2098,1554,2184,1540,2205,1643,2117,1652" />
+  <area shape="poly" alt="31b" onmouseover="31b" onclick="31b" coords="2120,1681,2184,1671,2208,1802,2145,1808" />
+  <area shape="poly" alt="99b" onmouseover="99b" onclick="99b" coords="2009,1567,2095,1556,2141,1810,2049,1819" />
+  <area shape="poly" alt="102b" onmouseover="102b" onclick="102b" coords="2064,1930,2138,1907,2163,1986,2087,2005" />
+  <area shape="poly" alt="74b" onmouseover="74b" onclick="74b" coords="2136,2014,2160,2009,2170,2037,2145,2040" />
+  <area shape="poly" alt="84b" onmouseover="84b" onclick="84b" coords="2009,1960,2029,1944,2042,1958,2021,1975" />
+  <area shape="poly" alt="145a" onmouseover="145a" onclick="145a" coords="2617,2158,2684,2134,2713,2208,2642,2230" />
+  <area shape="poly" alt="336a" onmouseover="336a" onclick="336a" coords="2855,2363,2870,2367,2895,2277,2860,2270,2831,2383,2853,2391" />
+  <area shape="poly" alt="504a" onmouseover="504a" onclick="504a" coords="2936,1634,2976,1612,3045,1726,3010,1746,2993,1732,2983,1734,2970,1718,2985,1713,2957,1672,2944,1678,2934,1658,2946,1654" />
+  <area shape="poly" alt="48b" onmouseover="48b" onclick="48b" coords="2660,1706,2541,1718,2568,1978,2692,1967" />
+  <area shape="poly" alt="33b" onmouseover="33b" onclick="33b" coords="2757,1938,2824,1934,2819,1863,2842,1862,2832,1740,2737,1745" />
+  <area shape="poly" alt="90b" onmouseover="90b" onclick="90b" coords="2714,1488,2789,1481,2795,1568,2857,1563,2873,1736,2740,1742" />
+  <area shape="poly" alt="27b" onmouseover="27b" onclick="27b" coords="2366,1790,2434,1815,2444,1798,2456,1799,2555,1527,2544,1491,2464,1501,2455,1531,2446,1528" />
+  <area shape="poly" alt="26b" onmouseover="26b" onclick="26b" coords="2449,1352,2546,1337,2558,1408,2538,1411,2547,1494,2440,1501,2435,1420,2462,1418" />
+  <area shape="poly" alt="133b" onmouseover="133b" onclick="133b" coords="2207,1924,2265,1913,2276,1981,2258,1984,2269,2030,2215,2039,2198,1950,2211,1947" />
+  <area shape="poly" alt="57b" onmouseover="57b" onclick="57b" coords="2254,1716,2290,1712,2294,1742,2335,1738,2342,1785,2260,1789" />
+  <area shape="poly" alt="195b" onmouseover="195b" onclick="195b" coords="2064,1193,2136,1182,2155,1334,2141,1401,2066,1411,2054,1343,2069,1342,2057,1261,2075,1259" />
+  <area shape="poly" alt="86b" onmouseover="86b" onclick="86b" coords="1860,1728,1923,1703,1992,1888,1934,1912" />
+  <area shape="poly" alt="87b" onmouseover="87b" onclick="87b" coords="1783,1641,1915,1587,1947,1668,1875,1697,1845,1711,1814,1721" />
+  <area shape="poly" alt="141b" onmouseover="141b" onclick="141b" coords="1701,1772,1671,1789,1871,2126,1906,2107" />
+  <area shape="poly" alt="143b" onmouseover="143b" onclick="143b" coords="1615,1644,1570,1679,1622,1746,1668,1710" />
+  <area shape="poly" alt="140b" onmouseover="140b" onclick="140b" coords="1418,1500,1464,1464,1568,1591,1520,1626" />
+  <area shape="poly" alt="75b" onmouseover="75b" onclick="75b" coords="1382,1445,1413,1423,1441,1460,1410,1482" />
+  <area shape="poly" alt="60b" onmouseover="60b" onclick="60b" coords="1329,1389,1381,1352,1420,1396,1370,1438" />
+  <area shape="poly" alt="93b" onmouseover="93b" onclick="93b" coords="1238,1175,1280,1150,1299,1180,1315,1168,1403,1331,1319,1380,1210,1235,1250,1204" />
+  <area shape="poly" alt="6b" onmouseover="6b" onclick="6b" coords="966,734,1236,1090,1144,1154,878,800" />
+  <area shape="poly" alt="3b" onmouseover="3b" onclick="3b" coords="1380,352,1537,389,1401,990,1279,969,1285,935,1257,926" />
+  <area shape="poly" alt="B4" onmouseover="hover(4B)" href="b4" onclick="b4" coords="789,388,1074,175,1262,421,978,633" />
+			</map>
+		</div>
+
+		<div id="test_div" style="background: red; display: none; width: 100px; height: 100px"> </div>
+	</div>
+
+	<script>
+			
+	</script>
+	
+</body>
+
+</html>

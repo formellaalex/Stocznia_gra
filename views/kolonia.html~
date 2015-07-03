@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<meta name='viewport' content='width=device-width, initial-scale=1.0' />
+<link rel='stylesheet' href='/Zurb/css/foundation.css' />
+<script src='/javascripts/jquery-1.11.1.js'></script>
+<script src='/javascripts/funkcje_ajax.js'></script>
+<!--tutaj mamy od crop-->
+<link rel="stylesheet" type="text/css" href="/stylesheets/imgareaselect-default.css" />
+<script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+<script type="text/javascript" src="/javascripts/jquery.imgareaselect.pack.js"></script>
+<style>
+/* img {
+display: inline-block;
+}*/
+div {
+display: block
+}
+</style>
+<script>
+//od przycisku edytuj
+$(document).ready(function(){
+$("form").hide();
+var j;
+var k;
+var posty = [];
+var pomocnicza=[];
+pomocnicza[0]=["adam",'wadam',4];
+<% if(data.length){
+for(j = 0;j < data.length;j++) { %>
+posty[<%=j%>] = ['<%= data[j].imie %>'  '<%= data[j].nazwisko %>' '<%= data[j].punkty %>'];
+//alert(posty[<%=j%>][2]);
+<% }%>
+<% } %>
+<%if(data.length){
+for(j=0; j< data.length ;j++){
+for(k=0+j; k< data.length ;k++){%>
+if(posty[<%=j%>][2]<posty[<%=k%>][2]){
+pomocnicza[0]=posty[<%=j%>];
+posty[<%=j%>]=posty[<%=k%>];
+posty[<%=k%>]=pomocnicza[0];
+}
+<%}%>
+var para = document.createElement("li");
+var t = document.createTextNode(posty[<%=j%>]);
+para.appendChild(t);
+document.body.appendChild(para);
+<%}}%>
+//document.getElementById("demo").innerHTML=posty+ "<br />"
+$("button").click(function(){
+$("form").toggle();
+});
+});
+</script>
+</script>
+</head>
+<body>
+<div class="row">
+<div class="contain-to-grid">
+<ul class="button-group even-3">
+<li><a href="/przeszlosc/" class="button secondary">PRZESZŁOŚĆ</a></li>
+<li><a href="/" class="button secondary">KOLONIA</a></li>
+<li><a href="/przyszlosc/" class="button secondary">PRZYSZŁOŚĆ</a></li>
+</ul>
+<a href="/forget" style="float:right">WYLOGUJ</a>
+</div>
+</div>
+<div class="row">
+<div class="large-6 pull-1 columns">
+<div id="register" style="float:left">
+</br>
+<form method="post" action="/uaktualnij">
+<label for='imie'> Imie użytkownika </label>
+<input type='text' name='imie'/>
+<label for='nazwisko'> Nazwisko uzytkownika</label>
+<input type='text' name='nazwisko'/>
+<input type='submit' />
+</form>
+<!--dodawanie zdjecia-->
+<form action="/upload" enctype="multipart/form-data" method="post">
+<!-- <input type="text" name="title">-->
+<label> wybierz zdjecie </label>
+<input type="file" name="file" id="imgInp">
+<input type="submit" value="wyślij">
+<!--<img class="ferret" id="ferret"src="#" alt="your image" />-->
+</form>
+</div>
+</div>
+</div>
+<!-- wypis uzytkowników/uploads/upload_1e6b038433bb27c66264a7868b14ad5c.jpg-->
+<div style="float:right">
+<% if(data.length){
+for(var i = 0;i < data.length;i++) {
+if(data[i].email===ciasta){%>
+<!-- <div style="background: url(<%= data[i].sciezka %>), no-repeat; background-size: 100%;">-->
+<!-- align="left" width="100" heigth="200"-->
+<div> <img src="<%= data[i].profilowe %>" id="zdjecie" width="100" heigth="200" alt="Błąd" />
+</div>
+<div> <label> Imie nazwsko </label>
+<p><%=data[user_id].imie+" "+data[i].nazwisko%></p>
+<label> Email </label>
+<p><%=data[user_id].email%></p>
+<label> Punkty </label>
+<p><%=data[user_id].punkty%></p>
+<label> id </label>
+<p><%=data[user_id].id%></p>
+<button>edytuj</button>
+</div>
+</div>
+<% }else{}}
+}else{ %>
+<tr>
+<td colspan="3">No user</td>
+</tr>
+<% } %>
+</div>
+<div style="float:right">
+<!--<% if(data.length){ %>
+<ul class="no-bullet">
+<li> <p> punkty Uzytkownik </p> </li>
+<%for(var i = 0;i < data.length;i++) {
+if(data[i].email===ciasta){%>
+<%}else{%>
+<li> <%=data[i].punkty%> <%=data[i].imie%> <%=data[i].nazwisko%> </li>
+<%}
+}%>
+</ul>
+<% }else{ %>
+<tr>
+<td colspan="3">No user</td>
+</tr>
+<% } %>
+</div>-->
+<div id="demo" style="float:right">
+</div>
+<script>
+/*function readURL(input) {
+if (input.files && input.files[0]) {
+var reader = new FileReader();
+reader.onload = function (e) {
+$('.ferret').attr('src', e.target.result);
+}
+reader.readAsDataURL(input.files[0]);
+}
+}
+function preview(img, selection) {
+var scaleX = 100 / (selection.width || 1);
+var scaleY = 100 / (selection.height || 1);
+var img= document.getElementById("ferret");
+var w = img.width;
+var h = img.height;
+$('#ferret + div > img').css({
+width: Math.round(scaleX * w) + 'px',
+height: Math.round(scaleY * h) + 'px',
+marginLeft: '-' + Math.round(scaleX * selection.x1) + 'px',
+marginTop: '-' + Math.round(scaleY * selection.y1) + 'px'
+});
+}
+$(document).ready(function () {
+$('<div> <img class="ferret" src="#" alt="your image" style="position: relative; /><div>')
+//$('<div><img src="/uploads/ferret.jpg" style="position: relative;" /><div>')
+.css({
+float: 'left',
+position: 'relative',
+overflow: 'hidden',
+width: '100px',
+height: '100px'
+})
+.insertAfter($('#ferret'));
+//var img = document.createElement("img");
+$('#ferret').imgAreaSelect({ aspectRatio: '1:1', onSelectChange: preview });
+});
+$("#imgInp").change(function(){
+readURL(this);
+});
+*/
+</script>
+</body>
+</html>

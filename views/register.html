@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+
+<html class="no-js" lang="en" > 
+
+    <head>
+    
+        <meta charset="utf-8" />
+        
+        <meta name="viewport" content="width=device-width" />
+        <link rel="stylesheet" href="Zurb/css/foundation.css" />
+        <link rel="stylesheet" href="stylesheets/style.css" />
+        
+        
+        <script src="Zurb/js/vendor/custom.modernizr.js"></script>
+
+        <script src="Zurb/js/vendor/jquery.js"></script>
+        
+        <script src="Zurb/js/foundation.min.js"></script>
+        <script src="/javascripts/funkcje_ajax.js"> </script>
+            
+    </head>
+
+
+	<body>
+
+        <script>
+          window.fbAsyncInit = function() {
+            FB.init({
+              appId      : '855301441198555',
+              xfbml      : true,
+              version    : 'v2.2'
+            });
+          };
+
+          (function(d, s, id){
+             var js, fjs = d.getElementsByTagName(s)[0];
+             if (d.getElementById(id)) {return;}
+             js = d.createElement(s); js.id = id;
+             js.src = "//connect.facebook.net/en_US/sdk.js";
+             fjs.parentNode.insertBefore(js, fjs);
+           }(document, 'script', 'facebook-jssdk'));
+        </script>
+
+
+          <div class="row">
+            <div class="small-3 small-centered columns" id="header">
+                    <h4 id="welcome_title"> <%= info %> </h4>
+            </div>
+         </div>
+         <div class="row" style="height: 100%">
+            <div class="small-3 small-centered columns">
+                 <div id="register">
+                    <h3 style="text-align: center;color: white"> Rejestracja </h3>
+                    </br>
+                    <form method="post" action="/add_user" onsubmit='return validate_password("#password","#repeat_password")'>
+
+                        <input type='text' name='imie' placeholder="Imie użytkownika"/>
+                        <input type='text' name='nazwisko' placeholder="Nazwisko użytkownika"/>
+                        <input type='text' name='email' placeholder="E-mail"/>
+                        <input type='text' name='haslo' id='password' placeholder="Hasło"/>
+                        <input type='text' name='phaslo' id='repeat_password' placeholder="Powtórz hasło"/>
+                        <div style="text-align: center">
+                             <button id="zarejestruj"> </button>
+                        </div>
+                       
+                    </form>
+                </div>
+            </div>
+         </div>
+
+        
+        <footer id="sentence_bottom">
+    <a id="wyloguj"href="/forget" style="width: 20.7%;position: fixed; bottom: 0; right: 0;background: url('/images/layout_addons/wyloguj.png');background-size: contain;background-repeat: no-repeat;height:0; padding-top: 4.4%;">WYLOGUJ</a>  
+        
+
+<!-- <form method="post" action="/create">
+               
+                <input type='submit' />
+            </form>-->
+<!--<form method="post" action="/usunieciewartoscipoczatkowejkolumny">
+               <label > usun </label>
+                <input type='submit' />
+            </form>-->
+
+<!-- <script src="javascripts/cookies.js" />
+
+
+        <script>
+            $(document).foundation();
+
+            $(document).foundation('joyride', 'start');
+        </script> -->
+</body>
+
+</html>

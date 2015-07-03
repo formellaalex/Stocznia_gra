@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'/>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+        <link rel='stylesheet' href='/Zurb/css/foundation.css' />
+
+        <script  src='/javascripts/jquery-1.11.1.js'></script>       
+        <script src='/javascripts/funkcje_ajax.js'></script>
+        <!--tutaj mamy od crop-->
+        <link rel="stylesheet" type="text/css" href="/stylesheets/imgareaselect-default.css" />
+        <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+        <script type="text/javascript" src="/javascripts/jquery.imgareaselect.pack.js"></script>
+<style>
+   /* img {
+    display: inline-block;
+}*/
+/*div {
+    display: block
+}*/
+/*div#bg{
+z-index:1;
+    position:relative;
+margin:0;
+padding:0;
+}
+div#cg{
+margin:0;
+padding:0;
+z-index:2;
+    position:absolute;
+    left:13%;
+    top:50%;
+}
+a.cos{
+    margin:0;
+	padding:0;
+    left: 0px;
+    top: 0px;
+   
+}
+img
+{margin:0;
+padding:0;
+    max-width: 33%;
+    min-width: 100px;
+    height: auto;
+    
+}
+*/
+.komurki{width:33%;}
+#headerwidth{ width:100%;}
+#header { position: fixed; top: 0; background: #fff; }
+#sentence_bottom{position:fixed;top:90%;}
+#header,#sentence_bottom { 
+	width:100% ;
+    height: 10%;
+}
+
+
+</style>
+
+
+
+</head>
+<body>
+    <!--    <div class="row">
+            <div class="contain-to-grid">
+                <ul class="button-group even-3">
+                    <li><a href="/przeszlosc/" class="button secondary">PRZESZŁOŚĆ</a></li>
+                    <li><a href="/" class="button secondary">KOLONIA</a></li>
+                    <li><a href="/przyszlosc/" class="button secondary">PRZYSZŁOŚĆ</a></li>
+                </ul>
+                <a href="/forget" style="float:right">WYLOGUJ</a>
+            </div>
+        </div>
+<div id="bg">
+<div id="cg">
+  <a class="cos" href="/przeszlosc">PRZESZŁOŚĆ</a>
+	</div>
+  <img src="/uploads/image.jpg" alt="">
+	
+</div>
+
+-->
+ <table id="header">
+    <tr id="hederwidth">
+        <th class="komurki">1</th><th class="komurki">2</th><th class="komurki">3</th>
+    </tr>
+</table>
+
+   
+<footer id="sentence_bottom">
+           <h3 style="color: white; border-top-style:solid;text-align: center; width: 100%"> NIE PRZECHODŹ POD WISZĄCYM CIĘŻAREM </h2>
+        </footer>
+</body>
+
+</html>
