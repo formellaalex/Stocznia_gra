@@ -2,6 +2,37 @@
 	width:100vw;
 	height:100vh;
 }*/
+@font-face {
+    font-family: 'stocznia_body';
+    src: url('/fonts/body_+_nazwy_ulic/capture-smallz/Capsmall_clean.ttf') format('truetype');
+    /*src: local('Capture Smallz');*/
+
+}
+@font-face {
+    font-family: 'stocznia_important_links';
+    src: url('/fonts/important_links/rafika/rafika.ttf') format('truetype');
+    /*src: local('Rafika');*/
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'stocznia_users';
+    src: url('/fonts/uzytkownicy/top_secret/top_secret.otf') format('truetype');
+    /*src: local('Top Secret');*/
+    font-weight: normal;
+    font-style: normal;
+}
+.tlo2 p { 
+	font-family: 'stocznia_body', Helvetica; color:black;
+    text-shadow: none;
+}
+.tlo2 .carousel-caption p {
+    line-height: 23px;
+    font-size: 23px;
+}
+
+h3 { font-family: 'stocznia_important_links', Helvetica;}
 body{	
 overflow-y: hidden;
 overflow-x: hidden;
@@ -12,16 +43,16 @@ overflow-x: hidden;
 	background-image: url('../images/pierwszyEkran/tlo1.jpg');
 	width:100%;
 	background-repeat:no-repeat;
-	background-size:100% 100%;
+	background-size:100% auto;
 	background-position: center center;
 
 }
 .tlo2{
 	height:100vh;
-	background-image: url('../images/pierwszyEkran/tlo2.jpg');
+	/*background-image: url('../images/pierwszyEkran/dwa_tlo.jpg');*/
 	width:100%;
 	background-repeat:no-repeat;
-	background-size:100% 100%;
+	background-size:100% auto;
 	background-position: center center;
 
 }
@@ -148,7 +179,11 @@ cursor:pointer;
 }
 
 
-
+.carousel-control.left {
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0px, transparent 100%);
+    background-repeat: repeat-x;
+    z-index: 30;
+}
 .carousel-caption h3{
 line-height:50px;
 font-size:50px;
@@ -198,3 +233,23 @@ font-size:15px;
     -webkit-opacity: 1;
     -moz-opacity: 1;
 }
+.tlo2 .carousel-caption, .tlo3 .carousel-caption, .tlo4 .carousel-caption, .tlo5 .carousel-caption, .tlo6 .carousel-caption {
+    right: 0%;
+    left: 0%;
+    text-align: left;
+    padding-bottom: 0vh;
+}
+@media (max-width:1000px){
+.hello {
+	overflow: scroll !important;
+}
+}
+p a {
+	color:black;
+}
+p a:hover {
+	color:red;
+}
+a:hover {
+	color:red;
+};
