@@ -110,6 +110,12 @@ overflow-x: hidden;
     width:100%;
 }
 
+
+.tloButton p{
+    font-family: 'stocznia_important_links', Helvetica;
+    letter-spacing:1px;
+}
+
 @media (min-width:768px){
 .tloButton{
 background-image: url('../images/pierwszyEkran/buttontlo.png');
@@ -118,6 +124,7 @@ background-position: center center;
 background-size:100% 100%;
 min-height: 80px;
 }
+
 .tloButton:hover{
 background-image: url('../images/pierwszyEkran/buttontlohover.png');
 background-repeat:no-repeat;
