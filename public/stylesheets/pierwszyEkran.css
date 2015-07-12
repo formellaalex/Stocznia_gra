@@ -40,10 +40,10 @@ overflow-x: hidden;
 
 .tlo1{
 	height:100vh;
-	background-image: url('../images/pierwszyEkran/tlo1.jpg');
+	background-image: url('../images/pierwszyEkran/tl.png');
 	width:100%;
 	background-repeat:no-repeat;
-	background-size:100% auto;
+	background-size:100% 100%;
 	background-position: center center;
 
 }
@@ -179,6 +179,11 @@ cursor:pointer;
 }
 
 
+.carousel-control.right {
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0px, transparent 100%);
+    background-repeat: repeat-x;
+    z-index: 30;
+}
 .carousel-control.left {
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0px, transparent 100%);
     background-repeat: repeat-x;
@@ -218,9 +223,9 @@ font-size:15px;
 .formSize{
     width:100px;
     position: relative;
-    opacity: 0.5;
-    -webkit-opacity: 0.5;
-    -moz-opacity: 0.5;
+    opacity: 1;
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
     transition: 0.5s ease;
     -webkit-transition: 0.5s ease;
     -moz-transition: 0.5s ease;
@@ -252,4 +257,31 @@ p a:hover {
 }
 a:hover {
 	color:red;
-};
+}
+.carousel-control {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    width: 10%;
+    font-size: 20px;
+    color: #FFF;
+    text-align: center;
+    background-image:url("../images/pierwszyEkran/buttontlo.png");
+    
+    opacity: 0.5;
+    height: 15vh;
+}
+
+.carousel-control.right {
+ background-image:url("../images/pierwszyEkran/buttontlo1.png");
+    /*background-repeat: repeat-x;*/
+    background-size: 100% 100%;
+    z-index: 30;
+}
+.carousel-control.right:hover {
+ background-image:url("../images/pierwszyEkran/buttontlohover1.png");
+    /*background-repeat: repeat-x;*/
+    background-size: 100% 100%;
+    z-index: 30;
+}
