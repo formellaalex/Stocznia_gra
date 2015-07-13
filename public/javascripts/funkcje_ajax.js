@@ -122,7 +122,7 @@ function validate(pass, rep_pass,em){
 	var repeat_password = $(rep_pass).val();
 	var email = $(em).val();
 	var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-	if(!re.test(email)){
+	if(re.test(email)){
 		alert("Nieprawidłowy format adresu email!");
 		return false;
 	}
