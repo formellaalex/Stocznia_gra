@@ -116,7 +116,7 @@ router.post('/vote_down/:id/:type/:post_id/:strona', function(req,res){
 router.post('/add_user', function(req,res){
   if(req.body.haslo===req.body.phaslo){
   
-  var post  = {imie: req.body.imie, nazwisko: req.body.nazwisko,email: req.body.email,haslo: req.body.haslo, profilowe: "/default/batman.jpg"};
+  var post  = {imie: req.body.imie, nazwisko: req.body.nazwisko,email: req.body.email,haslo: req.body.haslo, profilowe: "/default/batman.jpg",o_mnie: req.body.o_mnie};
   
   connection.query('INSERT INTO users SET ?', post, function(err, result)
         {

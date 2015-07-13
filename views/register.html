@@ -10,6 +10,8 @@
         <meta name="viewport" content="width=device-width" />
         <link rel="stylesheet" href="Zurb/css/foundation.css" />
         <link rel="stylesheet" href="stylesheets/style.css" />
+        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
         
         
         <script src="Zurb/js/vendor/custom.modernizr.js"></script>
@@ -25,21 +27,6 @@
 	<body>
 
         <script>
-          window.fbAsyncInit = function() {
-            FB.init({
-              appId      : '855301441198555',
-              xfbml      : true,
-              version    : 'v2.2'
-            });
-          };
-
-          (function(d, s, id){
-             var js, fjs = d.getElementsByTagName(s)[0];
-             if (d.getElementById(id)) {return;}
-             js = d.createElement(s); js.id = id;
-             js.src = "//connect.facebook.net/en_US/sdk.js";
-             fjs.parentNode.insertBefore(js, fjs);
-           }(document, 'script', 'facebook-jssdk'));
         </script>
 
 
@@ -60,6 +47,10 @@
                         <input type='text' name='email' placeholder="E-mail"/>
                         <input type='text' name='haslo' id='password' placeholder="Hasło"/>
                         <input type='text' name='phaslo' id='repeat_password' placeholder="Powtórz hasło"/>
+                        <p id="pDodatkInfo"> + Informacje dodatkowe </p>
+                        <div id="informacjeDodatkoweRejestracja" style="display:none">
+                          <textarea name="o_mnie" placeholder="O sobie" cols="10" rows="10"></textarea>
+                        </div>
                         <div style="text-align: center">
                              <button id="zarejestruj"> </button>
                         </div>
@@ -70,8 +61,7 @@
          </div>
 
         
-        <footer id="sentence_bottom">
-    <a id="wyloguj"href="/forget" style="width: 20.7%;position: fixed; bottom: 0; right: 0;background: url('/images/layout_addons/wyloguj.png');background-size: contain;background-repeat: no-repeat;height:0; padding-top: 4.4%;">WYLOGUJ</a>  
+        <footer id="sentence_bottom"></a>  
         
 
 <!-- <form method="post" action="/create">

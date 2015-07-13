@@ -1,6 +1,10 @@
 
 $(document).ready(function(){
 
+	  $("#pDodatkInfo").click(function(){
+	    $("#informacjeDodatkoweRejestracja").toggle();
+	  });
+
 
 	var content = " ";
 	$('#ajax_button').click(function(){
