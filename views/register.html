@@ -40,11 +40,11 @@
                  <div id="register">
                     <h3 style="text-align: center;color: white"> Rejestracja </h3>
                     </br>
-                    <form method="post" action="/add_user" onsubmit='return validate_password("#password","#repeat_password")'>
+                    <form method="post" action="/add_user" onsubmit='return validate_password("#password","#repeat_password","#email")'>
 
                         <input type='text' name='imie' placeholder="Imie uczestnika"/>
                         <input type='text' name='nazwisko' placeholder="Nazwisko uczestnika"/>
-                        <input type='text' name='email' placeholder="E-mail"/>
+                        <input type='text' name='email' id='email' placeholder="E-mail"/>
                         <input type='text' name='haslo' id='password' placeholder="Hasło"/>
                         <input type='text' name='phaslo' id='repeat_password' placeholder="Powtórz hasło"/>
                         <p id="pDodatkInfo"> + Informacje dodatkowe </p>

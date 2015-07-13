@@ -117,31 +117,23 @@ $(document).ready(function(){
 });
 
 
-function validate_password(pass, rep_pass){
+function validate(pass, rep_pass,em){
 	var password = $(pass).val();
 	var repeat_password = $(rep_pass).val();
-	if(password != repeat_password){
-		alert("Hasla nie są równe!");
+	var email = $(em).val();
+	var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+	if(!re.test(email)){
+		alert("Nieprawidłowy format adresu email!");
 		return false;
 	}
 	else{
+		if(password != repeat_password){
+			alert("Hasła nie są równe!");
+			return false;
+		}
 		return true;
 	}
 
-}
-
-function validate_new_password(pass, rep_pass){
-
-	var password = $(pass).val();
-	var repeat_password = $(rep_pass).val();
-	if(password != repeat_password){
-		alert("Hasla nie są równe!");
-		return false;
-	}
-	
-	else{
-		return true;
-	}	
 }
 
 function show_log_div(){
