@@ -185,6 +185,7 @@ float: left; }
 
 .users{
     text-align: center;
+    margin-bottom: 0.5rem;
     font-size: 1rem;
     letter-spacing: 0.1rem;
     font-family: 'stocznia_users', Helvetica;
