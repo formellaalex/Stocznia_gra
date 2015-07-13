@@ -61,7 +61,7 @@
                     <%for(var i = 0;i < list.length;i++) { 
                         if(list[i].email===ciasta){%>  
                         <%}else{%>
-                        <li class="users" style="text-align: left"><%=user_id%>. <%=list[i].imie%>  <%=list[i].nazwisko%> -  <%if(list[i].rating == null){%> Brak punktów <%}else{%> <%=list[i].rating%>  <%}%> </li>
+                        <li class="users" style="text-align: left"><%i%>. <img src="<%=list[i].profilowe%>"/> <%=list[i].imie%>  <%=list[i].nazwisko%> -  <%if(list[i].rating == null){%> Brak punktów <%}else{%> <%=list[i].rating%>  <%}%> </li>
                         <%}
                     }%>
                 </ul>        
