@@ -2,6 +2,7 @@
 var express = require('express');
 var router = express.Router();
 var zalogowano = false;
+var zarazPoZalogowaniu = true;
 var info = "";
 var vote_up;
 var vote_down;
@@ -171,6 +172,7 @@ router.get('/forget', function(req, res){
   res.clearCookie('pos');
   info = "";
   res.redirect('back');
+  zarazPoZalogowaniu = true;
 });
 
 
@@ -459,7 +461,15 @@ router.get('/edit', function(req,res){
 //Strona glowna
 router.get('/', function(req, res){
   if(req.cookies.remember){
-    res.render('zalogowano.html', {title: 'zalogowano', user_pos: req.cookies.pos});
+    if(zarazPoZalogowaniu == true){
+      res.render('zalogowano.html', {title: 'zalogowano', user_pos: req.cookies.pos, przyciskKolonia: 'kolonia'});
+      zarazPoZalogowaniu = false;
+    }
+
+    else{
+      res.render('zalogowano.html', {title: 'zalogowano', user_pos: req.cookies.pos, przyciskKolonia: 'koloniastoczniazaznaczone'});
+    }
+    
 
   }
   else{

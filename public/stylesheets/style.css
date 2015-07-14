@@ -61,10 +61,6 @@ label{
 	background: url("/images/layout/kolonia.png");
     background-size: 100%;
 }
-#head_kolonia_button1{
-    background: url("/images/layout/koloniastoczniazaznaczone.png");
-    background-size: 100%;
-}
 #head_przyszlosc_button{
 	background: url("/images/layout/przyszlosc.png");
     background-size: 100%;
@@ -111,11 +107,12 @@ float: left; }
     background-repeat: no-repeat;
     background-size: 100% 100%;*/
 }
+/*
 #maps_row{
     background: url('/images/layout/mapazaloguj.png');
     background-repeat: no-repeat;
     background-size: 100% 100%;
-}
+}*/
 .iloscpodkom{
     border:none;
     background-color: Transparent;
@@ -222,10 +219,6 @@ float: left; }
  
 
 }
-.kolonia_options:first-letter{
-    color: #800000;
-}
-
 
 .prostokat{
     border-top-style: solid;

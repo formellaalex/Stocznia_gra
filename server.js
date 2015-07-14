@@ -444,6 +444,8 @@ app.use(function(err, req, res, next) {
     });
 });
 */
+
+
 db_config = {
   host     : '127.13.120.2',
   port     : '3306',
@@ -452,6 +454,14 @@ db_config = {
   database : 'graostocznie',
   multipleStatements: true 
 };
+/*
+db_config = {
+  host     : 'us-cdbr-iron-east-01.cleardb.net',
+  user     : 'b6328a367ad02a',
+  password : 'deb5efdb',
+  database : 'heroku_fd1c348c48d7c8c',
+  multipleStatements: true 
+}*/
 
 
 function handleDisconnect() {
