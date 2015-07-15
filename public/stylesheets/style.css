@@ -211,6 +211,7 @@ float: left; }
     color: black;
     display: block;
     text-align: center;
+    font-weight: bold;
 
 }
 .kolonia_options:hover{
