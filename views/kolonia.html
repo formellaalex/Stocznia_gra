@@ -31,7 +31,9 @@
                 </div>
             </div>
         </div>
-
+    <div class="row">
+        <div class="small-4 small-centered columns" style="text-align:center"> <h3 style="color: white"> <%= new Date().toJSON().slice(0,10)%> </h3> </div>
+    </div>
     <div class="row" style="margin-bottom: 5%;color: white">
         <div class="large-3 middle-5 small-12 columns" style="float: right !important;">
              <% if(data.length){ %>
@@ -45,7 +47,7 @@
                         <img class="icon" src="/images/layout_addons/gra o stocznie_vectorized.png" style="max-width: 14%" />
                         <p class="users"><% if(list.length){for(var i=0;i<list.length;i++){ if(list[i].user_id==user_id){ if(list[i].rating!=null){%> <%=list[i].rating%> </p>
                         <label class="users"> Miejsce w rankingu </label>
-                        <p class="users"> <%= i + 1 %> </p>
+                        <p class="users" style="font-size: 2.5rem"> <%= i + 1 %> </p>
                         <% }else{ %> Brak punktów <%}break; }}} if(i==list.length){ %> Brak punktow <% } %> 
                         <%if(tiger_profilowy===0){%>
                         <form style="width: 100%; height: auto" action="/edit"> <button id="edit_profile"> </button> </form>
