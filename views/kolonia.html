@@ -49,6 +49,10 @@
                         <label class="users"> Miejsce w rankingu </label>
                         <p class="users" style="font-size: 2.5rem"> <%= i + 1 %> </p>
                         <% }else{ %> Brak punktów <%}break; }}} if(i==list.length){ %> Brak punktow <% } %> 
+                        <p class="users">
+                            <%if(data[0].o_mnie == null){%> Kolonista nie dodał jeszcze swojego opisu. <%}
+                            else{%> <%= data[0].o_mnie %> <%}%>
+                        </p>
                         <%if(tiger_profilowy===0){%>
                         <form style="width: 100%; height: auto" action="/edit"> <button id="edit_profile"> </button> </form>
                         <%}%>
