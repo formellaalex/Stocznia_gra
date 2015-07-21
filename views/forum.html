@@ -559,7 +559,7 @@
                         <a href="/kolonisci/<%=postulaty2[0].nick%>"   style="display: inline; margin-left: 5%" > 
                           <img style="display: inline" src="<%=postulaty2[0].profilowe%>" class="display" width="10%" heigth="auto" alt="brak zdjęcia" />
 
-                          <p style="display: inline; margin-left: 5%;font-size: 1rem" class="users black" id="tworca_postu"><%= postulaty2[0].imie %> <%= postulaty2[0].nazwisko %> <span style="margin-left: 10%"><%=postulaty2[0].czas_dodania%></span></p>
+                          <p style="display: inline; margin-left: 5%;font-size: 1.2rem" class="users black" id="tworca_postu"><%= postulaty2[0].imie %> <%= postulaty2[0].nazwisko %> <span style="margin-left: 10%"><%=postulaty2[0].czas_dodania%></span></p>
 
                         </a>        
                       
@@ -589,15 +589,7 @@
                           <button style="margin-bottom: 5%; " class="ukryj_dodaj_komentarz">. ..  . . .  . .</button>
                       </div>-->
                   </div>
-                  <div class="large-3 small-3 columns">
-                        <div class="select-style"> 
-                          <select name="forma" style="font-size: 1rem;padding:0;margin:0" onchange="location = this.options[this.selectedIndex].value;" value="sortuj">
-                          <option selected disabled><p>Sortuj</p></option>
-                          <option value="/forum/<%=strona%>/<%=postulaty2[0].id%>">Od najmłodszej</option>
-                          <option value="/forum1/<%=strona%>/<%=postulaty2[0].id%>">Od najstarszej</option>
-                          </select>
-                        </div>
-                      </div>
+                  
                   <!--}else{ -->      
                      <!--<h3  class="tytul white" id="tytul_postu"> postulaty2[0].tytul </h3>
                       <div class="large-4 small-4 columns">
@@ -656,7 +648,7 @@
                           <!--
                          <a href="/send/<%=postulaty3[i].id%>" class="postulat black"> <img class="icon1" src="/images/layout_addons/smietniczek_vectorized.png" >   <span style="color:white"><span> </img></a>-->
                           <%}%>
-                          
+                          </div>
                           <p class="tresc_postu tytul black"> <%= postulaty3[i].tresc %> </p>
                                               
                           <div style="width: 100%;">
@@ -678,7 +670,7 @@
                                    <a class="klasa1 iloscpodkom" style="color:black" id="<%=postulaty3[i].IdKomentarzu%>"><%=postulaty3[i].ilosc_podkomentarzy%></a>
                                     <!--<button class="klasa1 iloscpodkom" id="<%=postulaty3[i].IdKomentarzu%>"><%=postulaty3[i].ilosc_podkomentarzy%></button>-->
                                   </div>
-                                <div class="large-10  columns ">
+                                <div class="large-10 columns ">
                                   <div style="float:left">
                                     <a href="/kolonisci/<%=postulaty3[i].nick%>"style="margin-left: 3%" > 
                                     <img style="display: inline" src="<%=postulaty3[i].profilowe%>" class="display" width="80px" heigth="auto" alt="brak zdjęcia" /></a>
@@ -772,6 +764,14 @@
 
                     <%}%>
                   <%}%>  
+              </div>
+              <div class="" style="float: right;width: 20%;margin-top:4%;text-align:center;background: grey"> 
+                <select name="forma" style="font-size: 1rem;padding:0;margin:0;" onchange="location = this.options[this.selectedIndex].value;" value="sortuj">
+                  <option selected disabled><p>Sortuj</p></option>
+                  <option value="/forum/<%=strona%>/<%=postulaty2[0].id%>">Od najmłodszej</option>
+                  <option value="/forum1/<%=strona%>/<%=postulaty2[0].id%>">Od najstarszej</option>
+                </select>
+              </div>
               </div>    
 
 
