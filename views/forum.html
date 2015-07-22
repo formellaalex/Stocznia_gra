@@ -247,12 +247,16 @@
                 zoom_CLICK: 'NO',
                 pan_BUTTONS_SHOW: 'NO',
                 responsive: true,
-                initial_ZOOM: 30,
+                initial_ZOOM: 25,
+                initial_POSITION : '100 0',
                 zoom_MIN: 24,
                 background_COLOR: 'transparent',
                 mouse_DOUBLE_CLICK: false,
                 zoom_OUT_TO_FIT: true,
             });
+
+            $('#winietka').css("width",$(window).width()/2.1);
+            $('#winietka').css("height","auto");
                 
         });
 
@@ -328,12 +332,12 @@
         <div class="large-6 small-12 columns">
             <div class="row">
                 <div class="large-12 small-12 columns">
-                    <img id="map" src="/images/map/123.png" style="position: relative; z-index:0;" usemap="#planetmap"/>   
+                    <img id="map" src="/images/map/123.png" style="z-index:0;" usemap="#planetmap"/>   
                   <!--  <p class="opis white" id="zoom_ratio"></p>
                    <p style="position:absolute float:left"class="show_zoom white opis" onmousedown="zoom_in()">Zoom in! </p>
                     <p style="position:absolute float:right" class="show_zoom white opis" onmousedown="zoom_out()">Zoom out!</p>-->
                     <% if(postulaty2.length ){  %>
-                  <img style="max-width:100%" src="/images/metryczki/winietka_<%= postulaty2[0].tytul %>.jpg"></img>
+                  <img id="winietka" style="max-width:100%" src="/images/metryczki/winietka_<%= postulaty2[0].tytul %>.jpg"></img>
                   <%}%>
                 </div>
        
@@ -569,16 +573,16 @@
 
                   <div class="row" style="text-align: center">
                       <div class="large-12 small-12 columns">
-                          <p style="font-size: 0.8rem;display: inline;">  <%=comments_count[0].ilosc %></p>
+                          <p style="font-size: 0.8rem;display: inline;color:#800000">  <%=comments_count[0].ilosc %></p>
                           <img class="icon" src="/images/layout_addons/victoria klawiatura_vectorized.png" style="display: inline ;"></img>
-                          <p style="font-size: 0.8rem;display: inline;margin-left:3%;color:#800000"><%=comments_count[1].ilosc%> </p>
+                          <p style="font-size: 0.8rem;display: inline;margin-left:3%;color:black"><%=comments_count[1].ilosc%> </p>
                           <img class="icon" src="/images/layout_addons/kciuk klawiatura_vectorized.png" style="display: inline"></img>
                           
 
-                          <p style="display: inline"><span style="color:black"> <%=vote_up_count%></span> </p>
+                          <p style="display: inline"><span style="color:#800000"> <%=vote_up_count%></span> </p>
                           <form style="display:inline;color: white;" action="/vote_up/<%=capfile%>/post/<%=capfile%>/<%=strona%>" method="post">  <button class="vote" id="vote_up" ></button> </form>
 
-                          <p style="display: inline"><span style="color:#800000"> <%=vote_down_count%> </span></p>
+                          <p style="display: inline"><span style="color:black"> <%=vote_down_count%> </span></p>
                           <form style="display: inline; color: white" action="/vote_down/<%=capfile%>/post/<%=capfile%>/<%=strona%>" method="post"> <button class="vote" id="vote_down"></button></form>
 
                           <p style="font-size: 0.8rem;display: inline;margin-left:3%;color:#800000"><%=(vote_up_count-vote_down_count)+(comments_count[0].ilosc-comments_count[1].ilosc)*5%> </p>
