@@ -308,15 +308,15 @@
           <div class="contain-to-grid">
               <div class="fixed">
                   <ul class="button-group even-3">
-                    <% if(strona=="przeszlosc"||strona=="mapa_przeszlosc"){%>      
-                      <a id="head_przeszlosc_button1" href="/forum/przeszlosc"></a>
+                    <% if(strona=="przeszlosc"||strona=="mapa_przeszlosc" || strona=="start_przeszlosc"){%>      
+                      <a id="head_przeszlosc_button1" href="/forum/start_przeszlosc"></a>
                       <a id="head_kolonia_button" href="/"></a>
-                      <a id="head_przyszlosc_button" href="/forum/przyszlosc"></a>  
+                      <a id="head_przyszlosc_button" href="/forum/start_przyszlosc"></a>  
                        <%}%>
-                    <% if(strona=="przyszlosc"||strona=="mapa_przyszlosc"){%>      
-                      <a id="head_przeszlosc_button" href="/forum/przeszlosc"></a>
+                    <% if(strona=="przyszlosc"||strona=="mapa_przyszlosc" || strona=="start_przyszlosc"){%>      
+                      <a id="head_przeszlosc_button" href="/forum/start_przeszlosc"></a>
                       <a id="head_kolonia_button" href="/"></a>
-                      <a id="head_przyszlosc_button1" href="/forum/przyszlosc"></a>  
+                      <a id="head_przyszlosc_button1" href="/forum/start_przyszlosc"></a>  
                        <%}%>
                   </ul>
               </div>
@@ -328,8 +328,36 @@
 
       <div class='row' style="height: 100%;margin-bottom: 10%">
           <!--lewy górny-->
-       <%if(strona==="mapa_przeszlosc"||strona==="mapa_przyszlosc"){%>
+      <%if(strona==="start_przeszlosc"){%>
         <div class="large-6 small-12 columns">
+            <a class="kolonia_options" href="/forum/przeszlosc"> LISTA POSTULATÓW </a>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>  
+            <a class="kolonia_options" href="/forum/mapa_przeszlosc"> PRZESTRZEŃ </a>
+        </div>
+      <%}
+      else if(strona==="start_przyszlosc"){%>
+        <div class="large-6 small-12 columns">
+            <a class="kolonia_options" href="/forum/przyszlosc"> LISTA POSTULATÓW </a>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>  
+            <a class="kolonia_options" href="/forum/mapa_przyszlosc"> PRZESTRZEŃ </a>
+        </div>
+      <%}
+      else if(strona==="mapa_przeszlosc"||strona==="mapa_przyszlosc"){%> 
+      <div class="large-6 small-12 columns">
             <div class="row">
                 <div class="large-12 small-12 columns">
                     <img id="map" src="/images/map/123.png" style="z-index:0;" usemap="#planetmap"/>   
@@ -343,7 +371,6 @@
        
             </div>
             <map name="planetmap">
-              <%if(strona==="mapa_przeszlosc" || strona==="mapa_przyszlosc"){%>
                 <%if(strona==="mapa_przeszlosc"){%>
                 <area shape="poly" title="151A" href="/forum/<%=strona%>/2441" onclick="151A" coords="2147,1131,2167,1158,2136,1181,2116,1153" />
                 <area shape="poly" title="88A" href="/forum/<%=strona%>/2451" onclick="88A" coords="1996,1226,2089,1167,2110,1196,2016,1255" />
@@ -481,14 +508,10 @@
                 <area shape="poly" title="6B" href="/forum/<%=strona%>/3731" onclick="6B" coords="334,304,370,282,474,417,439,440" />
                 <area shape="poly" title="4B" href="/forum/<%=strona%>/3741" onclick="4B" coords="408,67,302,147,372,242,483,160" />
                 <%}%>
-              <%}%>
             </map>
         </div>
-      <!-- miejsce na else-->
-      <%}else{%>
-      <!-- tast-->
-      <!--tutaj
-         <div class='large-6 small-12 columns' style="background: url('/images/layout/tablica_background.png');overflow-y: auto" id="lista_postulatow">-->
+      <%}
+      else{%>
          <div class='large-6 small-12 columns' style="overflow-y: scroll" id="lista_postulatow">
                 <div class="row">
                     <div class="large-8 small-8 columns"><h3 style="font-family: 'stocznia_body', Helvetica, sans-serif;color: black;"> POSTULATY </h3></div>
@@ -533,9 +556,6 @@
              </div>
 
           <%}%>
-          <!--lewy dolny-->
-          <!--tutaj
-          <div class="large-6 small-12 columns" style="height: auto;background: url('/images/layout/tablica_background.png');margin-bottom: 8%">-->
           <div class="large-6 small-12 columns" style="height: auto;margin-bottom: 8%">
               <div class="post" >
                   <% if(postulaty2.length){  %>
@@ -587,26 +607,7 @@
 
                           <p style="font-size: 0.8rem;display: inline;margin-left:3%;color:#800000"><%=(vote_up_count-vote_down_count)+(comments_count[0].ilosc-comments_count[1].ilosc)*5%> </p>
                            <img class="icon" src="/images/layout_addons/gra o stocznie_vectorized.png" style="display: inline; max-width:8%"></img>
-  
-                      
-                     <!-- <div class="large-4 small-4 columns">
-                          <button style="margin-bottom: 5%; " class="ukryj_dodaj_komentarz">. ..  . . .  . .</button>
-                      </div>-->
                   </div>
-                  
-                  <!--}else{ -->      
-                     <!--<h3  class="tytul white" id="tytul_postu"> postulaty2[0].tytul </h3>
-                      <div class="large-4 small-4 columns">
-                          <select name="forma" style="max-width: 50%;height: 4%;font-size: 0.6rem;padding:0;margin:0" onchange="location = this.options[this.selectedIndex].value;" value="sortuj">
-                          <option selected disabled>Sortuj</option>
-                      <option value="/forum/identyko jak u gory>">Od najmłodszej</option>
-                          <option value="/forum1/>">Od najstarszej</option>
-                          </select>
-                      </div>
-                      <div class="large-4 small-4 columns">
-                          <button style="margin-bottom: 5%" class="ukryj_dodaj_komentarz">Twoja opinia</button>
-                      </div>-->
-                 <!-- }-->
                      <!--zalaczniki do golownego postulatu--> 
                   </div>
                    <% } %> 
@@ -786,12 +787,14 @@
               </div>
               <%}
               else{%> 
-                  <h3 class="tytul white"> Witamy</h3>
-                  <%if(strona=="przeszlosc"){%><h3 class="tytul white">w przeszłości!</h3><%}%>
-                  <%if(strona=="przyszlosc"){%><h3 class="tytul white">w przyszłości!</h3><%}%>
-                  <%if(strona=="mapa_przyszlosc"){%><h3 class="tytul white">na mapie przyszłości!</h3><%}%>
-                  <%if(strona=="mapa_przeszlosc"){%><h3 class="tytul white">na mapie przeszłości!</h3><%}%>
-                  <h4 class="tytul white">Wybierz postulat albo wykuj swój własny</h4>
+                  <h3 class="tytul white"> Witamy w
+                  <%if(strona=="przeszlosc"){%>przeszłości! Wybierz postulat albo wykuj swój własny<%}
+                  else if(strona=="przyszlosc"){%>przyszłości! Wybierz postulat albo wykuj swój własny<%}
+                  else if(strona=="mapa_przyszlosc"){%>przestrzeni przyszłości!<%}
+                  else if(strona=="mapa_przeszlosc"){%>przestrzeni przeszłości!<%}
+                  else if(strona=="start_przyszlosc"){%>przyszłości!<%}
+                  else if(strona=="start_przeszlosc"){%>przeszłości!<%}%>
+                  </h3>
               <%}%>
   
               </div>

@@ -24,9 +24,9 @@
             <div class="contain-to-grid">
                 <div class="fixed">
                     <ul class="button-group even-3">
-                        <a id="head_przeszlosc_button" href="/forum/przeszlosc"></a>
+                        <a id="head_przeszlosc_button" href="/forum/start_przeszlosc"></a>
                         <a id="head_kolonia_button" href="/"></a>
-                        <a id="head_przyszlosc_button" href="/forum/przyszlosc"></a>
+                        <a id="head_przyszlosc_button" href="/forum/start_przyszlosc"></a>
                     </ul>
                 </div>
             </div>
@@ -45,7 +45,7 @@
                         <label class="users"> Email </label>
                         <p class="users"><%=data[0].email%></p>
                         <img class="icon" src="/images/layout_addons/gra o stocznie_vectorized.png" style="max-width: 14%" />
-                        <p class="users"><% if(list.length){for(var i=0;i<list.length;i++){ if(list[i].user_id==user_id){ if(list[i].rating!=null){%> <%=list[i].rating%> </p>
+                        <p class="users" style="color: #800000"><% if(list.length){for(var i=0;i<list.length;i++){ if(list[i].user_id==user_id){ if(list[i].rating!=null){%> <%=list[i].rating%> </p>
                         <label class="users"> Miejsce w rankingu </label>
                         <p class="users" style="font-size: 2.5rem"> <%= i + 1 %> </p>
                         <% }else{ %> Brak punktów <%}break; }}} if(i==list.length){ %> Brak punktow <% } %> 
@@ -70,7 +70,7 @@
                     <%for(var i = 0;i < list.length;i++) { 
                         if(list[i].email===ciasta){%>  
                         <%}else{%>
-                        <li class="users" style="text-align: left"><%=i+1%>. <img src="<%=list[i].profilowe%>" width="75" height="150"/> <%=list[i].imie%>  <%=list[i].nazwisko%> -  <%if(list[i].rating == null){%> Brak punktów <%}else{%> <%=list[i].rating%>  <%}%> </li>
+                        <li class="users" style="text-align: left"><%=i+1%>. <img src="<%=list[i].profilowe%>" width="75" height="150"/> <%=list[i].imie%>  <%=list[i].nazwisko%> -  <%if(list[i].rating == null){%> Brak punktów <%}else{%> <em style="color: #800000; font-style: normal;"> <%=list[i].rating%> </em> <img class="icon" src="/images/layout_addons/gra o stocznie_vectorized.png" style="max-width: 8%" />  <%}%> </li>
                         <%}
                     }%>
                 </ul>        
