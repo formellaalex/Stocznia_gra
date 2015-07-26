@@ -329,31 +329,45 @@
       <div class='row' style="height: 100%;margin-bottom: 10%">
           <!--lewy górny-->
       <%if(strona==="start_przeszlosc"){%>
-        <div class="large-6 small-12 columns">
-            <a class="kolonia_options" href="/forum/przeszlosc"> LISTA POSTULATÓW </a>
+        <div class="large-12 small-12 columns">
+            <a class="forum_options dark_red" href="/forum/przeszlosc" > LISTA POSTULATÓW &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </a> <em class="forum_options black"> CO zachować (i dlaczego)?</em>
             <br>
             <br>
             <br>
             <br>
             <br>
             <br>
+            <br>
+            <br> 
+            <br>
+            <br> 
+            <br>
+            <br> 
             <br>
             <br>  
-            <a class="kolonia_options" href="/forum/mapa_przeszlosc"> PRZESTRZEŃ </a>
+            <a class="forum_options dark_red" href="/forum/mapa_przeszlosc">  PRZESTRZEŃ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </a> <em class="forum_options black">CO wiemy o każdym miejscu w Stoczni? </em>
         </div>
       <%}
       else if(strona==="start_przyszlosc"){%>
-        <div class="large-6 small-12 columns">
-            <a class="kolonia_options" href="/forum/przyszlosc"> LISTA POSTULATÓW </a>
+        <div class="large-12 small-12 columns">
+          <div style="float: right">
+            <a class="forum_options dark_red" href="/forum/przyszlosc">LISTA POSTULATÓW &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a> <em class="forum_options black"> CO zachować (i dlaczego)?</em>
             <br>
             <br>
             <br>
             <br>
             <br>
             <br>
+            <br>
+            <br> 
+            <br>
+            <br> 
+            <br>
+            <br> 
             <br>
             <br>  
-            <a class="kolonia_options" href="/forum/mapa_przyszlosc"> PRZESTRZEŃ </a>
+            <a class="forum_options dark_red" href="/forum/mapa_przeszlosc">  PRZESTRZEŃ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </a> <em class="forum_options black">CO wiemy o każdym miejscu w Stoczni? </em>
+          </div>
         </div>
       <%}
       else if(strona==="mapa_przeszlosc"||strona==="mapa_przyszlosc"){%> 
@@ -365,11 +379,15 @@
                    <p style="position:absolute float:left"class="show_zoom white opis" onmousedown="zoom_in()">Zoom in! </p>
                     <p style="position:absolute float:right" class="show_zoom white opis" onmousedown="zoom_out()">Zoom out!</p>-->
                     <% if(postulaty2.length ){  %>
-                  <img id="winietka" style="max-width:100%" src="/images/metryczki/winietka_<%= postulaty2[0].tytul %>.jpg"></img>
+                  <img id="winietka" style="max-width:100%" src="/images/metryczki/winietka_<%= postulaty2[0].tytul %>.jpg" usemap="#winietka_map"></img>
                   <%}%>
                 </div>
        
             </div>
+
+            <map name="winietka_map">
+              <area class="ukryj_dodaj_komentarz" shape="rect" coords="650,695,860,740" >
+            </map>
             <map name="planetmap">
                 <%if(strona==="mapa_przeszlosc"){%>
                 <area shape="poly" title="151A" href="/forum/<%=strona%>/2441" onclick="151A" coords="2147,1131,2167,1158,2136,1181,2116,1153" />
@@ -563,7 +581,6 @@
                   <!--if(strona==="przeszlosc"||strona==="przyszlosc"){-->
                   <%if(strona==="mapa_przeszlosc"||strona==="mapa_przyszlosc"){%>
                   <h3  class="tytul white" style="color:#800000 ; font-size:72px" id="tytul_postu"> <%= postulaty2[0].tytul %> </h3>
-                    <button  style="display: inline; margin-left: 5%"  class="ukryj_dodaj_komentarz" > .</button>
                   <%}else{ %>
                     <h3  class="tytul white" style="color:#800000" id="tytul_postu"> <%= postulaty2[0].tytul %> </h3>
                     <h4 class="tresc_postu tytul black"> <%= postulaty2[0].tresc %> </p>
@@ -785,17 +802,17 @@
                   <option value="/forum1/<%=strona%>/<%=postulaty2[0].id%>">Od najstarszej</option>
                 </select>
               </div>
+              
+              <div class="informations" style="margin-top: 10rem">
+                 Gra o Stocznię na licencji Creative Commons.  Gra o Stocznię i opinie Uczestników są chronione Ustawą o prawie autorskim i prawach pokrewnych z 4 lutego 1994 roku. Ich wykorzystywanie do celów komercyjnych, bez zgody <a href=""> Człowieka ze Stoczni </a> oraz autorów opinii jest zabronione.
+                 <br />
+                <a href="">Człowiek ze Stoczni </a> nie ponosi odpowiedzialności za opinie publikowane w Grze o Stocznię. Wszystkie opinie niezgodne z <a href="/reguly">regulaminem/zasadami</a> tej gry będą usuwane.
+              </div>
               <%}
               else{%> 
-                  <h3 class="tytul white"> Witamy w
-                  <%if(strona=="przeszlosc"){%>przeszłości! Wybierz postulat albo wykuj swój własny<%}
-                  else if(strona=="przyszlosc"){%>przyszłości! Wybierz postulat albo wykuj swój własny<%}
-                  else if(strona=="mapa_przyszlosc"){%>przestrzeni przyszłości!<%}
-                  else if(strona=="mapa_przeszlosc"){%>przestrzeni przeszłości!<%}
-                  else if(strona=="start_przyszlosc"){%>przyszłości!<%}
-                  else if(strona=="start_przeszlosc"){%>przeszłości!<%}%>
-                  </h3>
-              <%}%>
+                  <%if(strona != "start_przyszlosc" && strona != "start_przeszlosc"){%>
+                  <h3 class="tytul white" style="clear: both"> DYSKUSJA </h3>
+              <%}}%>
   
               </div>
           </div>
