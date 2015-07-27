@@ -374,7 +374,7 @@ router.get('/deletepostulat/:id?', function(req,res){
 });
 
 //Usun komentarz
-router.get('/delete/:id?', function(req,res){
+router.post('/delete/:id?', function(req,res){
   var backURL=req.header('Referer') || '/';
   console.log(req.params.id);
    var postulaty;
@@ -383,8 +383,8 @@ router.get('/delete/:id?', function(req,res){
   if (req.cookies.remember){
     ciastka=req.cookies.remember;
      var id = req.params.id;   
-        connection.query("DELETE FROM tablica_komentarzy  WHERE IdKomentarzu = ? ; DELETE FROM tabfilekomentarze WHERE idpost_kom="+connection.escape(id),[id], function(err, rows)
-        //connection.query("DELETE FROM tablica_komentarzy  WHERE IdKomentarzu = ?",[id], function(err, rows)
+     console.log(id);
+        connection.query("delete t1,t2 from tablica_komentarzy t1 left join tabfilekomentarze t2 on IdKomentarzu=idpost_kom where IdKomentarzu = " +connection.escape(id) + ";",[id], function(err, rows)
         {
             
              if(err)

@@ -241,8 +241,8 @@
         //miejsce na mape
         jQuery(function($){
             $('#map').smoothZoom({
-                width: $(window).width()/2.1,
-                height: $(window).height()/2.1,
+                width: $(window).width()/1.5,
+                height: $(window).height()/1.5,
                 zoom_BUTTONS_SHOW: 'NO',
                 zoom_CLICK: 'NO',
                 pan_BUTTONS_SHOW: 'NO',
@@ -255,7 +255,7 @@
                 zoom_OUT_TO_FIT: true,
             });
 
-            $('#winietka').css("width",$(window).width()/2.1);
+            $('#winietka').css("width",$(window).width()/1.5);
             $('#winietka').css("height","auto");
                 
         });
@@ -374,6 +374,7 @@
       <div class="large-6 small-12 columns">
             <div class="row">
                 <div class="large-12 small-12 columns">
+                  <h4 class="black" style="font-family: 'stocznia_body', Helvetica, sans-serif;text-align: center"> PRZESTRZEŃ  &nbsp;&nbsp; CO wiemy o każdym miejscu w Stoczni?</h4>
                     <img id="map" src="/images/map/123.png" style="z-index:0;" usemap="#planetmap"/>   
                   <!--  <p class="opis white" id="zoom_ratio"></p>
                    <p style="position:absolute float:left"class="show_zoom white opis" onmousedown="zoom_in()">Zoom in! </p>
@@ -532,7 +533,8 @@
       else{%>
          <div class='large-6 small-12 columns' style="overflow-y: scroll" id="lista_postulatow">
                 <div class="row">
-                    <div class="large-8 small-8 columns"><h3 style="font-family: 'stocznia_body', Helvetica, sans-serif;color: black;"> POSTULATY </h3></div>
+                    <div class="large-8 small-8 columns"><h3 style="font-family: 'stocznia_body', Helvetica, sans-serif;color: black;"> NASZE POSTULATY </h3>
+                    <h5 style="font-family: 'stocznia_body', Helvetica, sans-serif;color: black;"> CO zachować (i dlaczego)? </h5> <br /></div>
                     <div class="large-4 small-4 columns" style="padding:0"> <br><button style="background: url('/images/layout_addons/dodaj_postulat.png');background-size: 100% 100%; width: 13rem;height: 1.5rem; border: none;margin: 0;position: absolute;top:0;right: 0" class="napisz_postulat_btn"></button>  </div>
                 </div>
                 <div id="tablica_postulatow" style="height: auto%; overflow-y: auto">
@@ -580,7 +582,7 @@
                   <!--tresc gowna postulatu-->
                   <!--if(strona==="przeszlosc"||strona==="przyszlosc"){-->
                   <%if(strona==="mapa_przeszlosc"||strona==="mapa_przyszlosc"){%>
-                  <h3  class="tytul white" style="color:#800000; text-align: left ; font-size:72px" id="tytul_postu"> <%= postulaty2[0].tytul %> </h3>
+                  <h3  class="tytul white" style="color:#800000; text-align: left ; font-size:60px" id="tytul_postu"> <%= postulaty2[0].tytul %> &nbsp;&nbsp;&nbsp; <em style="color:#800000; text-align: center ; font-size:60px;font-style:normal"> DYSKUSJA </em> </h3>
                   <%}else{ %>
                     <h3  class="tytul white" style="color:#800000" id="tytul_postu"> <%= postulaty2[0].tytul %> </h3>
                     <h4 class="tresc_postu tytul black"> <%= postulaty2[0].tresc %> </h4> </p>
@@ -666,7 +668,7 @@
                           <a href="/delete/<%=postulaty3[i].IdKomentarzu%>"><img class="icon1" src="/images/layout_addons/smietniczek_vectorized.png" >  <p></p></img></a>
                           <%}
                           else{%>
-                          <form action="/delete/<%=postulaty3[i].id%>" class="test_form" style=" float:right " method="post"> <input type="hidden" name="delete_message" class="message" value=""/><button class="postulat white" style="border:none; background: none; margin:0;padding: 0"><img class="icon" src="/images/layout_addons/smietniczek_vectorized.png" ></button></form>
+                          <form action="/delete/<%=postulaty3[i].IdKomentarzu%>" class="test_form" style=" float:right " method="post"> <input type="hidden" name="delete_message" class="message" value=""/><button class="postulat white" style="border:none; background: none; margin:0;padding: 0"><img class="icon" src="/images/layout_addons/smietniczek_vectorized.png" ></button></form>
                           <!--
                          <a href="/send/<%=postulaty3[i].id%>" class="postulat black"> <img class="icon1" src="/images/layout_addons/smietniczek_vectorized.png" >   <span style="color:white"><span> </img></a>-->
                           <%}%>
@@ -796,16 +798,19 @@
                   <%}%>
                   <%}%>
                 <%}%>
+
+
+              <!-- SORTOWANIE ZROBIMY PÓŹNIEJ!!!!
               <div class="" style="float: right;width: 20%;margin-top:4%;text-align:center;background: grey"> 
                 <select name="forma" style="font-size: 1rem;padding:0;margin:0;" onchange="location = this.options[this.selectedIndex].value;" value="sortuj">
                   <option selected disabled><p>Sortuj</p></option>
                   <option value="/forum/<%=strona%>/<%=postulaty2[0].id%>">Od najmłodszej</option>
                   <option value="/forum1/<%=strona%>/<%=postulaty2[0].id%>">Od najstarszej</option>
                 </select>
-              </div>
+              </div> -->
               
               <div class="informations" style="margin-top: 10rem;">
-                 Gra o Stocznię na licencji Creative Commons.  Gra o Stocznię i opinie Uczestników są chronione Ustawą o prawie autorskim i prawach pokrewnych z 4 lutego 1994 roku. Ich wykorzystywanie do celów komercyjnych, bez zgody <a href=""> Człowieka ze Stoczni </a> oraz autorów opinii jest zabronione.
+                 <img src="/images/layout_addons/cc_logo.png" style="max-width:5%"/> Gra o Stocznię na licencji Creative Commons.  Gra o Stocznię i opinie Uczestników są chronione Ustawą o prawie autorskim i prawach pokrewnych z 4 lutego 1994 roku. Ich wykorzystywanie do celów komercyjnych, bez zgody <a href=""> Człowieka ze Stoczni </a> oraz autorów opinii jest zabronione.
                  <br />
                 <a href="">Człowiek ze Stoczni </a> nie ponosi odpowiedzialności za opinie publikowane w Grze o Stocznię. Wszystkie opinie niezgodne z <a href="/reguly">regulaminem/zasadami</a> tej gry będą usuwane.
               </div>

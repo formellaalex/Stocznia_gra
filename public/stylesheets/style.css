@@ -46,7 +46,7 @@ label{
 }
 
 .informations{
-    font-size: 0.5rem;
+    font-size: 0.7rem;
     color: black;
 }
 
@@ -303,7 +303,7 @@ label, input{
 @media screen and (min-width: 1024px){
     .kolonia_options, .forum_options{
         font-size: 1.6rem;
-        margin-bottom: 10%;
+        margin-bottom: 5%;
     }
     .kolonia_button{
         font-size: 1rem;
@@ -320,7 +320,7 @@ label, input{
 @media screen and (max-width: 1024px){
     .kolonia_options, .forum_options{
         font-size: 1.6rem;
-        margin-bottom: 10%;
+        margin-bottom: 5%;
     }
     .kolonia_button{
         font-size: 1.2rem;
@@ -333,7 +333,7 @@ label, input{
 @media screen and (max-width: 768px){
     .kolonia_options, .forum_options{
         font-size: 1.3rem;
-        margin-bottom: 25%;
+        margin-bottom: 15%;
     }
     .wykuj_postulat{
         width: 200%;
@@ -345,7 +345,7 @@ label, input{
 }
 @media screen and (max-width: 480px){
     .kolonia_options, .forum_options{
-        margin-bottom: 35%;
+        margin-bottom: 30%;
     }
     #row_above_maps{
         height: 70%;
@@ -364,7 +364,7 @@ label, input{
 
 @media screen and (max-width: 320px){
     .kolonia_options, .forum_options{
-        margin-bottom: 35%;
+        margin-bottom: 30%;
     }
     #row_above_maps{
         height: 74%;
