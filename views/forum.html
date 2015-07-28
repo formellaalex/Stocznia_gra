@@ -10,6 +10,7 @@
         <script src='/javascripts/funkcje_ajax.js'></script>
         <script src='/javascripts/jquery.rwdImageMaps.min.js'></script>
         <script src='/javascripts/jquery.smoothZoom.min.js'></script>
+        <script src="/javascripts/jquery.maphilight.min.js"></script>
 
     
 
@@ -397,7 +398,7 @@
             </div>
 
             <map name="winietka_map">
-              <area id="winietka_area" class="ukryj_dodaj_komentarz" shape="rect" coords="647,693,860,740" style="" >
+              <area id="winietka_area" class="ukryj_dodaj_komentarz" shape="rect" coords="647,693,860,740" style="">
             </map>
             <map name="planetmap">
                 <%if(strona==="mapa_przeszlosc"){%>
@@ -649,10 +650,10 @@
                           <textarea class="comment_text" name="tresc" cols="10" rows="5"  placeholder="Dodaj swój komentarz"></textarea>
                           <div class="row">
                               <div class="large-4 small-6 columns">
-                                  <input style="display: inline" type="radio" name="comment_type" value="1" checked="checked" /> <span> Pozytywny </span>
+                                  <input style="display: inline" type="radio" name="comment_type" value="1" checked="checked" /> <span> <img src="/images/layout_addons/like.png" style="max-width: 40%"/> </span>
                               </div>
                               <div class="large-4 small-6 columns">
-                                  <input style="display: inline" type="radio" name="comment_type" value="-1"/> <span> Negatywny </span> </br>
+                                  <input style="display: inline" type="radio" name="comment_type" value="-1"/> <span> <img src="/images/layout_addons/dislike.png" style="max-width: 40%"/> </span> </br>
                               </div>
                               <div class="large-4 small-12 columns">
                                   <input type="file" name="upload" multiple="multiple">

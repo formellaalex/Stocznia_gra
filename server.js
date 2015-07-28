@@ -462,7 +462,7 @@ db_config = {
   multipleStatements: true 
 }
 
-*/
+
 function handleDisconnect() {
   connection = mysql.createConnection(db_config); // Recreate the connection, since
                                                   // the old one cannot be reused.
