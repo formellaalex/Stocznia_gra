@@ -459,16 +459,16 @@ router.get('/edit', function(req,res){
 //Strona glowna
 router.get('/', function(req, res){
   if(req.cookies.remember){
-    if(zarazPoZalogowaniu == true){
-      res.render('zalogowano.html', {title: 'zalogowano', user_pos: req.cookies.pos, przyciskKolonia: 'kolonia'});
-      zarazPoZalogowaniu = false;
-    }
+      res.render('zalogowano_initial.html', {title: 'zalogowano', user_pos: req.cookies.pos, przyciskKolonia: 'kolonia'});
+  }
+  else{
+    res.redirect('/logowanie');
+  }
+});
 
-    else{
+router.get('/kolonia', function(req, res){
+  if(req.cookies.remember){
       res.render('zalogowano.html', {title: 'zalogowano', user_pos: req.cookies.pos, przyciskKolonia: 'koloniastoczniazaznaczone'});
-    }
-    
-
   }
   else{
     res.redirect('/logowanie');

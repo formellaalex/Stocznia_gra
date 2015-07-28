@@ -308,6 +308,9 @@ label, input{
     .kolonia_button{
         font-size: 1rem;
     }
+    .przestrzen_opis{
+        font-size: 1.1rem;
+    }
     #lista_postulatow{
         position: fixed;
         height: auto;
@@ -324,6 +327,9 @@ label, input{
     }
     .kolonia_button{
         font-size: 1.2rem;
+    }
+    .przestrzen_opis{
+        font-size: 1rem;
     }
     html{
         font-size: 90%;
