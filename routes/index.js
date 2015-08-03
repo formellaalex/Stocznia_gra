@@ -142,8 +142,12 @@ router.get('/register', function(req,res){
     res.render("register.html", {info:info});
 });
 
-router.get('/reguly', function(req,res){
-    res.render("reguly.html", {info:info});
+router.get('/czlowiek_ze_stoczni', function(req,res){
+  res.render("stoczniowiec.html");
+});
+
+router.get('/zasady', function(req,res){
+    res.render("reguly.html");
 });
 
 

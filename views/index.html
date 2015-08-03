@@ -21,9 +21,7 @@
        
         <script src="/javascripts/funkcje_ajax.js"> </script>
          <script src="bootstrap/dist/js/bootstrap.min.js"></script>   
-         <script>
-         document.getElementById('zasady').addEventListener('click', function() { location.href = '/reguly' }, false);
-         </script> 
+
     </head>
 
 <!--
@@ -74,7 +72,7 @@ background-size: auto 100%; width:100%;
       <div class="carousel-caption">
         <div class="container">
           <div class="row" style="padding-bottom:30px; ">
-            <div class="col-md-3 tloButton"><p>CZŁOWIEK ZE STOCZNI</p></div>
+            <div class="col-md-3 tloButton" id="czlowiekZeStoczni"><p>CZŁOWIEK ZE STOCZNI</p></div>
             <div class="col-md-3 tloButton" id="zasady"><p>ZASADY</p></div>
             <div class="col-md-3 tloButton" onclick="show_log_div()"><p>LOGOWANIE</p></div>
             <div class="col-md-3 tloButton"  href="#carousel-example-generic" role="button" data-slide="next"><p>GALERIA<span class="glyphicon glyphicon-chevron-right"></span></p></div>
@@ -315,6 +313,11 @@ background-size: auto 100%; width:100%;
             <br>
         <footer id="sentence_bottom">
         </footer> -->
+
+      <script>
+     document.getElementById('zasady').addEventListener('click', function() { location.href = '/zasady'; }, false);
+     document.getElementById('czlowiekZeStoczni').addEventListener('click', function() { location.href = '/czlowiek_ze_stoczni'; }, false);
+     </script> 
 </body>
 
 </html>

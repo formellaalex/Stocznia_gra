@@ -376,37 +376,6 @@ app.post('/multiuploadkomentarz', function(req, res) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
@@ -462,7 +431,7 @@ db_config = {
   multipleStatements: true 
 }
 
-
+*/
 function handleDisconnect() {
   connection = mysql.createConnection(db_config); // Recreate the connection, since
                                                   // the old one cannot be reused.
