@@ -168,6 +168,99 @@
           #winietka_area{
             background: red;
           }
+
+          .wybierz{
+                                      background: transparent; 
+                                      background-image: url('/images/layout/wybierzplik.png');
+  background-size: 100% !important;
+  background-repeat: no-repeat;
+  width: 140px !important;
+  height: 50px !important;
+  border:none !important;
+  color:transparent !important;
+   size:6;
+                                    }
+
+                                    .submit{
+                                      background: transparent; 
+                                      background-image: url('/images/layout/publikuj.png');
+  background-size: 100%;
+  width: 140px !important;
+  height: 50px;
+  border:none;
+  color:transparent;
+   
+                                    }
+                                    .submit:hover{
+                                      background: transparent; 
+                                      background-image: url('/images/layout/publikuj.png');
+  background-size: 100%;
+  width: 140px !important;
+  height: 50px;
+  border:none;
+  color:transparent;
+   
+                                    }
+input[type="file" i]::-webkit-file-upload-button {
+  -webkit-appearance:textfield;
+  white-space: none;
+  margin: 0px;
+  font-size: inherit;
+  -webkit-user-modify: read-write ;
+}                                   
+input,  input[type="password" i],  input[type="search" i] {
+  -webkit-appearance: textfield;
+  padding: 1px;
+  background-color: none;
+  border: none;
+  border-top-color: none;
+  border-top-style: none;
+  border-top-width: none;
+  border-right-color: none;
+  border-right-style: none;
+  border-right-width: none;
+  border-bottom-color: none;
+  border-bottom-style:none;
+  border-bottom-width: none;
+  border-left-color: none;
+  border-left-style: none;
+  border-left-width: none;
+  border-image-source: none;
+  border-image-slice: none;
+  border-image-width: none;
+  border-image-outset: none;
+  border-image-repeat: none;
+  -webkit-rtl-ordering: none;
+  -webkit-user-select: none;
+  cursor: auto;
+}
+input[type="button" i], input[type="submit" i],  input[type="reset" i], input[type="file" i]::-webkit-file-upload-button,  button {
+  align-items: flex-start;
+  text-align: center;
+  cursor: default;
+  color: buttontext;
+  padding: 2px 6px 3px;
+  border: none;
+  border-top-color: none;
+  border-top-style: none;
+  border-top-width: none;
+  border-right-color: none;
+  border-right-style: none;
+  border-right-width: none;
+  border-bottom-color: none;
+  border-bottom-style: none;
+  border-bottom-width: none;
+  border-left-color: none;
+  border-left-style: none;
+  border-left-width: none;
+  border-image-source: none;
+  border-image-slice: none;
+  border-image-width: none;
+  border-image-outset: none;
+  border-image-repeat: none;
+  background-color:none;
+  box-sizing: border-box;
+}
       </style>
       <script> 
 
@@ -361,8 +454,8 @@
       <%}
       else if(strona==="start_przyszlosc"){%>
         <div class="large-12 small-12 columns">
-          <div style="float: right">
-            <a class="forum_options dark_red" href="/forum/przyszlosc">LISTA POSTULATÓW &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a> <em class="forum_options black"> CO zachować (i dlaczego)?</em>
+          <div style="float: right;  text-align: right;">
+            <a class="forum_options dark_red" href="/forum/przyszlosc">LISTA POSTULATÓW &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a> <em class="forum_options black">JAK zachować (i po co)??</em>
             <br>
             <br>
             <br>
@@ -377,7 +470,7 @@
             <br> 
             <br>
             <br>  
-            <a class="forum_options dark_red" href="/forum/mapa_przeszlosc">  PRZESTRZEŃ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </a> <em class="forum_options black">CO wiemy o każdym miejscu w Stoczni? </em>
+            <a class="forum_options dark_red" href="/forum/mapa_przeszlosc">  PRZESTRZEŃ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </a> <em class="forum_options black">JAK przekształcać miejsca w Stoczni, zachowując ich historie? </em>
           </div>
         </div>
       <%}
@@ -555,10 +648,15 @@
                               <form method="post" action="/multiupload" enctype="multipart/form-data" class="dodawaniePostow" style="margin: 2% 0 0 2%">
                                     <input type="hidden" name="strona" value="<%=strona%>" />
                                     <button class="napisz_postulat_btn" type="button" style="padding: 0;float: right"> X </button>
-                                    <input type='text' placeholder="TYTUŁ POSTULATU" name='tytul' style="text-transform: uppercase; display: inline-block"/>
-                                    <textarea name="tresc" cols="10" rows="10"  placeholder="UZASADNIENIE" style="text-transform: uppercase;"></textarea>
-                                      <input type="file" name="upload" multiple="multiple"><br>
-                                    <input type='submit' />
+                                    <input type='text'  value="Należy zachować" name='tytul' style="text-transform: uppercase; display: inline-block"/>
+                                    <textarea name="tresc" cols="10" rows="10"  placeholder="DLACZEGO?" style="text-transform: uppercase;"></textarea>
+                                      <input type="file" class="wybierz" name="upload" multiple="multiple" /><br>
+                                    <input class="submit" type='submit' /> 
+                                     <p> Klikając "Publikuj" akceptujesz <a href="/reguly">zasady Gry o Stocznię </a> </p>
+                                    <style>
+                                      
+
+</style>
                                 </form>
                             </div>
                         </div>
@@ -661,7 +759,7 @@
                           </div>
                           <div class="row">
                               <div class="large-12 small-12 columns" style="text-align: center">
-                                  <button style="margin: 10% 0 10% 0"> Publikuj </button> </br>
+                                  <button class="submit" style="margin: 10% 0 10% 0"> Publikuj </button> </br>
                                   <p> Klikając "Publikuj" akceptujesz <a href="/reguly">zasady Gry o Stocznię </a> </p>
                               </div> 
                           </div>
@@ -755,7 +853,7 @@
                           </div>
                           <div class="row">
                               <div class="large-12 small-12 columns" style="text-align: center">
-                                  <button style="margin: 10% 0 10% 0"> Publikuj </button> </br>
+                                  <button  class="submit" style="margin: 10% 0 10% 0"> Publikuj </button> </br>
                                   <p> Klikając "Publikuj" akceptujesz <a href="/reguly">zasady Gry o Stocznię </a> </p>
                               </div> 
                           </div>
