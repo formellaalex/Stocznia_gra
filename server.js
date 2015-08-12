@@ -414,16 +414,16 @@ app.use(function(err, req, res, next) {
 });
 */
 
-db_config = {
+/*db_config = {
   host     : '127.13.120.2',
   port     : '3306',
   user     : 'adminmPNjwgk',
   password : 'dhby1WSwYuxP',
   database : 'graostocznie',
   multipleStatements: true 
-};
+};*/
 
-/*db_config = {
+db_config = {
   host     : 'us-cdbr-iron-east-01.cleardb.net',
   user     : 'b6328a367ad02a',
   password : 'deb5efdb',
@@ -431,7 +431,7 @@ db_config = {
   multipleStatements: true 
 }
 
-*/
+
 function handleDisconnect() {
   connection = mysql.createConnection(db_config); // Recreate the connection, since
                                                   // the old one cannot be reused.

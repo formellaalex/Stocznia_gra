@@ -170,6 +170,7 @@
           }
 
           .wybierz{
+             cursor: pointer; cursor: hand;
                                       background: transparent; 
                                       background-image: url('/images/layout/wybierzplik.png');
   background-size: 100% !important;
@@ -260,6 +261,52 @@ input[type="button" i], input[type="submit" i],  input[type="reset" i], input[ty
   border-image-repeat: none;
   background-color:none;
   box-sizing: border-box;
+}
+
+
+.wybierz::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.wybierz::before {
+  content: 'Select some files';
+  display:none;
+  background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
+  border: 1px solid #999;
+  border-radius: 3px;
+  padding: 5px 8px;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  text-shadow: 1px 1px #fff;
+  font-weight: 700;
+  font-size: 10pt;
+}
+.wybierz:hover::before {
+  border-color: black;
+}
+.wybierz:active::before {
+  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+
+label {
+  display:block;
+   cursor: pointer; cursor: hand;
+                                      background: transparent; 
+                                      background-image: url('/images/layout/wybierzplik.png');
+  background-size: 100% !important;
+  background-repeat: no-repeat;
+  width: 140px !important;
+  height: 50px !important;
+  border:none !important;
+  color:transparent !important;
+}
+
+label input {
+  -moz-opacity:0;
+  filter:alpha(opacity: 0);
+  opacity:0;
+  cursor:pointer;
 }
       </style>
       <script> 
@@ -650,7 +697,9 @@ input[type="button" i], input[type="submit" i],  input[type="reset" i], input[ty
                                     <button class="napisz_postulat_btn" type="button" style="padding: 0;float: right"> X </button>
                                     <input type='text'  value="Należy zachować" name='tytul' style="text-transform: uppercase; display: inline-block"/>
                                     <textarea name="tresc" cols="10" rows="10"  placeholder="DLACZEGO?" style="text-transform: uppercase;"></textarea>
+                                    <label>
                                       <input type="file" class="wybierz" name="upload" multiple="multiple" /><br>
+                                    </label>
                                     <input class="submit" type='submit' /> 
                                      <p> Klikając "Publikuj" akceptujesz <a href="/reguly">zasady Gry o Stocznię </a> </p>
                                     <style>
@@ -754,7 +803,9 @@ input[type="button" i], input[type="submit" i],  input[type="reset" i], input[ty
                                   <input style="display: inline" type="radio" name="comment_type" value="-1"/> <span> <img src="/images/layout_addons/dislike.png" style="max-width: 40%"/> </span> </br>
                               </div>
                               <div class="large-4 small-12 columns">
-                                  <input type="file" name="upload" multiple="multiple">
+                                <label>
+                                  <input type="file" class="wybierz"  name="upload" multiple="multiple">
+                                </label>
                               </div>
                           </div>
                           <div class="row">
@@ -848,7 +899,9 @@ input[type="button" i], input[type="submit" i],  input[type="reset" i], input[ty
                                   <input style="display: inline" type="radio" name="comment_type" value="-1"/> <span> Negatywny </span> </br>
                               </div>
                               <div class="large-4 small-12 columns">
-                                  <input type="file" name="upload" multiple="multiple">
+                                <label>
+                                  <input type="file" class="wybierz"  name="upload" multiple="multiple">
+                                </label>
                               </div>
                           </div>
                           <div class="row">
