@@ -517,7 +517,7 @@ label input {
             <br> 
             <br>
             <br>  
-            <a class="forum_options dark_red" href="/forum/mapa_przeszlosc">  PRZESTRZEŃ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </a> <em class="forum_options black">JAK przekształcać miejsca w Stoczni, zachowując ich historie? </em>
+            <a class="forum_options dark_red" href="/forum/mapa_przyszlosc">  PRZESTRZEŃ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </a> <em class="forum_options black">JAK przekształcać miejsca w Stoczni, zachowując ich historie? </em>
           </div>
         </div>
       <%}
@@ -525,7 +525,8 @@ label input {
       <div class="large-6 small-12 columns">
             <div class="row">
                 <div class="large-12 small-12 columns">
-                  <h4 class="black przestrzen_opis" style="font-family: 'stocznia_body', Helvetica, sans-serif;text-align: center"> PRZESTRZEŃ  &nbsp;&nbsp; CO wiemy o każdym miejscu w Stoczni?</h4>
+                   <%if(strona==="mapa_przeszlosc"){%> 
+                  <h4 class="black przestrzen_opis" style="font-family: 'stocznia_body', Helvetica, sans-serif;text-align: center"> PRZESTRZEŃ  &nbsp;&nbsp; CO wiemy o każdym miejscu w Stoczni?</h4><%}else{%><h4 class="black przestrzen_opis" style="font-family: 'stocznia_body', Helvetica, sans-serif;text-align: center"> PRZESTRZEŃ  &nbsp;&nbsp; JAK przekształcać miejsca w Stoczni, zachowując ich historie?</h4><%}%>
                     <img id="map" src="/images/map/123.png" style="z-index:0;" usemap="#planetmap"/>   
                   <!--  <p class="opis white" id="zoom_ratio"></p>
                    <p style="position:absolute float:left"class="show_zoom white opis" onmousedown="zoom_in()">Zoom in! </p>
