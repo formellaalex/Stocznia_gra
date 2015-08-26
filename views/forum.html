@@ -749,7 +749,7 @@ label input {
                    
                     <% if(postulaty1.length){
                           for(var i = postulaty1.length-1;i >=0;i--) { %>
-                              <%if( postulaty1[i].rozszerzenie==="jpg"||postulaty1[i].rozszerzenie==="png" ){%>
+                              <%if( postulaty1[i].rozszerzenie==="jpg"||postulaty1[i].rozszerzenie==="png"||postulaty1[i].rozszerzenie==="JPG"||postulaty1[i].rozszerzenie==="PNG" ){%>
                                <img class="display" src="<%=postulaty1[i].pathfile%>" width="90%" height="auto" alt="Błąd" style="margin-bottom: 5%" />
                               <%}else{ %>
                               <p class="zalaczniki"> <a href="<%=postulaty1[i].pathfile%>"> <%=postulaty1[i].name_pic%></a></p><%}%>
@@ -841,7 +841,7 @@ label input {
                               <% if(postulaty4.length){
                                   for(var j = postulaty4.length-1;j >=0;j--) { %>
                                       <%if( postulaty4[j].idpost_kom === postulaty3[i].IdKomentarzu){%>
-                                          <%if( postulaty4[j].rozszerzenie==="jpg"||postulaty4[j].rozszerzenie==="png" ){%>
+                                          <%if( postulaty4[j].rozszerzenie==="jpg"||postulaty4[j].rozszerzenie==="png"||postulaty4[j].rozszerzenie==="JPG"||postulaty4[j].rozszerzenie==="PNG"){%>
                                               <img src="<%=postulaty4[j].pathfile_kom%>"   class="display"  width="90%" heigth="auto" alt="Błąd" style="margin-bottom: 5%;"/>
                                           <%}else{ %>
                                               <p class="zalaczniki"> <a href="<%=postulaty4[j].pathfile_kom%>"> <%=postulaty4[j].name_pic%></a></p><%}%>
@@ -932,7 +932,7 @@ label input {
                               for(var h = postulaty4.length-1;h >=0;h--) { %>
                                   <%if( postulaty4[h].idpost_kom === postulaty3[j].IdKomentarzu){%>
                                     
-                                   <%if( postulaty4[h].rozszerzenie==="jpg"||postulaty4[h].rozszerzenie==="png" ){%>
+                                   <%if( postulaty4[h].rozszerzenie==="jpg"||postulaty4[h].rozszerzenie==="png"|| postulaty4[h].rozszerzenie==="JPG"||postulaty4[h].rozszerzenie==="PNG" ){%>
                                       <img src="<%=postulaty4[h].pathfile_kom%>" class="display"    width="100%" heigth="auto" alt="Błąd" />
                                   <%}else{ %>
                                    <p class="zalaczniki" style="left:20px"> <a href="<%=postulaty4[h].pathfile_kom%>"> <%=postulaty4[h].name_pic%></a></p><%}%>
