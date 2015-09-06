@@ -58,15 +58,15 @@ var server  = email.server.connect({
 });
 
 // send the message and get a callback with an error or details of the message that was sent
-app.post('/send/:id?', function(req, res) {
+app.post('/send/:strona/:post_id/:id?', function(req, res) {
 server.send({
-   text:    "Zgłoszono postulat nr "+req.params.id + " z powodu: " + req.body.delete_message, 
+   text:    "Zgłoszono komentarz nr "+req.params.id + " z powodu: " + req.body.delete_message, 
    from:    " stocznia game <stoczniagame@gmail.com>", 
    to:      "skocz <freeq343@gmail.com>",
    cc:      " stocznia game <stoczniagame@gmail.com>",
    subject: "testing emailjs"
 }, function(err, message) { console.log(err || message); });
-res.redirect('/przeszlosc/1');
+res.redirect('/forum/' + req.params.strona + '/' + req.params.post_id);
 });
 //dodawanie zdjecia post
 //przy uploadowaniu fotki sprawa wyglada tak ze zawsze najpierw 

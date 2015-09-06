@@ -9,7 +9,13 @@ body:not(#logowanie) {
     background-size: 100%;
     background-attachment: fixed;
 }
+a{
+    color: black;
+}
 
+.link{
+    font-style: italic;
+}
 a:hover, a:focus {
     color: #800000;
 }
@@ -53,6 +59,15 @@ label{
 .informations a{
     color: black;
     text-decoration: underline;
+}
+
+.tresc_postu{
+    word-wrap: break-word; 
+    color: black; 
+}
+
+#tytul_postu{
+    color: black;
 }
 
 .informations a:hover{
@@ -303,6 +318,95 @@ label, input{
 #lista_postulatow{
     max-height: 60%;
     margin-bottom: 5%;
+}
+
+
+.ukryj_dodaj_komentarz_przycisk_w_menu{
+
+    background: url('/images/layout_addons/dodaj opinie.png');
+    background-position:center;
+    background-repeat:no-repeat;
+    background-size: 100% 100%;
+    border:0;
+    min-width:20%;
+
+}
+
+.ukryj_dodaj_komentarz{
+
+    background: url('/images/layout_addons/dodaj opinie.png');
+    background-position:center;
+    background-repeat:no-repeat;
+    background-size: 100% 100%;
+    border:0;
+    min-width:20%;
+
+}
+#vote_up{
+  /*  background: url('/images/layout_addons/like<%=vote_up%>.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    height: 4em;
+    width: auto;
+    border: none;*/
+
+margin-right: 2%;
+
+    background: url('/images/layout_addons/like.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    height: 8vh;
+    /* background-position-y: 0.5rem; */
+    /* width: auto; */
+    vertical-align: middle;
+    border: none;
+    margin-bottom: 0;
+}
+#vote_down{
+    background: url('/images/layout_addons/dislike<%=vote_down%>.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    height: 8vh;
+    /* background-position-y: 0.5rem; */
+    /* width: auto; */
+    vertical-align: middle;
+    border: none;
+    margin-bottom: 0;
+    margin-right: 2%;
+}
+#vote_up_kom{
+    background: url('/images/layout_addons/like.png');
+    background-size: 80% 80%;
+    background-repeat: no-repeat;
+    height: 3em;
+    width: auto;
+    border: none;
+}
+#vote_up_kom1{
+    background: url('/images/layout_addons/like.png');
+    background-size: 80% 80%;
+    background-repeat: no-repeat;
+    height: 4em;
+    width: auto;
+    border: none;
+    position: absolute;
+}
+#vote_down_kom{
+    background: url('/images/layout_addons/dislike.png');
+    background-size: 80% 80%;
+    background-repeat: no-repeat;
+    height: 3em;
+    width: auto;
+    border: none;
+}
+#vote_down_kom1{
+    background: url('/images/layout_addons/dislike.png');
+    background-size: 80% 80%;
+    background-repeat: no-repeat;
+    height: 4em;
+    width: auto;
+    border: none;
+    position: absolute;
 }
 @media screen and (min-width: 1024px){
     .kolonia_options, .forum_options{
