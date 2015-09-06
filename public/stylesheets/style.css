@@ -210,6 +210,9 @@ float: left; }
     font-family: 'stocznia_body',Helvetica;
     text-align: center;
     letter-spacing: 0.15rem;
+     min-height: 30px;
+
+
 }
 
 .important_link{
@@ -242,8 +245,9 @@ float: left; }
 }
 
 .prostokat{
-    border-top-style: solid;
-    border-top-color: black;
+    border-bottom-style: solid;
+    border-bottom-color: black;
+    margin-bottom:30px;
 }
 
 
