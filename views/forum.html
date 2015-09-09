@@ -24,6 +24,9 @@
           max-width: 15%;
           
         }
+        .znacznik .icon {
+          max-width: 100%;
+        }
                 .icon1{
           max-width: 20px; 
           position:inline;
@@ -103,7 +106,7 @@
                     margin-bottom: 0;
             }
             #vote_down{
-                background: url('/images/layout_addons/dislike<%=vote_down%>.png');
+                background: url('/images/layout_addons/dislike.png');
               background-size: 100% 100%;
                   background-repeat: no-repeat;
                   height: 8vh;
@@ -209,8 +212,10 @@
                                       background-image: url('/images/layout/publikuj.png');
   background-size: 100%;
   width: 140px !important;
+  background-repeat: no-repeat;
   height: 50px;
   border:none;
+  margin-right:10px;
   color:transparent;
    
                                     }
@@ -219,6 +224,8 @@
                                       background-image: url('/images/layout/publikuj.png');
   background-size: 100%;
   width: 140px !important;
+    background-repeat: no-repeat;
+      margin-right:10px;
   height: 50px;
   border:none;
   color:transparent;
@@ -318,7 +325,8 @@ label {
                                       background-image: url('/images/layout/wybierzplik.png');
   background-size: 100% !important;
   background-repeat: no-repeat;
-  width: 140px !important;
+  width: 180px !important;
+  /*  margin-left: -10px;*/
   height: 50px !important;
   border:none !important;
   color:transparent !important;
@@ -330,7 +338,12 @@ label input {
   opacity:0;
   cursor:pointer;
 }
-
+#wykujPostulat > div > div > form > label{
+  margin-bottom: 30px;
+}
+.supklasa{
+  width:12%;
+}
       </style>
       <script> 
 
@@ -746,7 +759,7 @@ label input {
                     <div class="row" id="wykujPostulat"  style="width: 100%"> 
                         <div class="large-10 columns">
                             <div style="width: 100%">
-                              <form method="post" action="/multiupload" enctype="multipart/form-data" class="dodawaniePostow" style="margin: 2% 0 0 2%">
+                              <form method="post" action="/multiupload" enctype="multipart/form-data" class="dodawaniePostow" style="margin: 2% 0 0 0">
                                     <input type="hidden" name="strona" value="<%=strona%>" />
                          
                                      <img style="padding: 0;float: right ;margin-bottom:10px" class="napisz_postulat_btn" type="button" src="/images/cancel_32.png"/>
@@ -754,9 +767,10 @@ label input {
                                     <textarea name="tresc" cols="10" rows="10"  placeholder="DLACZEGO?" style="text-transform: uppercase;"></textarea>
                                     <label style="display:inline-block;vertical-align:middle">
                                       <input type="file" class="wybierz" name="upload" multiple="multiple" /><br>
+                                      <p style="font-size:12px; color:#800000">załącznik max 1 mb</p>
                                     </label>
                                     <input class="submit" style="display:inline-block; float:right;;vertical-align:middle" type='submit' /> 
-                                     <p> Klikając "Publikuj" akceptujesz <a href="/reguly">zasady Gry o Stocznię </a> </p>
+                                     <p> Klikając "Publikuj" akceptujesz <a style="color: #800000" href="/reguly">zasady Gry o Stocznię </a> </p>
                                     <style>
                                       
 
@@ -819,26 +833,34 @@ label input {
 
                         </a>        
                       
-                          <button  style="display: inline; margin-left: 5%"  class="ukryj_dodaj_komentarz" > .</button>
+                          <button  style="display: inline;   margin-right: 20px;  float: right;"  class="ukryj_dodaj_komentarz" > .</button>
                    <!--   </div>-->
                   </div> 
 
                   <div class="row" style="text-align: center; border-bottom:1px solid black;">
-                      <div class="large-12 small-12 columns">
+                      <div class="large-12 small-12 columns znacznik">
+                      <div class="large-5 small-5 columns">  
+                      <div class="large-6 small-6 columns">
                           <p style="font-size: 1.8rem;display: inline;position:absolute;color:#800000">  <%=comments_count[0].ilosc %></p>
                           <img class="icon" src="/images/layout_addons/victoria klawiatura_vectorized.png" style="display: inline ;   margin-right: 2%;"></img>
+                      </div>
+                      <div class="large-6 small-6 columns">
                           <p style="font-size: 1.8rem;position:absolute;display: inline;margin-left:3%;color:black"><%=comments_count[1].ilosc%> </p>
                           <img class="icon" src="/images/layout_addons/kciuk klawiatura_vectorized.png" style="display: inline;  margin-right: 2%;"></img>
-                          
-
+                        </div>
+                        </div>  
+                        <div class="large-2 small-2 columns">
                           <p style="display: inline"><span style="  color: #800000;font-size:1.8rem;position:absolute;"> <%=vote_up_count%></span> </p>
                           <form style="display:inline;  color: #800000;" action="/vote_up/<%=capfile%>/post/<%=capfile%>/<%=strona%>" method="post">  <button class="vote" id="vote_up" ></button> </form>
-
+                        </div> 
+                          <div class="large-2 small-2 columns">
                           <p style="display: inline"><span style="color:black;font-size:1.8rem;position:absolute;"> <%=vote_down_count%> </span></p>
                           <form style="display: inline; color: white" action="/vote_down/<%=capfile%>/post/<%=capfile%>/<%=strona%>" method="post"> <button class="vote" id="vote_down"></button></form>
-
+                          </div> 
+                          <div class="large-3 small-3 columns">
                           <p style="font-size: 1.8rem;display: inline;margin-left:3%;color:#800000"><%=(vote_up_count-vote_down_count)+(comments_count[0].ilosc-comments_count[1].ilosc)*5%> </p>
-                           <img class="icon" src="/images/layout_addons/gra o stocznie_vectorized.png" style="display: inline; max-width:8%"></img>
+                           <img class="icon" src="/images/layout_addons/gra o stocznie_vectorized.png" style="display: inline; max-width:32%"></img>
+                           </div> 
                   </div>
                      <!--zalaczniki do golownego postulatu--> 
                   </div>
@@ -846,28 +868,35 @@ label input {
                   <div id="dodaj_komentarz" style="width: 100%;margin-bottom: 5%">
                       <img class ="ukryj_dodaj_komentarz"style="padding: 0;border:none;background: none;color: black ;float:right;  width: 40px!important;  min-width: 40px; max-width: 40px!important;margin-bottom:10px"  type="button" src="/images/cancel_32.png">
                       
-                      <form method="post" action="/multiuploadkomentarz" enctype="multipart/form-data" class="dodawaniePostow" style="margin: 2% 0 0 2%">
+                      <form method="post" action="/multiuploadkomentarz" enctype="multipart/form-data" class="dodawaniePostow" style="margin: 2% 0 0 0">
                           <input type="hidden" name="licznik" value="-1"/>
                           <input type="hidden" name="ukryte" value="<%=capfile%>" />
                           <input type="hidden" name="strona" value="<%=strona%>" />
                           <textarea class="comment_text" name="tresc" cols="10" rows="5"  placeholder="Dodaj swój komentarz"></textarea>
                           <div class="row">
                               <div class="large-4 small-6 columns">
-                                  <input style="display: inline" type="radio" name="comment_type" value="1" checked="checked" /> <span> <img src="/images/layout_addons/like.png" style="max-width: 40%"/> </span>
-                              </div>
-                              <div class="large-4 small-6 columns">
-                                  <input style="display: inline" type="radio" name="comment_type" value="-1"/> <span> <img src="/images/layout_addons/dislike.png" style="max-width: 40%"/> </span> </br>
-                              </div>
-                              <div class="large-4 small-12 columns">
                                 <label>
                                   <input type="file" class="wybierz"  name="upload" multiple="multiple">
                                 </label>
+                                <br>
+                                <p style="font-size:12px; color:#800000">załącznik max 1 mb</p>
+                              </div>
+                            
+
+                              <div class="large-2 small-6 columns">
+                                  <input style="display: inline ;  " type="radio" name="comment_type" value="1" checked="checked" /> <span> <img src="/images/layout_addons/like.png" style="max-width: 50%"/> </span>
+                              </div>
+                              <div class="large-2 small-6 columns">
+                                  <input style="display: inline" type="radio" name="comment_type" value="-1"/> <span> <img src="/images/layout_addons/dislike.png" style="max-width: 50%"/> </span> </br>
+                              </div>
+                              <div class="large-4 small-6 columns">
+                                <button class="submit" style="margin: 0;float: right;"> Publikuj </button> 
                               </div>
                           </div>
                           <div class="row">
                               <div class="large-12 small-12 columns" style="text-align: center">
-                                  <button class="submit" style="margin: 3% 0 3% 0"> Publikuj </button> </br>
-                                  <p> Klikając "Publikuj" akceptujesz <a href="/reguly">zasady Gry o Stocznię </a> </p>
+                                  
+                                  <p> Klikając "Publikuj" akceptujesz <a style="color: #800000 !important" href="/reguly">zasady Gry o Stocznię </a> </p>
                               </div> 
                           </div>
                       </form>
@@ -926,18 +955,18 @@ label input {
                               <!--</div>-->
                               <!--przyciski pierwszego poziomu-->
                              <!--<div class="row" style="margin-left:3%" >-->
-                                <div class="large-1  small-1 columns"  >
+                                <div class="large-1  small-1 columns supklasa"  >
                                   <span style="color:#800000;font-size:1.6rem"> <%=postulaty3[i].ilosc_like%></span>
                                   <form style="display:inline;color: white" action="/vote_up/<%=postulaty3[i].IdKomentarzu%>/past_kom/<%=capfile%>/<%=strona%>" method="post"><button class="vote" style="margin-bottom:0px"  id="vote_up_kom1" ></button> </form>
                                 </div>
-                                <div class="large-1 small-1 columns" >
+                                <div class="large-1 small-1 columns supklasa" >
                                   <span style="color:black;font-size:1.6rem"><%= postulaty3[i].ilosc_dislike %></span>
                                   <form style="display: inline; color: white" action="/vote_down/<%=postulaty3[i].IdKomentarzu%>/past_kom/<%=capfile%>/<%=strona%>" method="post"> <button class="vote"  style="margin-bottom:0px" id="vote_down_kom1"></button></form>
                                 </div>
-                                <div class="large-4 small-4 columns" >
+                                <div class="large-3 small-3 columns" >
                                   <button class="klasa ukryj_dodaj_komentarz_przycisk_w_menu" style="min-width:30%;  margin-bottom: 0px;
   float: right;
-  margin-right: 10px;;" id="<%=postulaty3[i].IdKomentarzu%>"> . .   .  . </button><p style="margin-right:5%;margin-bottom:0px;vertical-align:middle ;float:right"> z dnia <%=postulaty3[i].czas_dodania_kom%></p>
+  margin-right: 10px;;" id="<%=postulaty3[i].IdKomentarzu%>"> . .   .  . </button><p style="margin-right:5%;margin-bottom:0px;vertical-align:middle;font-size:12px ;float:right"> z dnia <%=postulaty3[i].czas_dodania_kom%></p>
                                 </div>
                               </div>
                           </div>
@@ -945,7 +974,7 @@ label input {
                       
                   <!--formularz odpowiedz do pierwszego poziomu-->
                   <div class="hiden" id="a<%=postulaty3[i].IdKomentarzu%>"  style="width: 100%">
-                      <form method="post" action="/multiuploadkomentarz" enctype="multipart/form-data" class="dodawaniePostow"  style="margin: 2% 0 0 2%">
+                      <form method="post" action="/multiuploadkomentarz" enctype="multipart/form-data" class="dodawaniePostow"  style="margin: 2% 0 0 0">
                           <input type="hidden" name="ukryte" value="<%=capfile%>" />
                           <input type="hidden" name="strona" value="<%=strona%>" />
                           <input type="hidden" name="ukryteID" value="<%=postulaty3[i].IdKomentarzu%>" />
@@ -953,6 +982,32 @@ label input {
 
                           <textarea class="comment_text" name="tresc" cols="10" rows="5"  placeholder="Dodaj swój komentarz"></textarea>
                           <div class="row">
+                              <div class="large-4 small-6 columns">
+                                <label>
+                                  <input type="file" class="wybierz"  name="upload" multiple="multiple">
+                                </label>
+                                <br>
+                                <p style="font-size:12px; color:#800000">załącznik max 1 mb</p>
+                              </div>
+                            
+
+                              <div class="large-2 small-6 columns">
+                                  <input style="display: inline ; " type="radio" name="comment_type" value="1" checked="checked" /> <span> <img src="/images/layout_addons/like.png" style="max-width: 50%"/> </span>
+                              </div>
+                              <div class="large-2 small-6 columns">
+                                  <input style="display: inline" type="radio" name="comment_type" value="-1"/> <span> <img src="/images/layout_addons/dislike.png" style="max-width: 45%"/> </span> </br>
+                              </div>
+                              <div class="large-4 small-6 columns">
+                                <button class="submit" style="margin: 0;float: right;"> Publikuj </button> 
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="large-12 small-12 columns" style="text-align: center">
+                                  
+                                  <p> Klikając "Publikuj" akceptujesz <a style="color: #800000 !important" href="/reguly">zasady Gry o Stocznię </a> </p>
+                              </div> 
+                          </div>
+                         <!--  <div class="row">
                               <div class="large-4 small-6 columns">
                                   <input style="display: inline" type="radio" name="comment_type" value="1" checked="checked" /> <span> Pozytywny </span>
                               </div>
@@ -970,7 +1025,7 @@ label input {
                                   <button  class="submit" style="margin: 3% 0 3% 0"> Publikuj </button> </br>
                                   <p> Klikając "Publikuj" akceptujesz <a href="/reguly">zasady Gry o Stocznię </a> </p>
                               </div> 
-                          </div>
+                          </div> -->
                       </form>
                   </div>
 
