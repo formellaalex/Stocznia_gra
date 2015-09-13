@@ -68,6 +68,10 @@ label{
 
 #tytul_postu{
     color: black;
+    font-family: 'stocznia_body',Helvetica;
+    /*text-align: center;*/
+    letter-spacing: 0.15rem;
+    min-height: 30px;
 }
 
 .informations a:hover{
@@ -223,7 +227,7 @@ float: left; }
 
 .tytul{
     font-family: 'stocznia_body',Helvetica;
-    text-align: center;
+    /*text-align: center;*/
     letter-spacing: 0.15rem;
      min-height: 30px;
 
