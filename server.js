@@ -18,6 +18,8 @@ var mysql = require('mysql');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var connection_db  = require('express-myconnection'); 
+
+
 var index = require('./routes/index');
 //module exp
 var app =  module.exports = express();
@@ -68,6 +70,9 @@ server.send({
 }, function(err, message) { console.log(err || message); });
 res.redirect('/forum/' + req.params.strona + '/' + req.params.post_id);
 });
+
+
+
 //dodawanie zdjecia post
 //przy uploadowaniu fotki sprawa wyglada tak ze zawsze najpierw 
 // idzie do temp a potem z temp jest dopiero pobierana 
@@ -180,7 +185,7 @@ app.post('/multiupload', function(req, res) {
       var day  = date.getDate();
       day = (day < 10 ? "0" : "") + day;
 
-      return year +":"+ month + ":" + day ;
+      return year +"/"+ month + "/" + day ;
 
   }
   var czas=getDateTime();
@@ -290,7 +295,7 @@ app.post('/multiuploadkomentarz', function(req, res) {
       var day  = date.getDate();
       day = (day < 10 ? "0" : "") + day;
 
-      return year +":"+ month + ":" + day ;
+      return year +"/"+ month + "/" + day ;
 
   }
   var czas=getDateTime();
@@ -413,8 +418,6 @@ app.use(function(err, req, res, next) {
     });
 });
 */
-
-
 db_config = {
   host     : '127.13.120.2',
   port     : '3306',
@@ -433,7 +436,6 @@ db_config = {
   database : 'heroku_fd1c348c48d7c8c',
   multipleStatements: true 
 }
-
 */
 function handleDisconnect() {
   connection = mysql.createConnection(db_config); // Recreate the connection, since

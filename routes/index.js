@@ -1,9 +1,20 @@
-
 var express = require('express');
+var encode = require( 'hashcode' ).hashCode;
+var hash = encode().value( "my string value" ); 
+var md5 = require('md5');
 var router = express.Router();
+var email   = require("emailjs");
+var server  = email.server.connect({
+   user:    "stoczniagame@gmail.com", 
+   password:"stoczniagra", 
+   host:    "smtp.gmail.com", 
+   ssl:     true
+});
+
 var zalogowano = false;
 var zarazPoZalogowaniu = true;
 var info = "";
+var monit = "";
 var vote_up;
 var vote_down;
 router.get('/error', function(req,res){
@@ -62,6 +73,36 @@ router.post('/vote_up/:id/:type/:post_id/:strona', function(req,res){
   
 });
 
+router.get("/activation", function(req,res){
+
+  res.render("aktywacja.html", {monit: monit});
+});
+
+
+router.get("/activate/:id/:hash",function(req,res){
+  connection.query("SELECT aktywne FROM users WHERE id=" + connection.escape(req.params.id), function(err,result){
+    if(result[0].aktywne == req.params.hash){
+      connection.query("UPDATE users SET aktywne = NULL WHERE id=" + connection.escape(req.params.id), function(err,result2){
+        if(err){
+
+          res.render("/error");
+        }
+        else{
+          monit = "Konto zostało aktywowane. Możesz się teraz zalogować.";
+          console.log(result2);
+          res.redirect("/activation");
+        }
+      });
+    }
+    else{
+      monit = "Link aktywacyjny jest niepoprawny.";
+      res.redirect("/activation");
+
+    }
+  });
+  monit = "";
+});
+
 //Dislike dla postu
 router.post('/vote_down/:id/:type/:post_id/:strona', function(req,res){
   console.log(req.params.id);
@@ -115,27 +156,23 @@ router.post('/vote_down/:id/:type/:post_id/:strona', function(req,res){
 
 //Dodaj uzytkownika
 router.post('/add_user', function(req,res){
-  if(req.body.haslo===req.body.phaslo){
-  
-  var post  = {imie: req.body.imie, nazwisko: req.body.nazwisko,email: req.body.email,haslo: req.body.haslo, profilowe: "/default/batman.jpg",o_mnie: req.body.o_mnie};
+  var post  = {imie: req.body.imie, nazwisko: req.body.nazwisko,email: req.body.email,haslo: req.body.haslo, profilowe: "/default/batman.jpg",o_mnie: req.body.o_mnie, aktywne: encode().value(req.body.email + new Date().toJSON().slice(0,10).toString())};
   
   connection.query('INSERT INTO users SET ?', post, function(err, result)
         {
           if (err)
               console.log("Error inserting : %s ",err );
-         
-          info = "Zarejestrowano. Możesz się teraz zalogować";
-          res.redirect('/logowanie');
           
+          monit = "Na podany w formularzu email został wysłany link aktywacyjny. Proszę otworzyć skrzynkę mailową i zapoznać się z treścią otrzymanego maila, aby dokończyć rejestrację.";
+          server.send({
+           text:    "To już ostatni krok do rozpoczęcia Gry o stocznię! Kliknij w poniższy link aby aktywować swoje konto : \n localhost:8080/activate/" + result.insertId + "/" + encode().value(req.body.email + new Date().toJSON().slice(0,10).toString()), 
+           from:    "Gra o stocznię <stoczniagame@gmail.com>", 
+           to:      "<" + req.body.email + ">",
+           cc:      "Gra o stocznię <stoczniagame@gmail.com>",
+           subject: "Aktywacja konta w Grze o stocznię"
+          }, function(err, message) { console.log(err || message); });
+          res.redirect("/activation");
         });
-  
-  }else{
-  
-  info = "Hasła nie są takie same.";
-  res.redirect('/logowanie');
-  
-  
-  }
 });
 
 router.get('/register', function(req,res){
@@ -457,11 +494,12 @@ router.get('/edit', function(req,res){
   else{
     res.redirect('/logowanie');
   }
-  
+  info = "";
 });
 
 //Strona glowna
 router.get('/', function(req, res){
+  console.log(hash);
   if(req.cookies.remember){
       res.render('zalogowano_initial.html', {title: 'zalogowano', user_pos: req.cookies.pos, przyciskKolonia: 'kolonia'});
   }
@@ -548,26 +586,29 @@ router.post('/uaktualnij', function(req,res){
 //Zmiana hasła
 router.post('/zmiana_hasla',function(req,res){
   if(req.cookies.remember){
-    var post = {};
-  if(req.body.old_password == req.cookies.pass){
-      post.haslo = req.body.new_password;
-      connection.query('UPDATE users SET ? WHERE email='+connection.escape(req.cookies.remember), post, function(err, result)
-          {
-            if (err)
-            info = "Zaktualizowano hasło.";
-            res.redirect('/edit');
-          });
-    }
-    else{
-      info = "Błędne stare hasło.";
-      res.redirect('/edit');
-  }   
-  }
+  connection.query('SELECT haslo FROM users WHERE id=' + connection.escape(req.cookies.id),function(err, db_pass){
+    if(err)
+        console.log("Blad przy odczycie hasla\n");
+    if(md5(req.body.old_password) == md5(db_pass[0].haslo)){
+        connection.query('UPDATE users SET haslo="'+ req.body.new_password + '" WHERE email='+connection.escape(req.cookies.remember), function(err, result)
+            {
+              if (err)
+                console.log("Blad przy zmianie hasla\n");
+              info = "Zaktualizowano hasło.";
+              res.redirect('/edit');
+            });
+      }
+      else{
+        info = "Błędne stare hasło.";
+        res.redirect('/edit');
+    }   
+
+  });
+}
   else{
     res.redirect('/logowanie');
   }
   
-
 });
 
 function get_user(user_id, item_id, callback){

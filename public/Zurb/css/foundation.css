@@ -83,10 +83,6 @@ body {
   height: 100%;
   width: 100%; }
 
-p a{
-  color: #DA1F2C;
-}
-
 
 a:hover {
   cursor: pointer; }
