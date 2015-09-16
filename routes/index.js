@@ -160,34 +160,42 @@ router.post('/vote_down/:id/:type/:post_id/:strona', function(req,res){
 //Dodaj uzytkownika
 router.post('/add_user', function(req,res){
   var post  = {imie: req.body.imie, nazwisko: req.body.nazwisko,email: req.body.email,haslo: req.body.haslo, profilowe: "/default/batman.jpg",o_mnie: req.body.o_mnie, aktywne: encode().value(req.body.email + new Date().toJSON().slice(0,10).toString())};
-  
-  connection.query('INSERT INTO users SET ?', post, function(err, result)
-        {
-          if (err)
-              console.log("Error inserting : %s ",err );
-            connection.query('SELECT MAX(id) as id from users', function(err, insertId){
-                monit = "Na podany w formularzu email został wysłany link aktywacyjny. Proszę otworzyć skrzynkę mailową i zapoznać się z treścią otrzymanego maila, aby dokończyć rejestrację.";
-                /*server.send({
-                 text:    "To już ostatni krok do rozpoczęcia Gry o stocznię! Kliknij w poniższy link aby aktywować swoje konto : \n localhost:8080/activate/" + insertId.id + "/" + encode().value(req.body.email + new Date().toJSON().slice(0,10).toString()), 
-                 from:    "Gra o stocznię <stoczniagame@gmail.com>", 
-                 to:      "<" + req.body.email + ">",
-                 cc:      "Gra o stocznię <stoczniagame@gmail.com>",
-                 subject: "Aktywacja konta w Grze o stocznię"
-                }, function(err, message) { console.log(err || message); });*/
-                email.addTo(req.body.email);
-                email.setFrom("stoczniagame@gmail.com");
-                email.setSubject("Rejestracja w Grze o Stocznie");
-                email.setHtml("To już ostatni krok do rozpoczęcia Gry o stocznię! Kliknij w poniższy link aby aktywować swoje konto : \n www.gra-o-stocznie.org.pl/activate/" + insertId[0].id + "/" + encode().value(req.body.email + new Date().toJSON().slice(0,10).toString()));
-                sendgrid.send(email);
-                res.redirect("/activation");
+  connection.query('SELECT email from users where email="' + req.body.email +'";', function(err,czyTenSamMail){
+    if(czyTenSamMail.length == 0){
+        connection.query('INSERT INTO users SET ?', post, function(err, result)
+            {
+              if (err)
+                  console.log("Error inserting : %s ",err );
+              connection.query('SELECT MAX(id) as id from users', function(err, insertId){
+                  monit = "Na podany w formularzu email został wysłany link aktywacyjny. Proszę otworzyć skrzynkę mailową i zapoznać się z treścią otrzymanego maila, aby dokończyć rejestrację.";
+                  /*server.send({
+                   text:    "To już ostatni krok do rozpoczęcia Gry o stocznię! Kliknij w poniższy link aby aktywować swoje konto : \n localhost:8080/activate/" + insertId.id + "/" + encode().value(req.body.email + new Date().toJSON().slice(0,10).toString()), 
+                   from:    "Gra o stocznię <stoczniagame@gmail.com>", 
+                   to:      "<" + req.body.email + ">",
+                   cc:      "Gra o stocznię <stoczniagame@gmail.com>",
+                   subject: "Aktywacja konta w Grze o stocznię"
+                  }, function(err, message) { console.log(err || message); });*/
+                  email.addTo(req.body.email);
+                  email.setFrom("stoczniagame@gmail.com");
+                  email.setSubject("Rejestracja w Grze o Stocznie");
+                  email.setHtml("To już ostatni krok do rozpoczęcia Gry o stocznię! Kliknij w poniższy link aby aktywować swoje konto : \n www.gra-o-stocznie.org.pl/activate/" + insertId[0].id + "/" + encode().value(req.body.email + new Date().toJSON().slice(0,10).toString()));
+                  sendgrid.send(email);
+                  res.redirect("/activation");
               });
-            });
-          
-          
+      });
+    }
+    else{
+      monit = "Podany email już isnieje w naszej bazie. Proszę zarejestrować się na inny adres.";
+      res.redirect('/register');
+
+    }
+  });
+
 });
 
 router.get('/register', function(req,res){
-    res.render("register.html", {info:info});
+    res.render("register.html", {monit:monit});
+    monit = "";
 });
 
 router.get('/czlowiek_ze_stoczni', function(req,res){
@@ -461,25 +469,27 @@ router.post('/log', function(req,res){
   connection.query(query, function(err, rows, fields) {
     if (err) throw err;
       var data;
-      var minute = 60 * 60 * 1000; 
+      var minute = 60 * 60 * 1000;
+      info = "Nieprawidłowy login lub hasło."; 
       for (var i in rows) {
           
           if(rows[i].email===lemail && rows[i].haslo===lhaslo){
-           res.cookie('remember', lemail, { maxAge: minute, httpOnly: true});
-           //res.cookie('id', rows[i].id);
-           res.cookie('id', rows[i].id);
-           res.cookie('pos', i);
-           res.cookie("pass", lhaslo);
-           zalogowano = true;
-           info = "";
-           res.redirect('/');
+            if(rows[i].aktywne.length == null){
+              res.cookie('remember', lemail, { maxAge: minute, httpOnly: true});
+             //res.cookie('id', rows[i].id);
+             res.cookie('id', rows[i].id);
+             res.cookie('pos', i);
+             info = "";
+             
+            }
+            else{
+              info = "Konto nie zostało jeszcze aktywowane.";
+              res.redirect('/logowanie');
+            }
+           
 
          }
-      }
 
-      if(zalogowano != true){ 
-          info = "Nieprawidłowy login lub hasło.";
-          res.redirect('/logowanie');
       }
   });
 });
@@ -490,10 +500,9 @@ router.get('/logowanie', function(req, res){
     res.redirect('/');
   }
   else{
-      console.log(process.env.SENDGRID_USERNAME);
-      res.render("index.html", {info:info});
-    
+      res.render("index.html", {info:info});  
   }
+  info = "";
 });
 
 router.get('/edit', function(req,res){

@@ -32,7 +32,7 @@
 
           <div class="row">
             <div class="small-3 small-centered columns" id="header">
-                    <h4 id="welcome_title"> <%= info %> </h4>
+                    
             </div>
          </div>
          <div class="row" style="height: 100%">
@@ -40,13 +40,15 @@
                  <div id="register">
                     <h3 style="text-align: center;color: white"> Rejestracja </h3>
                     </br>
+                    <h3 class="dark_red" style="text-align: center"> <%= monit %> </h3>
+                    <br />
                     <form method="post" action="/add_user" onsubmit='return validate("#password","#repeat_password","#email")'>
 
                         <input type='text' name='imie' placeholder="Imie uczestnika"/>
                         <input type='text' name='nazwisko' placeholder="Nazwisko uczestnika"/>
                         <input type='text' name='email' id='email' placeholder="E-mail"/>
-                        <input type='text' name='haslo' id='password' placeholder="Hasło"/>
-                        <input type='text' name='phaslo' id='repeat_password' placeholder="Powtórz hasło"/>
+                        <input type='password' name='haslo' id='password' placeholder="Hasło"/>
+                        <input type='password' name='phaslo' id='repeat_password' placeholder="Powtórz hasło"/>
                         <p id="pDodatkInfo"> + Informacje dodatkowe</p>
                         <div id="informacjeDodatkoweRejestracja" style="display:none">
                           <textarea name="o_mnie" placeholder="O sobie" cols="10" rows="10"></textarea>

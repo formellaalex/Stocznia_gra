@@ -49,7 +49,7 @@
                         <label class="users"> Miejsce w rankingu </label>
                         <p class="users" style="font-size: 2.5rem"> <%= i + 1 %> </p>
                         <% }else{ %> Brak punktów <%}break; }}} if(i==list.length){ %> Brak punktow <% } %> 
-                        <p class="users">
+                        <p class="users opis">
                             <%if(data[0].o_mnie == null){%> Kolonista nie dodał jeszcze swojego opisu. <%}
                             else{%> <%= data[0].o_mnie %> <%}%>
                         </p>
@@ -83,51 +83,16 @@
 
     </div>
 
-<script>
- /*function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            
-            reader.onload = function (e) {
-                $('.ferret').attr('src', e.target.result);
-            }
-            
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-    
-function preview(img, selection) {
-    var scaleX = 100 / (selection.width || 1);
-    var scaleY = 100 / (selection.height || 1);
-  var img= document.getElementById("ferret");
-var w = img.width;
-var h = img.height;
-    $('#ferret + div > img').css({
-        width: Math.round(scaleX * w) + 'px',
-        height: Math.round(scaleY * h) + 'px',
-        marginLeft: '-' + Math.round(scaleX * selection.x1) + 'px',
-        marginTop: '-' + Math.round(scaleY * selection.y1) + 'px'
-    });
-}
-$(document).ready(function () {
-   $('<div> <img class="ferret" src="#" alt="your image" style="position: relative; /><div>')
-    //$('<div><img src="/uploads/ferret.jpg" style="position: relative;" /><div>')
-        .css({
-            float: 'left',
-            position: 'relative',
-            overflow: 'hidden',
-            width: '100px',
-            height: '100px'
-        })
-        .insertAfter($('#ferret'));
-//var img = document.createElement("img");
-    $('#ferret').imgAreaSelect({ aspectRatio: '1:1', onSelectChange: preview });
-});
-    $("#imgInp").change(function(){
-        readURL(this);
-    });
-*/
-</script>
+ <script>
+         $(document).ready(function() {
+            $('.opis').each(function() {
+              var that = $(this);
+              var text = that.html();
+          
+              that.html(text.autoLink());
+            });
+          });
+       </script>
         <footer id="sentence_bottom"></footer>
     </body>
 
