@@ -3,13 +3,16 @@ var encode = require( 'hashcode' ).hashCode;
 var hash = encode().value( "my string value" ); 
 var md5 = require('md5');
 var router = express.Router();
-var email   = require("emailjs");
+/*var email   = require("emailjs");
 var server  = email.server.connect({
    user:    "stoczniagame@gmail.com", 
    password:"stoczniagra", 
    host:    "smtp.gmail.com", 
    ssl:     true
 });
+*/
+var sendgrid = require("sendgrid")("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");
+var email = new sendgrid.Email();
 
 var zalogowano = false;
 var zarazPoZalogowaniu = true;
@@ -164,13 +167,18 @@ router.post('/add_user', function(req,res){
               console.log("Error inserting : %s ",err );
             connection.query('SELECT MAX(id) as id from users', function(err, insertId){
                 monit = "Na podany w formularzu email został wysłany link aktywacyjny. Proszę otworzyć skrzynkę mailową i zapoznać się z treścią otrzymanego maila, aby dokończyć rejestrację.";
-                server.send({
+                /*server.send({
                  text:    "To już ostatni krok do rozpoczęcia Gry o stocznię! Kliknij w poniższy link aby aktywować swoje konto : \n localhost:8080/activate/" + insertId.id + "/" + encode().value(req.body.email + new Date().toJSON().slice(0,10).toString()), 
                  from:    "Gra o stocznię <stoczniagame@gmail.com>", 
                  to:      "<" + req.body.email + ">",
                  cc:      "Gra o stocznię <stoczniagame@gmail.com>",
                  subject: "Aktywacja konta w Grze o stocznię"
-                }, function(err, message) { console.log(err || message); });
+                }, function(err, message) { console.log(err || message); });*/
+                email.addTo(req.body.email);
+                email.setFrom("stoczniagame@gmail.com");
+                email.setSubject("Rejestracja w Grze o Stocznie");
+                email.setHtml("To już ostatni krok do rozpoczęcia Gry o stocznię! Kliknij w poniższy link aby aktywować swoje konto : \n localhost:8080/activate/" + insertId.id + "/" + encode().value(req.body.email + new Date().toJSON().slice(0,10).toString()));
+                sendgrid.send(email);
                 res.redirect("/activation");
               });
             });
@@ -482,10 +490,8 @@ router.get('/logowanie', function(req, res){
     res.redirect('/');
   }
   else{
-    var query = "SELECT * from test;";
-    connection.query(query, function(err,rows){
-      res.render("index.html", {info:info,rows:rows});
-    });
+      console.log(process.env.SENDGRID_USERNAME);
+      res.render("index.html", {info:info});
     
   }
 });
