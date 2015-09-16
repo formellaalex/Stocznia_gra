@@ -84,7 +84,8 @@ router.get("/activation", function(req,res){
 
 router.get("/activate/:id/:hash",function(req,res){
   connection.query("SELECT aktywne FROM users WHERE id=" + connection.escape(req.params.id), function(err,result){
-    if(result[0].aktywne == req.params.hash){
+    if(result.length > 0){
+      if(result[0].aktywne == req.params.hash){
       connection.query("UPDATE users SET aktywne = NULL WHERE id=" + connection.escape(req.params.id), function(err,result2){
         if(err){
 
@@ -96,7 +97,14 @@ router.get("/activate/:id/:hash",function(req,res){
           res.redirect("/activation");
         }
       });
+      }
+        else{
+          monit = "Konto zostało już aktywowane.";
+          res.redirect("/activation");
+
+        }
     }
+    
     else{
       monit = "Link aktywacyjny jest niepoprawny.";
       res.redirect("/activation");
