@@ -177,7 +177,7 @@ router.post('/add_user', function(req,res){
                 email.addTo(req.body.email);
                 email.setFrom("stoczniagame@gmail.com");
                 email.setSubject("Rejestracja w Grze o Stocznie");
-                email.setHtml("To już ostatni krok do rozpoczęcia Gry o stocznię! Kliknij w poniższy link aby aktywować swoje konto : \n localhost:8080/activate/" + insertId.id + "/" + encode().value(req.body.email + new Date().toJSON().slice(0,10).toString()));
+                email.setHtml("To już ostatni krok do rozpoczęcia Gry o stocznię! Kliknij w poniższy link aby aktywować swoje konto : \n www.gra-o-stocznie.org.pl/activate/" + insertId[0].id + "/" + encode().value(req.body.email + new Date().toJSON().slice(0,10).toString()));
                 sendgrid.send(email);
                 res.redirect("/activation");
               });
