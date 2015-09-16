@@ -162,17 +162,20 @@ router.post('/add_user', function(req,res){
         {
           if (err)
               console.log("Error inserting : %s ",err );
+            connection.query('SELECT MAX(id) as id from users', function(err, insertId){
+                monit = "Na podany w formularzu email został wysłany link aktywacyjny. Proszę otworzyć skrzynkę mailową i zapoznać się z treścią otrzymanego maila, aby dokończyć rejestrację.";
+                server.send({
+                 text:    "To już ostatni krok do rozpoczęcia Gry o stocznię! Kliknij w poniższy link aby aktywować swoje konto : \n localhost:8080/activate/" + insertId.id + "/" + encode().value(req.body.email + new Date().toJSON().slice(0,10).toString()), 
+                 from:    "Gra o stocznię <stoczniagame@gmail.com>", 
+                 to:      "<" + req.body.email + ">",
+                 cc:      "Gra o stocznię <stoczniagame@gmail.com>",
+                 subject: "Aktywacja konta w Grze o stocznię"
+                }, function(err, message) { console.log(err || message); });
+                res.redirect("/activation");
+              });
+            });
           
-          monit = "Na podany w formularzu email został wysłany link aktywacyjny. Proszę otworzyć skrzynkę mailową i zapoznać się z treścią otrzymanego maila, aby dokończyć rejestrację.";
-          server.send({
-           text:    "To już ostatni krok do rozpoczęcia Gry o stocznię! Kliknij w poniższy link aby aktywować swoje konto : \n localhost:8080/activate/" + result.insertId + "/" + encode().value(req.body.email + new Date().toJSON().slice(0,10).toString()), 
-           from:    "Gra o stocznię <stoczniagame@gmail.com>", 
-           to:      "<" + req.body.email + ">",
-           cc:      "Gra o stocznię <stoczniagame@gmail.com>",
-           subject: "Aktywacja konta w Grze o stocznię"
-          }, function(err, message) { console.log(err || message); });
-          res.redirect("/activation");
-        });
+          
 });
 
 router.get('/register', function(req,res){
