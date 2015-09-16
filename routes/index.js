@@ -482,7 +482,7 @@ router.post('/log', function(req,res){
       for (var i in rows) {
           
           if(rows[i].email===lemail && rows[i].haslo===lhaslo){
-            if(rows[i].aktywne.length == null){
+            if(rows[i].aktywne == null){
               res.cookie('remember', lemail, { maxAge: minute, httpOnly: true});
              //res.cookie('id', rows[i].id);
              res.cookie('id', rows[i].id);
