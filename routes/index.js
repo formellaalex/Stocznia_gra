@@ -488,7 +488,7 @@ router.post('/log', function(req,res){
              res.cookie('id', rows[i].id);
              res.cookie('pos', i);
              info = "";
-             
+             res.redirect('/');
             }
             else{
               info = "Konto nie zostało jeszcze aktywowane.";
