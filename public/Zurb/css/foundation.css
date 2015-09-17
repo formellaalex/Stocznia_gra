@@ -36,7 +36,7 @@ html, body {
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
 
-#tworca_postu, #tytul_postu, #tresc_postu{
+#tworca_postu, #tresc_postu{
   text-align: center;
 }
 
