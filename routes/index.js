@@ -344,7 +344,7 @@ router.get('/forum1/:strona/:id', function(req,res){
           vote_down = "";
          
         }
-          res.render('forum.html', {title: 'Przeszloc', postulaty:result[0],postulaty1:result[1],postulaty2:result[2],postulaty3:result[3],postulaty4:result[4],huj:ciastka1,idcookies:req.cookies.id, ciasta:ciastka,id:result[0].length-1,capfile: req.params.id,tiger:1, vote_down: vote_down, vote_up: vote_up, vote_up_count: data[1].ilosc, vote_down_count: data[2].ilosc, comments_count: result[5],strona:req.params.strona}); // req.params.id tutaj przekazanie zmiennej do widoku
+          res.render('forum.html', {title: 'Przeszlosc', postulaty:result[0],postulaty1:result[1],postulaty2:result[2],postulaty3:result[3],postulaty4:result[4],huj:ciastka1,idcookies:req.cookies.id, ciasta:ciastka,id:result[0].length-1,capfile: req.params.id,tiger:1, vote_down: vote_down, vote_up: vote_up, vote_up_count: data[1].ilosc, vote_down_count: data[2].ilosc, comments_count: result[5],strona:req.params.strona}); // req.params.id tutaj przekazanie zmiennej do widoku
 
       }
     });
@@ -366,7 +366,7 @@ var strona="mapa_przeszlosc";
   /* UWAGA po czyszczeniu serwera bazy zdjec trzeba tutaj zmienic id na koncu drugiego selecta na id pierwszego postu w bazie danych*/
     connection.query("select tabela_postow.id, tytul,tresc, nick, data_dodania, imie, nazwisko from users,tabela_postow where nick=users.id and strona='"+strona+"' ORDER BY data_dodania;SELECT idpost,pathfile FROM tabfile;select tabela_postow.id , tytul,tresc, nick, data_dodania, ilosc_click, imie, nazwisko from users,tabela_postow where tabela_postow.id="+connection.escape(471)+" and strona='"+strona+"'", function(err, result) {
       if (err) throw err;
-res.render('mapa_przeszlosc.html', {title: 'Przeszloscmappa', postulaty:result[0],postulaty1:result[1],postulaty2:result[2], ciasta:ciastka , idcookies:req.cookies.id,capfile:3 ,id: result[0].length-1,tiger:0, vote_up: "", vote_down: "",strona:strona}); // req.params.id tutaj przekazanie zmiennej do widoku
+res.render('mapa_przeszlosc.html', {title: 'Mapa przeszłości', postulaty:result[0],postulaty1:result[1],postulaty2:result[2], ciasta:ciastka , idcookies:req.cookies.id,capfile:3 ,id: result[0].length-1,tiger:0, vote_up: "", vote_down: "",strona:strona}); // req.params.id tutaj przekazanie zmiennej do widoku
   });
 }else{
 res.redirect('/logowanie');
@@ -497,10 +497,10 @@ router.post('/log', function(req,res){
            
 
          }
-         else{
-          res.redirect("/logowanie");
-         }
 
+      }
+      if(rows[i].length == i){
+        res.redirect("/logowanie");
       }
   });
 });
