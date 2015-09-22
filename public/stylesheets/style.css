@@ -2,7 +2,7 @@
 html, body{
 	width: 100%;
 	height: 100%;
-    font-size: 100%;
+    font-size: 22px;
 }
 body:not(#logowanie) {
     background: url("/images/layout/background.png");
@@ -84,6 +84,24 @@ label{
 .dark_red{
     font-style: normal;
     color: #800000;
+}
+
+.stoczniowiec{
+    text-transform: uppercase;
+    font-style: normal;
+    color: black;
+    font-size: 1rem;
+    letter-spacing: 0.2em;
+    font-family: 'stocznia_users', Helvetica, sans-serif;
+    vertical-align: middle;
+}
+
+#tloStoczniowiec{
+    padding: 0 15% 0 15%;
+}
+.light_dark_red{
+    font-style: normal;
+    color: #DC0000;
 }
 /* przybory do navigation-bar */
 #head_przeszlosc_button{
@@ -183,7 +201,7 @@ float: left; }
 
 @font-face {
     font-family: 'stocznia_body';
-    src: url('/fonts/body_+_nazwy_ulic/capture-smallz/Capsmall_clean.ttf') format('truetype');
+    src: url('/fonts/body_+_nazwy_ulic/capture-smallz/Capsmall.ttf') format('truetype');
     /*src: local('Capture Smallz');*/
     font-weight: normal;
     font-style: normal;
@@ -443,9 +461,6 @@ margin-right: 2%;
     .przestrzen_opis{
         font-size: 1rem;
     }
-    html{
-        font-size: 90%;
-    }
 }
 
 @media screen and (max-width: 768px){
@@ -456,9 +471,6 @@ margin-right: 2%;
     .wykuj_postulat{
         width: 200%;
         float: right;
-    }
-    html{
-        font-size: 60%;
     }
 }
 @media screen and (max-width: 480px){
@@ -475,9 +487,6 @@ margin-right: 2%;
         width: 300%;
         float: right;
     }
-    html{
-        font-size: 50%;
-    }
 }
 
 @media screen and (max-width: 320px){
@@ -487,8 +496,25 @@ margin-right: 2%;
     #row_above_maps{
         height: 74%;
     }
-    html{
-        font-size: 40%;
-    }
 
+}
+
+
+@media all and (min-width: 960px) {
+    html{
+        font-size: 18px;
+    }
+}
+ 
+@media all and (max-width: 959px) and (min-width: 600px) {
+    html{
+        font-size: 15px;
+    }
+}
+ 
+@media all and (max-width: 599px) and (min-width: 320px) {
+    html{
+        font-size: 10px;
+    }
+ 
 }

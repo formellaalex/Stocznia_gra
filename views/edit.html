@@ -53,21 +53,56 @@
                 <form action="/upload" enctype="multipart/form-data" method="post">
                     <div style="text-align: center">
 
-                        <h3> Zmiana profilówki</h3>
+                        <h3> Zmiana profilówki - max 1MB, postaraj się aby zdjecie miało proporcje 1:1. Inaczej nie będzie przyjęte. </h3>
                         <div class="row">
                             <div class="small-9 small-centered columns">
-                                <input type="file" name="file">
+                                <input type="file" name="file" id="wybierzZdjecie" >
                             </div>
                             </div>
                         
                         </br>
                         </br>
-                        <button type="submit"> Zmień </button>
+                        
                     </div>
 
                 </form>
+                <button id="zmienZdjecie"> Zmień </button>
             </div>
-        </div> 
+        </div>
+
+
+        <script>
+
+            $('#zmienZdjecie').click( function() {
+                //check whether browser fully supports all File API
+                if (window.File && window.FileReader && window.FileList && window.Blob)
+                {
+                    //get the file size and file type from file input field
+                    var file = $('#wybierzZdjecie')[0].files[0];
+                    
+                    var reader = new FileReader();
+                    var image  = new Image();
+
+                    reader.readAsDataURL(file);  
+                    reader.onload = function(_file) {
+                        image.src    = _file.target.result; 
+                        image.onload = function() {
+                            var w = this.width,
+                                h = this.height,
+                                t = file.type, 
+                                n = file.name,
+                                s = ~~(file.size/1024) +'KB';
+                            alert(w + "  " + h);
+                        };
+                        image.onerror= function() {
+                            alert('Invalid file type: '+ file.type);
+                        };      
+                    };
+                }else{
+                    alert("Please upgrade your browser, because your current browser lacks some new features we need!");
+                }
+            });
+        </script> 
 
 
 
