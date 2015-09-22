@@ -497,6 +497,9 @@ router.post('/log', function(req,res){
            
 
          }
+         else{
+          res.redirect("/logowanie");
+         }
 
       }
   });

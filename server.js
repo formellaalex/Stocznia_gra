@@ -316,7 +316,6 @@ app.post('/multiuploadkomentarz', function(req, res) {
     })
     .on('file', function(field, file) {
       if(file.size === 0){ bit0=1;}else{
-      console.log("i co teraz"+field, file);
      // console.log("przerywnik");
     var scie=file.path;
       //zmiana sciezki wzglednej na sciezke bez wzgledna
@@ -473,36 +472,3 @@ fs.writeFile("pliczek.txt", process.env.OPENSHIFT_MYSQL_DB_HOST, function(err) {
 app.listen(server_port, server_ip_address, function () {
   console.log( "Listening on " + server_ip_address + ", server_port " + server_port + ", host: " + process.env.OPENSHIFT_MYSQL_DB_HOST );
 });
-//jeszcze mi nie kasuj będę tego potrzebował do wylogowywaniaF
-/*app.get('/', function(req, res){
-  if (req.cookies.remember) {
-    res.send('Remembered :). Click to <a href="/forget">forget</a>!.');
-  } else {
-    res.send('<form method="post"><p>Check to <label>'
-      + '<input type="checkbox" name="remember"/> remember me</label> '
-      + '<input type="submit" value="Submit"/>.</p></form>');
-  }
-});
-app.get('/forget', function(req, res){
-  res.clearCookie('remember');
-  res.redirect('back');
-});
-app.post('/', function(req, res){
-  var minute = 60 * 1000;
-  if (req.body.remember) res.cookie('remember', 1, { maxAge: minute });
-  res.redirect('back');
-});*/
-
-
-/*
-  <% if(postulaty.length){ 
-                                
-                        for(var i = postulaty1.length-1;i >=0;i--) { %>
-               <!--   <p class="naglowek_postu"> <a href="/przeszlosc/451"> <%= postulaty[i].tytul%> </a></p>-->
-,postulaty1:rows[1]
-                            <p class="gjhg"> <a href="<%=postulaty1[i].pathfile%>"> <%= postulaty1[i].idpost%> <%=postulaty1[i].pathfile%></a></p> 
-                      <!--    <p class="naglowek_postu"> <a href="/przeszlosc/<%=i%>"> <%= postulaty[i].tytul%> </a></p>-->
-                        <% } %>
-                
-                    <% } %>
-                    */
