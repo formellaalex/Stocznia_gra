@@ -1,16 +1,10 @@
 var express = require('express');
+var router = express.Router();
 var encode = require( 'hashcode' ).hashCode;
 var hash = encode().value( "my string value" ); 
 var md5 = require('md5');
-var router = express.Router();
-/*var email   = require("emailjs");
-var server  = email.server.connect({
-   user:    "stoczniagame@gmail.com", 
-   password:"stoczniagra", 
-   host:    "smtp.gmail.com", 
-   ssl:     true
-});
-*/
+
+
 var sendgrid = require("sendgrid")("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");
 var email = new sendgrid.Email();
 
@@ -374,6 +368,7 @@ res.redirect('/logowanie');
 });
 
 
+
 /*
 router.get('/mapa_przeszlosc', function(req,res){
   
@@ -708,3 +703,7 @@ router.post('/create', function(req,res){
           
         });
 })*/
+
+router.get('/socket', function(req,res){
+  res.render("socket.html");
+});

@@ -1,9 +1,11 @@
 var express = require('express');
-//tu
-//var http = require('http');
-var formidable = require('formidable'),
-http = require('http'),
-    util = require('util'),
+var app =  module.exports = express();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+
+var formidable = require('formidable');
+
+var util = require('util'),
     fs   = require('fs-extra');
 //var formidable = require('formidable');
 //var fs = require('fs');
@@ -22,7 +24,7 @@ var connection_db  = require('express-myconnection');
 
 var index = require('./routes/index');
 //module exp
-var app =  module.exports = express();
+
 //var server = require('../server');
 var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080
 var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
@@ -458,16 +460,32 @@ function handleDisconnect() {
 
 handleDisconnect();
 
-module.exports = app;
-
+/*
 fs.writeFile("pliczek.txt", process.env.OPENSHIFT_MYSQL_DB_HOST, function(err) {
     if(err) {
         return console.log(err);
     }
 
     console.log("The file was saved!");
-}); 
-
-app.listen(server_port, server_ip_address, function () {
-  console.log( "Listening on " + server_ip_address + ", server_port " + server_port + ", host: " + process.env.OPENSHIFT_MYSQL_DB_HOST );
 });
+*/
+
+module.exports = app;
+
+
+
+io.on('connection', function(socket){
+  socket.on('chat message', function(msg){
+    io.emit('chat message', msg);
+  });
+
+
+});
+
+
+
+http.listen(8080, function(){
+  console.log('listening on *:3000');
+});
+
+
