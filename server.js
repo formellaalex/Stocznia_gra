@@ -417,7 +417,7 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
-*/
+
 db_config = {
   host     : '127.13.120.2',
   port     : '3306',
@@ -428,7 +428,7 @@ db_config = {
 
 };
 
-/*
+*/
 db_config = {
   host     : 'us-cdbr-iron-east-01.cleardb.net',
   user     : 'b6328a367ad02a',
@@ -436,7 +436,7 @@ db_config = {
   database : 'heroku_fd1c348c48d7c8c',
   multipleStatements: true 
 }
-*/
+
 function handleDisconnect() {
   connection = mysql.createConnection(db_config); // Recreate the connection, since
                                                   // the old one cannot be reused.
@@ -483,9 +483,8 @@ io.on('connection', function(socket){
 });
 
 
-
-http.listen(8080, function(){
-  console.log('listening on *:3000');
+http.listen(server_port, server_ip_address, function () {
+  console.log( "Listening on " + server_ip_address + ", server_port " + server_port + ", host: " + process.env.OPENSHIFT_MYSQL_DB_HOST );
 });
 
 
