@@ -12,12 +12,7 @@
         <link rel="stylesheet" type="text/css" href="/stylesheets/imgareaselect-default.css" />
         <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
         <script type="text/javascript" src="/javascripts/jquery.imgareaselect.pack.js"></script>
-        <script src="/javascripts/autolink.js"></script>
 <style>
-    .black{
-        color: white;
-        font-style: normal;
-    }
 </style>
 
 
@@ -54,7 +49,7 @@
                         <label class="users"> Miejsce w rankingu </label>
                         <p class="users" style="font-size: 2.5rem"> <%= i + 1 %> </p>
                         <% }else{ %> Brak punktów <%}break; }}} if(i==list.length){ %> Brak punktow <% } %> 
-                        <p class="opis">
+                        <p class="users opis">
                             <%if(data[0].o_mnie == null || data[0].o_mnie.length == 0){%> Kolonista nie dodał jeszcze swojego opisu. <%}
                             else{%> <%= data[0].o_mnie %> <%}%>
                         </p>
@@ -95,7 +90,6 @@
               var text = that.html();
           
               that.html(text.autoLink());
-              
             });
           });
        </script>

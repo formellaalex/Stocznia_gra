@@ -833,11 +833,12 @@ label input {
                               </div>
                               <div class="large-4 small-6 columns">
                                 <button class="submit" style="margin: 0;float: right;"> Publikuj </button> 
+
                               </div>
                           </div>
                           <div class="row">
                               <div class="large-12 small-12 columns" style="text-align: center">
-                                  
+                                    <p style="font-size:14px; color:#800000">pamiętaj o określeniu czy postulat jest pozytywny lub negatywny </p>
                                   <p> Klikając "Publikuj" akceptujesz <a style="color: #800000 !important" href="/reguly">zasady Gry o Stocznię </a> </p>
                               </div> 
                           </div>
@@ -855,7 +856,8 @@ label input {
                           <a href="/delete/<%=postulaty3[i].IdKomentarzu%>"><img class="icon1" src="/images/layout_addons/smietniczek_vectorized.png" >  <p></p></img></a>
                           <%}
                           else{%>
-                          <form action="/delete/<%=postulaty3[i].IdKomentarzu%>" class="test_form" style=" float:right " method="post"> <input type="hidden" name="delete_message" class="message" value=""/><button class="postulat white" style="border:none; background: none; margin:0;padding: 0"><img class="icon" src="/images/layout_addons/smietniczek_vectorized.png" ></button></form>
+                          <!-- <form action="/delete/<%=postulaty3[i].IdKomentarzu%>" class="test_form" style=" float:right " method="post"> <input type="hidden" name="delete_message" class="message" value=""/><button class="postulat white" style="border:none; background: none; margin:0;padding: 0"><img class="icon" src="/images/layout_addons/smietniczek_vectorized.png" ></button></form> -->
+                          <form  class="test_form" style=" float:right " method="post"> <input type="hidden" name="delete_message" class="message" value=""/><button class="postulat white" style="border:none; background: none; margin:0;padding: 0"><img class="icon" src="/images/layout_addons/smietniczek_vectorized.png" ></button></form>                            
                           <!--
                          <a href="/send/<%=postulaty3[i].id%>" class="postulat black"> <img class="icon1" src="/images/layout_addons/smietniczek_vectorized.png" >   <span style="color:white"><span> </img></a>-->
                           <%}%>
@@ -939,11 +941,12 @@ label input {
                               </div>
                               <div class="large-4 small-6 columns">
                                 <button class="submit" style="margin: 0;float: right;"> Publikuj </button> 
+                                
                               </div>
                           </div>
                           <div class="row">
                               <div class="large-12 small-12 columns" style="text-align: center">
-                                  
+                                  <p style="font-size:14px; color:#800000">pamiętaj o określeniu czy postulat jest pozytywny lub negatywny </p>
                                   <p> Klikając "Publikuj" akceptujesz <a style="color: #800000 !important" href="/reguly">zasady Gry o Stocznię </a> </p>
                               </div> 
                           </div>
@@ -977,7 +980,8 @@ label input {
                           <%if(321==idcookies){%>
                             <a href="/delete/<%=postulaty3[j].IdKomentarzu%>"><img class="icon1" src="/images/layout_addons/smietniczek_vectorized.png" ><p></p></img></a>
                             <%}else{%>
-                            <form action="/delete/<%=postulaty[i].id%>" class="test_form" style=" float:right " method="post"> <input type="hidden" name="delete_message" class="message" value=""/><button class="postulat white" style="border:none; background: none; margin:0;padding: 0"><img class="icon" src="/images/layout_addons/smietniczek_vectorized.png" ></button></form>
+                            <form  class="test_form" style=" float:right " method="post"> <input type="hidden" name="delete_message" class="message" value=""/><button class="postulat white" style="border:none; background: none; margin:0;padding: 0"><img class="icon" src="/images/layout_addons/smietniczek_vectorized.png" ></button></form>
+                            <!-- <form action="/delete/<%=postulaty[i].id%>" class="test_form" style=" float:right " method="post"> <input type="hidden" name="delete_message" class="message" value=""/><button class="postulat white" style="border:none; background: none; margin:0;padding: 0"><img class="icon" src="/images/layout_addons/smietniczek_vectorized.png" ></button></form> -->
                             <!--<a href="/send/<%=postulaty[i].id%>" class="postulat black"><img class="icon1" src="/images/layout_addons/smietniczek_vectorized.png" ><span style="color:white">delete<span> </img></a>-->
                             <%}%>
                      

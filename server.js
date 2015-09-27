@@ -1,11 +1,9 @@
 var express = require('express');
-var app =  module.exports = express();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
-
-var formidable = require('formidable');
-
-var util = require('util'),
+//tu
+//var http = require('http');
+var formidable = require('formidable'),
+http = require('http'),
+    util = require('util'),
     fs   = require('fs-extra');
 //var formidable = require('formidable');
 //var fs = require('fs');
@@ -24,7 +22,7 @@ var connection_db  = require('express-myconnection');
 
 var index = require('./routes/index');
 //module exp
-
+var app =  module.exports = express();
 //var server = require('../server');
 var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080
 var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
@@ -318,6 +316,7 @@ app.post('/multiuploadkomentarz', function(req, res) {
     })
     .on('file', function(field, file) {
       if(file.size === 0){ bit0=1;}else{
+      console.log("i co teraz"+field, file);
      // console.log("przerywnik");
     var scie=file.path;
       //zmiana sciezki wzglednej na sciezke bez wzgledna
@@ -342,6 +341,7 @@ app.post('/multiuploadkomentarz', function(req, res) {
     .on('end', function() {
 
       if (req.cookies.remember){
+        console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!=" +typeof(podkomentarze));
         var post = { tresc: tre, nick: req.cookies.id, id_postu_uzytkownika:id_postulatu,czas_dodania_kom:czas,id_parent:id_komentarza_odpowiedz,rate:typ_komentarza*5};
         //;UPDATE tablica_komentarzy SET ? WHERE IdKomentarzu='+connection.escape(id_komentarza_odpowiedz)
         connection.query('INSERT INTO tablica_komentarzy SET ?', post, function(err, result){
@@ -427,8 +427,8 @@ db_config = {
   multipleStatements: true 
 
 };
-
 /*
+
 db_config = {
   host     : 'us-cdbr-iron-east-01.cleardb.net',
   user     : 'b6328a367ad02a',
@@ -460,31 +460,49 @@ function handleDisconnect() {
 
 handleDisconnect();
 
-/*
+module.exports = app;
+
 fs.writeFile("pliczek.txt", process.env.OPENSHIFT_MYSQL_DB_HOST, function(err) {
     if(err) {
         return console.log(err);
     }
 
     console.log("The file was saved!");
-});
-*/
+}); 
 
-module.exports = app;
-
-
-
-io.on('connection', function(socket){
-  socket.on('chat message', function(msg){
-    io.emit('chat message', msg);
-  });
-
-
-});
-
-
-http.listen(server_port, server_ip_address, function () {
+app.listen(server_port, server_ip_address, function () {
   console.log( "Listening on " + server_ip_address + ", server_port " + server_port + ", host: " + process.env.OPENSHIFT_MYSQL_DB_HOST );
 });
+//jeszcze mi nie kasuj będę tego potrzebował do wylogowywaniaF
+/*app.get('/', function(req, res){
+  if (req.cookies.remember) {
+    res.send('Remembered :). Click to <a href="/forget">forget</a>!.');
+  } else {
+    res.send('<form method="post"><p>Check to <label>'
+      + '<input type="checkbox" name="remember"/> remember me</label> '
+      + '<input type="submit" value="Submit"/>.</p></form>');
+  }
+});
+app.get('/forget', function(req, res){
+  res.clearCookie('remember');
+  res.redirect('back');
+});
+app.post('/', function(req, res){
+  var minute = 60 * 1000;
+  if (req.body.remember) res.cookie('remember', 1, { maxAge: minute });
+  res.redirect('back');
+});*/
 
 
+/*
+  <% if(postulaty.length){ 
+                                
+                        for(var i = postulaty1.length-1;i >=0;i--) { %>
+               <!--   <p class="naglowek_postu"> <a href="/przeszlosc/451"> <%= postulaty[i].tytul%> </a></p>-->
+,postulaty1:rows[1]
+                            <p class="gjhg"> <a href="<%=postulaty1[i].pathfile%>"> <%= postulaty1[i].idpost%> <%=postulaty1[i].pathfile%></a></p> 
+                      <!--    <p class="naglowek_postu"> <a href="/przeszlosc/<%=i%>"> <%= postulaty[i].tytul%> </a></p>-->
+                        <% } %>
+                
+                    <% } %>
+                    */

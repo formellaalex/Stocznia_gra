@@ -9,6 +9,10 @@ body:not(#logowanie) {
     background-size: 100%;
     background-attachment: fixed;
 }
+a{
+    color: black;
+}
+
 .link{
     font-style: italic;
 }
@@ -237,7 +241,6 @@ float: left; }
     font-size: 1rem;
     letter-spacing: 0.1rem;
     font-family: 'stocznia_users', Helvetica;
-    font-style: normal;
 }
 
 .tytul{
