@@ -42,7 +42,7 @@
                   <div style="text-align: center">  <img src="<%=data[0].profilowe%>"   id="zdjecie" width="100" height="200" alt="Błąd" />
                   </div>
                 <div style="width: 100%; height: 100%;text-align: center">  <label class="users"></label>  
-                        <a class="users" href="/kolonisci/<%=data[0].id%>"><%=data[0].imie+" "+data[0].nazwisko%></p>  
+                        <p><%=data[0].imie+" "+data[0].nazwisko%></p>  
                         <label class="users"> Email </label>
                         <p class="users"><%=data[0].email%></p>
                         <img class="icon" src="/images/layout_addons/gra o stocznie_vectorized.png" style="max-width: 14%" />
@@ -71,7 +71,7 @@
                     <%for(var i = 0;i < list.length;i++) { 
                         if(list[i].email===ciasta){%>  
                         <%}else{%>
-                        <li class="users" style="text-align: left"><%=i+1%>. <img src="<%=list[i].profilowe%>" width="75" height="150"/> <%=list[i].imie%>  <%=list[i].nazwisko%> -  <%if(list[i].rating == null){%> Brak punktów <%}else{%> <em style="color: #800000; font-style: normal;"> <%=list[i].rating%> </em> <img class="icon" src="/images/layout_addons/gra o stocznie_vectorized.png" style="max-width: 8%" />  <%}%> </li>
+                        <li class="users" style="text-align: left"><%=i+1%>. <a href="/kolonisci/<%=list[i].id%>"> <img src="<%=list[i].profilowe%>" width="75" height="150"/> <%=list[i].imie%>  <%=list[i].nazwisko%> </a> -  <%if(list[i].rating == null){%> Brak punktów <%}else{%> <em style="color: #800000; font-style: normal;"> <%=list[i].rating%> </em> <img class="icon" src="/images/layout_addons/gra o stocznie_vectorized.png" style="max-width: 8%" />  <%}%> </li>
                         <%}
                     }%>
                 </ul>        

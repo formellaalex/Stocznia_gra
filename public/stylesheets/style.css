@@ -87,13 +87,14 @@ label{
 }
 
 .stoczniowiec{
+    display: inline-block;
+    vertical-align: top;
     text-transform: uppercase;
     font-style: normal;
     color: black;
     font-size: 1rem;
     letter-spacing: 0.2em;
-    font-family: 'stocznia_body', Helvetica, sans-serif;
-    vertical-align: middle;
+    font-family: 'stocznia_body', Helvetica, sans-serif !important; 
 }
 
 #tloStoczniowiec{
@@ -450,7 +451,7 @@ margin-right: 2%;
         height: 11%;
     }
 }
-@media screen and (max-width: 1024px){
+@media screen and (max-width: 1024px) and (min-width: 768px){
     .kolonia_options, .forum_options{
         font-size: 1.6rem;
         margin-bottom: 5%;
@@ -461,9 +462,12 @@ margin-right: 2%;
     .przestrzen_opis{
         font-size: 1rem;
     }
+    .stoczniowiec{
+        vertical-align: middle;
+    }
 }
 
-@media screen and (max-width: 768px){
+@media screen and (max-width: 768px) and (min-width: 480px){
     .kolonia_options, .forum_options{
         font-size: 1.3rem;
         margin-bottom: 15%;
@@ -472,8 +476,12 @@ margin-right: 2%;
         width: 200%;
         float: right;
     }
+
+    .stoczniowiec{
+        vertical-align: middle;
+    }
 }
-@media screen and (max-width: 480px){
+@media screen and (max-width: 480px) and (min-width: 320px){
     .kolonia_options, .forum_options{
         margin-bottom: 30%;
     }
@@ -487,6 +495,9 @@ margin-right: 2%;
         width: 300%;
         float: right;
     }
+    .stoczniowiec{
+        vertical-align: middle;
+    }
 }
 
 @media screen and (max-width: 320px){
@@ -495,6 +506,9 @@ margin-right: 2%;
     }
     #row_above_maps{
         height: 74%;
+    }
+    .stoczniowiec{
+        vertical-align: middle;
     }
 
 }
