@@ -92,16 +92,16 @@ label{
     color: black;
     font-size: 1rem;
     letter-spacing: 0.2em;
-    font-family: 'stocznia_users', Helvetica, sans-serif;
+    font-family: 'stocznia_body', Helvetica, sans-serif;
     vertical-align: middle;
 }
 
 #tloStoczniowiec{
-    padding: 0 15% 0 15%;
+    padding: 0 7% 0 7%;
 }
 .light_dark_red{
     font-style: normal;
-    color: #DC0000;
+    color: #BA0000;
 }
 /* przybory do navigation-bar */
 #head_przeszlosc_button{
