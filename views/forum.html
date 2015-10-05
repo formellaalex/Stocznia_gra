@@ -398,19 +398,17 @@ label input {
        $(".zoom").click(function() {
  $(".noSel").css("width","95vw");
  
-  $(".noSel").css("height","60vh");
-/*  $(".smooth_zoom_preloader").css("height","80vh");
-  $("#map").css("width","95vw !important");
-    $("#map").css("height","80vh !important");*/
-   /* $("#map").css("transform","translate(0px, 0px) scale(0.5)");*/
-       $('#map').smoothZoom({
-                width: $(window).width()/1.5,
-                height: $(window).height()/0.8,
-                 initial_ZOOM: 490,
-                initial_POSITION : '1000 200',
-                zoom_MIN: 30});
+  $(".noSel").css("height","70vh");
+  $(".noSel #map").css("height","70vh");
+  $(".noSel #map").css("width","95vw");
+/*  $(".noSel #map").css("transform","translate(0px, 0px) scale(1)");
+
      $("#map").css("z-index","1000");
-          
+*/
+
+
+
+ /**/         
 });
         }
        window.onload = myAwesomeFunc;
@@ -535,7 +533,7 @@ label input {
             <div class="row">
                 <div class="large-12 small-12 columns">
                    <%if(strona==="mapa_przeszlosc"){%> 
-                  <h4 class="black przestrzen_opis" style="font-family: 'stocznia_body', Helvetica, sans-serif;text-align: center;display:inline-block; width:90%"> PRZESTRZEŃ  &nbsp;&nbsp; CO wiemy o każdym miejscu w Stoczni?</h4><img class="zoom" src="/images/zoom.png" style="width:10%; height:10%; display:inline-block" /><%}else{%><h4 class="black przestrzen_opis" style="font-family: 'stocznia_body', Helvetica, sans-serif;text-align: center;display:inline-block; width:90%"> PRZESTRZEŃ  &nbsp;&nbsp; JAK przekształcać miejsca w Stoczni, zachowując ich historie?</h4><img class="zoom" src="/images/zoom.png" style="width:10%; height:10%; display:inline-block" /><%}%>
+                  <h4 class="black przestrzen_opis" style="font-family: 'stocznia_body', Helvetica, sans-serif;text-align: center;display:inline-block; width:90%"> PRZESTRZEŃ  &nbsp;&nbsp; CO wiemy o każdym miejscu w Stoczni?</h4><!--<img class="zoom" src="/images/zoom.png" style="width:10%; height:10%; display:inline-block" />--><%}else{%><h4 class="black przestrzen_opis" style="font-family: 'stocznia_body', Helvetica, sans-serif;text-align: center;display:inline-block; width:90%"> PRZESTRZEŃ  &nbsp;&nbsp; JAK przekształcać miejsca w Stoczni, zachowując ich historie?</h4><!--<img class="zoom" src="/images/zoom.png" style="width:10%; height:10%; display:inline-block" />--><%}%>
                     <img id="map" src="/images/map/123.png" style="z-index:0;" usemap="#planetmap"/>   
                   <!--  <p class="opis white" id="zoom_ratio"></p>
                    <p style="position:absolute float:left"class="show_zoom white opis" onmousedown="zoom_in()">Zoom in! </p>
