@@ -399,20 +399,45 @@ label input {
             });
        
        $(".zoom").click(function() {
- $(".noSel").css("width","95vw");
- 
-  $(".noSel").css("height","70vh");
-  $(".noSel #map").css("height","70vh");
-  $(".noSel #map").css("width","95vw");
-/*  $(".noSel #map").css("transform","translate(0px, 0px) scale(1)");
+          if($(".zmiana").hasClass("large-6")){
+                $(".zmiana").removeClass( "large-6" ).addClass( "large-12" );
+                $(".zmiana1").css("display","none");
+                $(".noSel").css("overflow","visible");
+                $(".noSel").css("margin-left","20%");
+                $(".noSel").css("margin-right","auto");
+                // $(".noSel").css("position","absolute");
+                $(".noSel").css("margin-top","-4%");
+                $(".przestrzen_opis").css("display","none");
+                // $("#map").css({transform: 'translate(-61px, -192px) scale(0.3)'})
+                $(".noSel div").css("display","none");
+                $(".zoom").css("position","absolute");
+                $(".zoom").css("right","20px");
+                $(".zoom").css("top","-10%");
+                $(".zoom").css("height","auto");
+                $(".zoom").css("z-index","9999");
+          }else{
+                $(".zmiana").removeClass( "large-12" ).addClass( "large-6" );
+                $(".zmiana1").css("display","initial");
+                $(".noSel").css("overflow","hidden");
+                $(".noSel").css("margin-left","initial");
+                $(".noSel").css("margin-right","initial");
+                // $(".noSel").css("position","absolute");
+                $(".noSel").css("margin-top","initial");
+                $(".przestrzen_opis").css("display","initial");
+                // $("#map").css({transform: 'translate(-61px, -192px) scale(0.3)'})
+                $(".noSel div").css("display","initial");
+                $(".zoom").css("position","initial");
+                $(".zoom").css("right","initial");
+                $(".zoom").css("top","initial");
+                $(".zoom").css("height","initial");
+                $(".zoom").css("z-index","initial");
+               
+          }
+      /**/         
+      });
+     
 
-     $("#map").css("z-index","1000");
-*/
 
-
-
- /**/         
-});
         }
        window.onload = myAwesomeFunc;
         //miejsce na mape
@@ -532,11 +557,11 @@ label input {
         </div>
       <%}
       else if(strona==="mapa_przeszlosc"||strona==="mapa_przyszlosc"){%> 
-      <div class="large-6 small-12 columns">
+      <div class="large-6 small-12 columns zmiana" style="padding:0">
             <div class="row">
-                <div class="large-12 small-12 columns">
+                <div class="large-12 small-12 columns"  >
                    <%if(strona==="mapa_przeszlosc"){%> 
-                  <h4 class="black przestrzen_opis" style="font-family: 'stocznia_body', Helvetica, sans-serif;text-align: center;display:inline-block; width:90%"> PRZESTRZEŃ  &nbsp;&nbsp; CO wiemy o każdym miejscu w Stoczni?</h4><!--<img class="zoom" src="/images/zoom.png" style="width:10%; height:10%; display:inline-block" />--><%}else{%><h4 class="black przestrzen_opis" style="font-family: 'stocznia_body', Helvetica, sans-serif;text-align: center;display:inline-block; width:90%"> PRZESTRZEŃ  &nbsp;&nbsp; JAK przekształcać miejsca w Stoczni, zachowując ich historie?</h4><!--<img class="zoom" src="/images/zoom.png" style="width:10%; height:10%; display:inline-block" />--><%}%>
+                  <h4 class="black przestrzen_opis" style="font-family: 'stocznia_body', Helvetica, sans-serif;text-align: center;display:inline-block; width:90%"> PRZESTRZEŃ  &nbsp;&nbsp; CO wiemy o każdym miejscu w Stoczni?</h4><img class="zoom" src="/images/zoom.png" style="width:10%; height:10%; display:inline-block" /><%}else{%><h4 class="black przestrzen_opis" style="font-family: 'stocznia_body', Helvetica, sans-serif;text-align: center;display:inline-block; width:90%"> PRZESTRZEŃ  &nbsp;&nbsp; JAK przekształcać miejsca w Stoczni, zachowując ich historie?</h4><img class="zoom" src="/images/zoom.png" style="width:10%; height:10%; display:inline-block" /><%}%>
                     <img id="map" src="/images/map/123.png" style="z-index:0;" usemap="#planetmap"/>   
                   <!--  <p class="opis white" id="zoom_ratio"></p>
                    <p style="position:absolute float:left"class="show_zoom white opis" onmousedown="zoom_in()">Zoom in! </p>
@@ -693,7 +718,7 @@ label input {
         </div>
       <%}
       else{%>
-         <div class='large-6 small-12 columns' style="overflow-y: scroll;   min-height: 80vh;" id="lista_postulatow">
+         <div class='large-6 small-12 columns ' style="overflow-y: scroll;   min-height: 80vh;" id="lista_postulatow">
                 <div class="row">
                     <div class="large-8 small-8 columns"><h3 style="font-family: 'stocznia_body', Helvetica, sans-serif;color: black;"> NASZE POSTULATY </h3>
                     <h5 style="font-family: 'stocznia_body', Helvetica, sans-serif;color: black;"> CO zachować (i dlaczego)? </h5> <br /></div>
@@ -746,7 +771,7 @@ label input {
              </div>
 
           <%}%>
-          <div class="large-6 small-12 columns" style="height: auto;margin-bottom: 8%;">
+          <div class="large-6 small-12 columns zmiana1" style="height: auto;margin-bottom: 8%;">
               <div class="post" >
                   <% if(postulaty2.length){  %>
                   <!--tresc gowna postulatu-->
