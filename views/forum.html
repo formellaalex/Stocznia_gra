@@ -779,6 +779,16 @@ label input {
                   <%if(strona==="mapa_przeszlosc"||strona==="mapa_przyszlosc"){%>
                   <h3  class="white" style="color:#800000; text-align: left ; font-size:60px" id="tytul_postu"> <%= postulaty2[0].tytul %> &nbsp;&nbsp;&nbsp; <em style="color:#800000; text-align: center ; font-size:60px;font-style:normal" class="tytul"> DYSKUSJA </em> </h3>
                   <%}else{ %>
+
+
+
+                   <%if(idcookies==321){%>
+                          <a href="/delete/"><img class="icon1" src="/images/layout_addons/smietniczek_vectorized.png" >  <p></p></img></a>
+                          <%}
+                          else{%>
+                          <form  class="test_form" style=" float:right " > <input type="hidden" name="delete_message" class="message" value=""/><button class="postulat white" style="border:none; background: none; margin:0;padding: 0"><img class="icon" src="/images/layout_addons/smietniczek_vectorized.png" ></button></form>                            
+                          <%}%>
+
                     <h3  class="white" style="color:#800000" id="tytul_postu"> <%= postulaty2[0].tytul %> </h3>
                     <h4 class="tresc_postu tytul black"> <%= postulaty2[0].tresc %> </h4> </p>
                  
