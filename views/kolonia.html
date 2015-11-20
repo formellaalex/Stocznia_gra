@@ -71,7 +71,7 @@
                     <%for(var i = 0;i < list.length;i++) { 
                         if(list[i].email===ciasta){%>  
                         <%}else{%>
-                        <li class="users" style="text-align: left"><%=i+1%>. <a href="/kolonisci/<%=list[i].user_id%>"> <img src="<%=list[i].profilowe%>" width="75" height="150"/> <%=list[i].imie%>  <%=list[i].nazwisko%> </a> -  <%if(list[i].rating == null){%> Brak punktów <%}else{%> <em style="color: #800000; font-style: normal;"> <%=list[i].rating%> </em> <img class="icon" src="/images/layout_addons/gra o stocznie_vectorized.png" style="max-width: 8%" />  <%}%> </li>
+                        <li class="users" style="text-align: left"><%=i+1%>. <a href="/kolonisci/<%=list[i].user_id%>"> <img src="<%=list[i].profilowe %>" width="75" height="150"/> <%=list[i].imie%>  <%=list[i].nazwisko%> </a> -  <%if(list[i].rating == null){%> Brak punktów <%}else{%> <em style="color: #800000; font-style: normal;"> <%=list[i].rating%> </em> <img class="icon" src="/images/layout_addons/gra o stocznie_vectorized.png" style="max-width: 8%" />  <%}%> </li>
                         <%}
                     }%>
                 </ul>        
