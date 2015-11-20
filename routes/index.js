@@ -26,7 +26,24 @@ router.get('/error', function(req,res){
 });
 
 router.get('/aktualnosci', function(req,res){
-  res.render("aktualnosci.html");
+  if(req.cookies.remember){
+      res.render("aktualnosci.html");
+  }
+  else{
+    res.redirect('/logowanie');
+  }
+  
+});
+
+
+router.get('/przestrzen_temp', function(req,res){
+  if(req.cookies.remember){
+      res.render("przestrzen_temp.html");
+  }
+  else{
+    res.redirect('/logowanie');
+  }
+  
 });
 
 
