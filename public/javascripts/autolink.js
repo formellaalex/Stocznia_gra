@@ -9,6 +9,10 @@
 
     pattern = /(^|[\s\n]|<br\/?>)((?:https?|ftp):\/\/[\-A-Z0-9+\u0026\u2019@#\/%?=()~_|!:,.;]*[\-A-Z0-9+\u0026@#\/%=~()_|])/gi;
     if (!(options.length > 0)) {
+      var link = this.replace(pattern, "$2");
+      if(link.length > 40){
+        return this.replace(pattern, "$1<a class='tresc_postu tytul black link' href='$2'>" + link.substring(0,40) + "(...)" +"</a>");
+      }
       return this.replace(pattern, "$1<a class='tresc_postu tytul black link' href='$2'>$2</a>");
     }
     option = options[0];
@@ -25,7 +29,7 @@
     })()).join('');
     return this.replace(pattern, function(match, space, url) {
       var link;
-      link = (typeof option.callback === "function" ? option.callback(url) : void 0) || ("<a class='tresc_postu tytul black link' href='" + url + "'" + linkAttributes + ">" + url + "</a>");
+      link = (typeof option.callback === "function" ? option.callback(url) : void 0) || ("<a class='tresc_postu tytul black link' href='" + url + "'" + linkAttributes + ">" + "link" + "</a>");
       return "" + space + link;
     });
   };
