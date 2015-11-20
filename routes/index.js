@@ -25,6 +25,11 @@ router.get('/error', function(req,res){
   res.render("error.html");
 });
 
+router.get('/aktualnosci', function(req,res){
+  res.render("aktualnosci.html");
+});
+
+
 
 //Like dla postu
 router.post('/vote_up/:id/:type/:post_id/:strona', function(req,res){
