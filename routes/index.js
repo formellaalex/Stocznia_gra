@@ -112,8 +112,6 @@ router.get("/activate/:id/:hash",function(req,res){
         }
       });
       }
-    }
-    
     else{
       monit = "Link aktywacyjny jest niepoprawny lub konto zostało już aktywowane.";
       res.redirect("/activation");
