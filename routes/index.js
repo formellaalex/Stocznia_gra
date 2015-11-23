@@ -3,14 +3,7 @@ var encode = require( 'hashcode' ).hashCode;
 var hash = encode().value( "my string value" ); 
 var md5 = require('md5');
 var router = express.Router();
-/*var email   = require("emailjs");
-var server  = email.server.connect({
-   user:    "stoczniagame@gmail.com", 
-   password:"stoczniagra", 
-   host:    "smtp.gmail.com", 
-   ssl:     true
-});
-*/
+
 var sendgrid = require("sendgrid")("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");
 var email = new sendgrid.Email();
 
