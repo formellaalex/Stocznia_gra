@@ -13,6 +13,18 @@ var info = "";
 var monit = "";
 var vote_up;
 var vote_down;
+
+function tokenGen(length)
+{
+  var keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  var str = '';
+  var max = keyspace.length;
+  for (var i = 0; i < length; ++i) {
+      str += keyspace[Math.random() % max];
+  }
+  return str;
+}
+
 router.get('/error', function(req,res){
 
   res.render("error.html");
@@ -174,7 +186,8 @@ router.post('/vote_down/:id/:type/:post_id/:strona', function(req,res){
 
 //Dodaj uzytkownika
 router.post('/add_user', function(req,res){
-  var post  = {imie: req.body.imie, nazwisko: req.body.nazwisko,email: req.body.email,haslo: req.body.haslo, profilowe: "/default/batman.jpg",o_mnie: req.body.o_mnie, aktywne: encode().value(req.body.email + new Date().toJSON().slice(0,10).toString())};
+  var token = tokenGen(19);
+  var post  = {imie: req.body.imie, nazwisko: req.body.nazwisko,email: req.body.email,haslo: req.body.haslo, profilowe: "/default/batman.jpg",o_mnie: req.body.o_mnie, aktywne: token};
   connection.query('SELECT email from users where email="' + req.body.email +'";', function(err,czyTenSamMail){
     if(czyTenSamMail.length == 0){
         connection.query('INSERT INTO users SET ?', post, function(err, result)
@@ -193,7 +206,7 @@ router.post('/add_user', function(req,res){
                   email.addTo(req.body.email);
                   email.setFrom("stoczniagame@gmail.com");
                   email.setSubject("Rejestracja w Grze o Stocznie");
-                  email.setHtml("To już ostatni krok do rozpoczęcia Gry o stocznię! Kliknij w poniższy link aby aktywować swoje konto : \n http://www.gra-o-stocznie.org.pl/activate/" + insertId[0].id + "/" + encode().value(req.body.email + new Date().toJSON().slice(0,10).toString()));
+                  email.setHtml("To już ostatni krok do rozpoczęcia Gry o stocznię! Kliknij w poniższy link aby aktywować swoje konto : \n http://www.gra-o-stocznie.org.pl/activate/" + insertId[0].id + "/" + token.toString());
                   sendgrid.send(email);
                   res.redirect("/activation");
               });
