@@ -20,7 +20,7 @@ function tokenGen(length)
   var str = '';
   var max = keyspace.length;
   for (var i = 0; i < length; ++i) {
-      str += keyspace[Math.random() % max];
+      str += keyspace.charAt(Math.random() * max);
   }
   return str;
 }
@@ -528,6 +528,7 @@ router.get('/logowanie', function(req, res){
     res.redirect('/');
   }
   else{
+    console.log(tokenGen(20));
       res.render("index.html", {info:info});  
   }
   info = "";
