@@ -69,6 +69,7 @@ label{
 #tytul_postu{
     color: black;
     font-family: 'stocznia_body',Helvetica;
+    font-weight: lighter !important;
     /*text-align: center;*/
     letter-spacing: 0.15rem;
     min-height: 30px;

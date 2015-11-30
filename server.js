@@ -231,7 +231,7 @@ app.post('/multiupload', function(req, res) {
        if (req.cookies.remember){
         console.log(tre+req.cookies.id +'cokolwiek');
         console.log("czas"+czas);
-    var post = {tytul: tyt.toUpperCase(), tresc: tre.toUpperCase(), nick: req.cookies.id ,czas_dodania:czas,strona:str};
+    var post = {tytul: tyt.toUpperCase(), tresc: tre, nick: req.cookies.id ,czas_dodania:czas,strona:str};
     connection.query('INSERT INTO tabela_postow SET ?', post, function(err, result){
       if (err)
         console.log("Erro tu nie r inserting : %s ",err );
@@ -417,7 +417,7 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
-
+/*
 db_config = {
   host     : '127.13.120.2',
   port     : '3306',
@@ -428,7 +428,7 @@ db_config = {
 
 };
 
-/*
+*/
 db_config = {
   host     : 'us-cdbr-iron-east-01.cleardb.net',
   user     : 'b6328a367ad02a',
@@ -436,7 +436,7 @@ db_config = {
   database : 'heroku_fd1c348c48d7c8c',
   multipleStatements: true 
 }
-*/
+
 function handleDisconnect() {
   connection = mysql.createConnection(db_config); // Recreate the connection, since
                                                   // the old one cannot be reused.
