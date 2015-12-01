@@ -436,7 +436,7 @@ db_config = {
   database : 'heroku_fd1c348c48d7c8c',
   multipleStatements: true 
 }
-
+*/
 function handleDisconnect() {
   connection = mysql.createConnection(db_config); // Recreate the connection, since
                                                   // the old one cannot be reused.
