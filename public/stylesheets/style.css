@@ -252,6 +252,7 @@ float: left; }
     /*text-align: center;*/
     letter-spacing: 0.15rem;
      min-height: 30px;
+     font-weight: normal;
 
 
 }
