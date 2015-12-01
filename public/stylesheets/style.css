@@ -73,6 +73,7 @@ label{
     /*text-align: center;*/
     letter-spacing: 0.15rem;
     min-height: 30px;
+    font-size: 1.3rem;
 }
 
 .informations a:hover{
@@ -228,6 +229,7 @@ float: left; }
     font-family: 'stocznia_important_links', Helvetica;
     color: black;
     font-size: 1.3rem;
+    font-weight: normal;
 }
 .white{
     color: white;
