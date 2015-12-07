@@ -415,6 +415,7 @@ label input {
                 $(".zoom").css("top","-10%");
                 $(".zoom").css("height","auto");
                 $(".zoom").css("z-index","9999");
+                $("#winietka").css("display","none");
           }else{
                 $(".zmiana").removeClass( "large-12" ).addClass( "large-6" );
                 $(".zmiana1").css("display","initial");
@@ -431,6 +432,7 @@ label input {
                 $(".zoom").css("top","initial");
                 $(".zoom").css("height","initial");
                 $(".zoom").css("z-index","initial");
+                $("#winietka").css("display","initial");
                
           }
       /**/         
@@ -722,7 +724,7 @@ label input {
                 <div class="row">
                     <div class="large-8 small-8 columns"><h3 style="font-family: 'stocznia_body', Helvetica, sans-serif;color: black;"> NASZE POSTULATY </h3>
                     <h5 style="font-family: 'stocznia_body', Helvetica, sans-serif;color: black;"> CO zachować (i dlaczego)? </h5> <br /></div>
-                    <div class="large-4 small-4 columns" style="padding:0"> <br><button style="background: url('/images/layout_addons/dodaj_postulat.png');background-size: 100% 100%; width: 13rem;height: 1.5rem; border: none;margin: 0;position: absolute;top:0;right: 0" class="napisz_postulat_btn"></button>  </div>
+                    <div class="large-4 small-4 columns" style="padding:0"> <br><button style="background: url('/images/layout_addons/dodaj_postulat.png');background-size: 100% 100%; width: 18rem; height: 3rem; border: none;margin: 0;position: absolute;top:0;right: 0" class="napisz_postulat_btn"></button>  </div>
                 </div>
                 <div id="tablica_postulatow" style="height: auto%; overflow-y: auto">
                     <div class="row" id="wykujPostulat"  style="width: 100%"> 
@@ -795,6 +797,7 @@ label input {
                  
                    
                     <% if(postulaty1.length){
+                      postulaty1.reverse();
                           for(var i = postulaty1.length-1;i >=0;i--) { %>
                               <%if( postulaty1[i].rozszerzenie==="jpg"||postulaty1[i].rozszerzenie==="png"||postulaty1[i].rozszerzenie==="JPG"||postulaty1[i].rozszerzenie==="PNG" ){%>
                                <img class="display" src="<%=postulaty1[i].pathfile%>" width="90%" height="auto" alt="Błąd" style="margin-bottom: 5%" />
@@ -888,14 +891,12 @@ label input {
                           <% if(postulaty3[i].id_parent===null){%>
                           <div class = "prostokat" style="width: 100%;">
                           <!-- usuwanie postu   background-color:rgba(224, 212, 177,0.3);-->
-                          
-                          
-                          
-                          <p class="tresc_postu tytul black"> <%= postulaty3[i].tresc %> </p>
+                      <p class="tresc_postu tytul black"> <%= postulaty3[i].tresc %> </p>
                                               
                           <div style="width: 100%;">
                            <!--zalaczniki do pierwszych komentarzy --> 
                               <% if(postulaty4.length){
+                                postulaty4.reverse();
                                   for(var j = postulaty4.length-1;j >=0;j--) { %>
                                       <%if( postulaty4[j].idpost_kom === postulaty3[i].IdKomentarzu){%>
                                           <%if( postulaty4[j].rozszerzenie==="jpg"||postulaty4[j].rozszerzenie==="png"||postulaty4[j].rozszerzenie==="JPG"||postulaty4[j].rozszerzenie==="PNG"){%>
@@ -1017,6 +1018,7 @@ label input {
                           
                           <p class="tresc_postu tytul black"> <%= postulaty3[j].tresc %> </p>
                           <% if(postulaty4.length){
+                            postulaty4.reverse();
                               for(var h = postulaty4.length-1;h >=0;h--) { %>
                                   <%if( postulaty4[h].idpost_kom === postulaty3[j].IdKomentarzu){%>
                                     
@@ -1063,7 +1065,7 @@ label input {
               <div class="informations" style="margin-top: 10rem;">
                  <img src="/images/layout_addons/cc_logo.png" style="max-width:5%"/> Gra o Stocznię na licencji Creative Commons.  Gra o Stocznię i opinie Uczestników są chronione Ustawą o prawie autorskim i prawach pokrewnych z 4 lutego 1994 roku. Ich wykorzystywanie do celów komercyjnych, bez zgody <a href="/czlowiek_ze_stoczni"> Człowieka ze Stoczni </a> oraz autorów opinii jest zabronione.
                  <br />
-                <a href="/czlowiek_ze_stoczni">Człowiek ze Stoczni </a> nie ponosi odpowiedzialności za opinie publikowane w Grze o Stocznię. Wszystkie opinie niezgodne z <a href="/reguly">regulaminem/zasadami</a> tej gry będą usuwane.
+                <a href="/czlowiek_ze_stoczni">Człowiek ze Stoczni </a> nie ponosi odpowiedzialności za opinie publikowane w Grze o Stocznię. Wszystkie opinie niezgodne z <a href="/zasady">regulaminem/zasadami</a> tej gry będą usuwane. Usterka, cos nie działa poprawnie napisz nam o tym poprawimy stoczniagame@gmail.com. 
               </div>
               <%}
               else{%> 

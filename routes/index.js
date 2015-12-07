@@ -320,7 +320,7 @@ router.get('/forum/:strona/:id', function(req,res){
           vote_down = "";
          
         }
-          res.render('forum.html', {title: 'Forum', postulaty:result[0],postulaty1:result[1],postulaty2:result[2],postulaty3:result[3],postulaty4:result[4],huj:ciastka1,idcookies:req.cookies.id, ciasta:ciastka,id:result[0].length-1,capfile: req.params.id,tiger:1, vote_down: vote_down, vote_up: vote_up, vote_up_count: data[1].ilosc, vote_down_count: data[2].ilosc, comments_count: result[5],strona:req.params.strona, post_id: req.params.id}); // req.params.id tutaj przekazanie zmiennej do widoku
+        res.render('forum.html', {title: 'Forum', postulaty:result[0],postulaty1:result[1],postulaty2:result[2],postulaty3:result[3],postulaty4:result[4],huj:ciastka1,idcookies:req.cookies.id, ciasta:ciastka,id:result[0].length-1,capfile: req.params.id,tiger:1, vote_down: vote_down, vote_up: vote_up, vote_up_count: data[1].ilosc, vote_down_count: data[2].ilosc, comments_count: result[5],strona:req.params.strona, post_id: req.params.id}); // req.params.id tutaj przekazanie zmiennej do widoku
 
       }
     });
@@ -337,7 +337,7 @@ router.get('/forum1/:strona/:id', function(req,res){
   if (req.cookies.remember){
     ciastka=req.cookies.remember;
     ciastka1= parseInt(req.cookies.id);
-    connection.query("select tabela_postow.id, IF(punkty.suma_punktow IS NULL, 0, punkty.suma_punktow) as suma_punktow, tytul,tresc, nick, data_dodania, imie, nazwisko from users,tabela_postow  LEFT JOIN (SELECT item_id, SUM(rate) as suma_punktow FROM rating group by item_id) as punkty ON punkty.item_id = tabela_postow.id where nick=users.id and strona='"+req.params.strona+"' ORDER BY data_dodania ASC; SELECT idpost,pathfile,rozszerzenie,name_pic FROM tabfile WHERE idpost="+connection.escape(req.params.id)+" ;SELECT tabela_postow.id, tytul,tresc, nick, data_dodania, imie,czas_dodania, nazwisko,profilowe from users,tabela_postow where nick=users.id AND tabela_postow.id="+connection.escape(req.params.id)+" and strona='"+req.params.strona+"' ;select SUM(if(rating.rate>0, 1, 0)) as ilosc_like,SUM(if(rating.rate<0, 1, 0)) as ilosc_dislike, IdKomentarzu,ilosc_podkomentarzy,id_parent, nick,czas_dodania_kom,profilowe, imie, nazwisko,tresc,komentarze.rate from rating right join (select * from tablica_komentarzy where id_postu_uzytkownika="+connection.escape(req.params.id)+") as komentarze on item_id=IdKomentarzu right join users on users.id=komentarze.nick where type = 'kom' OR type IS NULL AND IdKomentarzu IS NOT NULL group by IdKomentarzu order by IdKomentarzu asc;SELECT id_post_kom,idpost_kom,pathfile_kom,rozszerzenie,name_pic FROM tabfilekomentarze WHERE id_post_kom="+connection.escape(req.params.id)+";SELECT count(komentarze.Idkomentarzu) as ilosc, komentarze.rate from (select * from tablica_komentarzy where id_postu_uzytkownika="+ connection.escape(req.params.id) + ") as komentarze right join tablica_komentarzy on komentarze.IdKomentarzu = tablica_komentarzy.IdKomentarzu group by komentarze.rate order by rate desc;" ,function(err,result ) {
+    connection.query("select tabela_postow.id, IF(punkty.suma_punktow IS NULL, 0, punkty.suma_punktow) as suma_punktow, tytul,tresc, nick, data_dodania, imie, nazwisko from users,tabela_postow  LEFT JOIN (SELECT item_id, SUM(rate) as suma_punktow FROM rating group by item_id) as punkty ON punkty.item_id = tabela_postow.id where nick=users.id and strona='"+req.params.strona+"' ORDER BY data_dodania ASC; SELECT idpost,pathfile,pic_id,rozszerzenie,name_pic FROM tabfile WHERE idpost="+connection.escape(req.params.id)+" ORDER BY pic_id ASC ;SELECT tabela_postow.id, tytul,tresc, nick, data_dodania, imie,czas_dodania, nazwisko,profilowe from users,tabela_postow where nick=users.id AND tabela_postow.id="+connection.escape(req.params.id)+" and strona='"+req.params.strona+"' ;select SUM(if(rating.rate>0, 1, 0)) as ilosc_like,SUM(if(rating.rate<0, 1, 0)) as ilosc_dislike, IdKomentarzu,ilosc_podkomentarzy,id_parent, nick,czas_dodania_kom,profilowe, imie, nazwisko,tresc,komentarze.rate from rating right join (select * from tablica_komentarzy where id_postu_uzytkownika="+connection.escape(req.params.id)+") as komentarze on item_id=IdKomentarzu right join users on users.id=komentarze.nick where type = 'kom' OR type IS NULL AND IdKomentarzu IS NOT NULL group by IdKomentarzu order by IdKomentarzu DESC;SELECT id_post_kom,pic_id_kom,idpost_kom,pathfile_kom,rozszerzenie,name_pic FROM tabfilekomentarze WHERE id_post_kom="+connection.escape(req.params.id)+" ORDER BY pic_id_kom ASC; SELECT count(komentarze.Idkomentarzu) as ilosc, komentarze.rate from (select * from tablica_komentarzy where id_postu_uzytkownika="+ connection.escape(req.params.id) + ") as komentarze right join tablica_komentarzy on komentarze.IdKomentarzu = tablica_komentarzy.IdKomentarzu group by komentarze.rate order by rate desc;" ,function(err,result ) {
     if (err) throw err;
     if(!result[5][0] || !result[5][1]){
       result[5][0] = {ilosc:0,rate:0};
@@ -386,12 +386,12 @@ var strona="mapa_przeszlosc";
   /* UWAGA po czyszczeniu serwera bazy zdjec trzeba tutaj zmienic id na koncu drugiego selecta na id pierwszego postu w bazie danych*/
     connection.query("select tabela_postow.id, tytul,tresc, nick, data_dodania, imie, nazwisko from users,tabela_postow where nick=users.id and strona='"+strona+"' ORDER BY data_dodania;SELECT idpost,pathfile FROM tabfile;select tabela_postow.id , tytul,tresc, nick, data_dodania, ilosc_click, imie, nazwisko from users,tabela_postow where tabela_postow.id="+connection.escape(471)+" and strona='"+strona+"'", function(err, result) {
       if (err) throw err;
-res.render('mapa_przeszlosc.html', {title: 'Forum', postulaty:result[0],postulaty1:result[1],postulaty2:result[2], ciasta:ciastka , idcookies:req.cookies.id,capfile:3 ,id: result[0].length-1,tiger:0, vote_up: "", vote_down: "",strona:strona}); // req.params.id tutaj przekazanie zmiennej do widoku
-  });
-}else{
-res.redirect('/logowanie');
-}
-});
+    res.render('mapa_przeszlosc.html', {title: 'Forum', postulaty:result[0],postulaty1:result[1],postulaty2:result[2], ciasta:ciastka , idcookies:req.cookies.id,capfile:3 ,id: result[0].length-1,tiger:0, vote_up: "", vote_down: "",strona:strona}); // req.params.id tutaj przekazanie zmiennej do widoku
+      });
+    }else{
+    res.redirect('/logowanie');
+    }
+    });
 
 
 /*
@@ -513,7 +513,6 @@ router.post('/log', function(req,res){
       info = "Nieprawidłowy login lub hasło.";
       res.redirect('/logowanie');
     }
-
   });
 });
 
