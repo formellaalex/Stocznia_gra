@@ -273,10 +273,10 @@ var tiger;
     ciastka=req.cookies.remember;
 
   /* UWAGA po czyszczeniu serwera bazy zdjec trzeba tutaj zmienic id na koncu drugiego selecta na id pierwszego postu w bazie danych*/
-    connection.query("select tabela_postow.id, IF(punkty.suma_punktow IS NULL, 0, punkty.suma_punktow)  + IF(sum(tablica_komentarzy.rate) IS NULL, 0, sum(tablica_komentarzy.rate)) suma_punktow_post, tytul,tabela_postow.tresc, tabela_postow.nick, data_dodania, imie, nazwisko from users,tabela_postow left join tablica_komentarzy on tabela_postow.id = tablica_komentarzy.id_postu_uzytkownika  LEFT JOIN (SELECT item_id, SUM(rate) as suma_punktow FROM rating group by item_id) as punkty ON punkty.item_id = tabela_postow.id where tabela_postow.nick=users.id and tabela_postow.strona='"+ req.params.strona +"' group by tabela_postow.id ORDER BY suma_punktow_post ASC;SELECT idpost,pathfile FROM tabfile;select tabela_postow.id , tytul,tresc, nick, data_dodania, ilosc_click, imie, nazwisko from users,tabela_postow where tabela_postow.id="+connection.escape(471)+" and strona='"+req.params.strona+"'", function(err, result) {
+    connection.query("select tabela_postow.id, IF(punkty.suma_punktow IS NULL, 0, punkty.suma_punktow)  + IF(sum(tablica_komentarzy.rate) IS NULL, 0, sum(tablica_komentarzy.rate)) + 20 as suma_punktow_post, tytul,tabela_postow.tresc, tabela_postow.nick, data_dodania, imie, nazwisko from users,tabela_postow left join tablica_komentarzy on tabela_postow.id = tablica_komentarzy.id_postu_uzytkownika  LEFT JOIN (SELECT item_id, SUM(rate) as suma_punktow FROM rating group by item_id) as punkty ON punkty.item_id = tabela_postow.id where tabela_postow.nick=users.id and tabela_postow.strona='"+ req.params.strona +"' group by tabela_postow.id ORDER BY suma_punktow_post ASC;SELECT idpost,pathfile FROM tabfile;select tabela_postow.id , tytul,tresc, nick, data_dodania, ilosc_click, imie, nazwisko from users,tabela_postow where tabela_postow.id="+connection.escape(471)+" and strona='"+req.params.strona+"'", function(err, result) {
       if (err) throw err;
 
-          res.render('forum.html', {title: 'Przeszłość', postulaty:result[0],postulaty1:result[1],postulaty2:result[2], ciasta:ciastka , idcookies:req.cookies.id,capfile:3 ,id: result[0].length-1,tiger:0, vote_up: "", vote_down: "",strona:req.params.strona});
+          res.render('forum.html', {title: 'Forum', postulaty:result[0],postulaty1:result[1],postulaty2:result[2], ciasta:ciastka , idcookies:req.cookies.id,capfile:3 ,id: result[0].length-1,tiger:0, vote_up: "", vote_down: "",strona:req.params.strona});
        // tutaj przekazanie zmiennej do widoku
     });
 }
@@ -293,7 +293,7 @@ router.get('/forum/:strona/:id', function(req,res){
   if (req.cookies.remember){
     ciastka=req.cookies.remember;
     ciastka1= parseInt(req.cookies.id);
-    connection.query("select tabela_postow.id, IF(punkty.suma_punktow IS NULL, 0, punkty.suma_punktow)  + IF(sum(tablica_komentarzy.rate) IS NULL, 0, sum(tablica_komentarzy.rate)) suma_punktow_post, tytul,tabela_postow.tresc, tabela_postow.nick, data_dodania, imie, nazwisko from users,tabela_postow left join tablica_komentarzy on tabela_postow.id = tablica_komentarzy.id_postu_uzytkownika  LEFT JOIN (SELECT item_id, SUM(rate) as suma_punktow FROM rating group by item_id) as punkty ON punkty.item_id = tabela_postow.id where tabela_postow.nick=users.id and tabela_postow.strona='" + req.params.strona + "' group by tabela_postow.id ORDER BY suma_punktow_post ASC;SELECT idpost,pathfile,rozszerzenie,name_pic FROM tabfile WHERE idpost="+connection.escape(req.params.id)+" ;SELECT tabela_postow.id, tytul,tresc, nick, data_dodania, imie,czas_dodania, nazwisko,profilowe FROM users,tabela_postow WHERE nick=users.id AND tabela_postow.id="+connection.escape(req.params.id)+" AND strona='"+req.params.strona+"' ;SELECT SUM(if(rating.rate>0, 1, 0)) AS ilosc_like,SUM(if(rating.rate<0, 1, 0)) AS ilosc_dislike, IdKomentarzu,ilosc_podkomentarzy,id_parent, nick,czas_dodania_kom,profilowe, imie, nazwisko,tresc,komentarze.rate from rating RIGHT JOIN (SELECT* FROM tablica_komentarzy WHERE id_postu_uzytkownika="+connection.escape(req.params.id)+") as komentarze on item_id=IdKomentarzu right join users on users.id=komentarze.nick where type = 'past_kom' OR type IS NULL AND IdKomentarzu IS NOT NULL GROUP BY IdKomentarzu ORDER BY IdKomentarzu ASC;SELECT id_post_kom,idpost_kom,pathfile_kom,rozszerzenie,name_pic FROM tabfilekomentarze WHERE id_post_kom="+connection.escape(req.params.id)+";SELECT count(komentarze.Idkomentarzu) as ilosc, komentarze.rate from (SELECT * FROM tablica_komentarzy WHERE id_postu_uzytkownika="+ connection.escape(req.params.id) + ") AS komentarze RIGHT JOIN tablica_komentarzy ON komentarze.IdKomentarzu = tablica_komentarzy.IdKomentarzu GROUP BY komentarze.rate ORDER BY rate ASC;" ,function(err,result ) {
+    connection.query("select tabela_postow.id, IF(punkty.suma_punktow IS NULL, 0, punkty.suma_punktow)  + IF(sum(tablica_komentarzy.rate) IS NULL, 0, sum(tablica_komentarzy.rate)) + 20 as suma_punktow_post, tytul,tabela_postow.tresc, tabela_postow.nick, data_dodania, imie, nazwisko from users,tabela_postow left join tablica_komentarzy on tabela_postow.id = tablica_komentarzy.id_postu_uzytkownika  LEFT JOIN (SELECT item_id, SUM(rate) as suma_punktow FROM rating group by item_id) as punkty ON punkty.item_id = tabela_postow.id where tabela_postow.nick=users.id and tabela_postow.strona='" + req.params.strona + "' group by tabela_postow.id ORDER BY suma_punktow_post ASC;SELECT idpost,pathfile,rozszerzenie,name_pic FROM tabfile WHERE idpost="+connection.escape(req.params.id)+" ;SELECT tabela_postow.id, tytul,tresc, nick, data_dodania, imie,czas_dodania, nazwisko,profilowe FROM users,tabela_postow WHERE nick=users.id AND tabela_postow.id="+connection.escape(req.params.id)+" AND strona='"+req.params.strona+"' ;SELECT SUM(if(rating.rate>0, 1, 0)) AS ilosc_like,SUM(if(rating.rate<0, 1, 0)) AS ilosc_dislike, IdKomentarzu,ilosc_podkomentarzy,id_parent, nick,czas_dodania_kom,profilowe, imie, nazwisko,tresc,komentarze.rate from rating RIGHT JOIN (SELECT* FROM tablica_komentarzy WHERE id_postu_uzytkownika="+connection.escape(req.params.id)+") as komentarze on item_id=IdKomentarzu right join users on users.id=komentarze.nick where type = 'past_kom' OR type IS NULL AND IdKomentarzu IS NOT NULL GROUP BY IdKomentarzu ORDER BY IdKomentarzu ASC;SELECT id_post_kom,idpost_kom,pathfile_kom,rozszerzenie,name_pic FROM tabfilekomentarze WHERE id_post_kom="+connection.escape(req.params.id)+";SELECT count(komentarze.Idkomentarzu) as ilosc, komentarze.rate from (SELECT * FROM tablica_komentarzy WHERE id_postu_uzytkownika="+ connection.escape(req.params.id) + ") AS komentarze RIGHT JOIN tablica_komentarzy ON komentarze.IdKomentarzu = tablica_komentarzy.IdKomentarzu GROUP BY komentarze.rate ORDER BY rate ASC;" ,function(err,result ) {
     if (err) throw err;
     if(!result[5][0] || !result[5][1]){
       result[5][0] = {ilosc:0,rate:0};
@@ -320,7 +320,7 @@ router.get('/forum/:strona/:id', function(req,res){
           vote_down = "";
          
         }
-          res.render('forum.html', {title: 'Przeszloscc', postulaty:result[0],postulaty1:result[1],postulaty2:result[2],postulaty3:result[3],postulaty4:result[4],huj:ciastka1,idcookies:req.cookies.id, ciasta:ciastka,id:result[0].length-1,capfile: req.params.id,tiger:1, vote_down: vote_down, vote_up: vote_up, vote_up_count: data[1].ilosc, vote_down_count: data[2].ilosc, comments_count: result[5],strona:req.params.strona}); // req.params.id tutaj przekazanie zmiennej do widoku
+          res.render('forum.html', {title: 'Forum', postulaty:result[0],postulaty1:result[1],postulaty2:result[2],postulaty3:result[3],postulaty4:result[4],huj:ciastka1,idcookies:req.cookies.id, ciasta:ciastka,id:result[0].length-1,capfile: req.params.id,tiger:1, vote_down: vote_down, vote_up: vote_up, vote_up_count: data[1].ilosc, vote_down_count: data[2].ilosc, comments_count: result[5],strona:req.params.strona, post_id: req.params.id}); // req.params.id tutaj przekazanie zmiennej do widoku
 
       }
     });
@@ -386,7 +386,7 @@ var strona="mapa_przeszlosc";
   /* UWAGA po czyszczeniu serwera bazy zdjec trzeba tutaj zmienic id na koncu drugiego selecta na id pierwszego postu w bazie danych*/
     connection.query("select tabela_postow.id, tytul,tresc, nick, data_dodania, imie, nazwisko from users,tabela_postow where nick=users.id and strona='"+strona+"' ORDER BY data_dodania;SELECT idpost,pathfile FROM tabfile;select tabela_postow.id , tytul,tresc, nick, data_dodania, ilosc_click, imie, nazwisko from users,tabela_postow where tabela_postow.id="+connection.escape(471)+" and strona='"+strona+"'", function(err, result) {
       if (err) throw err;
-res.render('mapa_przeszlosc.html', {title: 'Przeszloscmappa', postulaty:result[0],postulaty1:result[1],postulaty2:result[2], ciasta:ciastka , idcookies:req.cookies.id,capfile:3 ,id: result[0].length-1,tiger:0, vote_up: "", vote_down: "",strona:strona}); // req.params.id tutaj przekazanie zmiennej do widoku
+res.render('mapa_przeszlosc.html', {title: 'Forum', postulaty:result[0],postulaty1:result[1],postulaty2:result[2], ciasta:ciastka , idcookies:req.cookies.id,capfile:3 ,id: result[0].length-1,tiger:0, vote_up: "", vote_down: "",strona:strona}); // req.params.id tutaj przekazanie zmiennej do widoku
   });
 }else{
 res.redirect('/logowanie');
@@ -490,35 +490,30 @@ router.post('/delete/:id?', function(req,res){
 
  // /log i kolonisci ORDER BY punkty DESC
 router.post('/log', function(req,res){
-  var lemail = req.body.lemail;
-  var lhaslo = req.body.lhaslo;
-  var query = 'SELECT * FROM users;';
-  console.log(' lemail:',req.body.lemail,'lhaslo:',lhaslo);
-  connection.query(query, function(err, rows, fields) {
+
+  var query = 'SELECT id,aktywne FROM users where email=' + connection.escape(req.body.email) + ' AND haslo=' + connection.escape(req.body.haslo);
+  console.log(query);
+  connection.query(query, function(err, rows) {
     if (err) throw err;
-      var data;
-      var minute = 60 * 60 * 1000;
-      info = "Nieprawidłowy login lub hasło."; 
-      for (var i in rows) {
-          
-          if(rows[i].email===lemail && rows[i].haslo===lhaslo){
-            if(rows[i].aktywne == null){
-              res.cookie('remember', lemail, { maxAge: minute, httpOnly: true});
-             //res.cookie('id', rows[i].id);
-             res.cookie('id', rows[i].id);
-             res.cookie('pos', i);
-             info = "";
-             res.redirect('/');
-            }
-            else{
-              info = "Konto nie zostało jeszcze aktywowane.";
-              res.redirect('/logowanie');
-            }
-           
-
-         }
-
+    if(rows[0]){
+      if(rows[0].aktywne == null){
+         var minute = 3600 * 1000;
+         res.cookie('remember', req.body.email, { maxAge: minute, httpOnly: true});
+         res.cookie('id', rows[0].id);
+         info = "";
+         res.redirect('/');
       }
+      else{
+        info = "Konto nie zostało jeszcze aktywowane.";
+        res.redirect('/logowanie');
+      }
+       
+    }
+    else{
+      info = "Nieprawidłowy login lub hasło.";
+      res.redirect('/logowanie');
+    }
+
   });
 });
 
@@ -571,7 +566,16 @@ router.get('/kolonisci', function(req, res) {
     ciastka=req.cookies.remember;
     connection.query('SELECT * FROM users where id=' + req.cookies.id + ';', function(err, rows, fields) {
       if (err) throw err;
-      connection.query('select user_id,profilowe, imie, nazwisko, sum(rating) as rating, o_mnie as o_mnie FROM (SELECT users.id as user_id,users.profilowe as profilowe, users.imie as imie, users.nazwisko as nazwisko, sum(rate) as rating ,users.o_mnie as o_mnie FROM users LEFT JOIN tabela_postow on users.id = tabela_postow.nick LEFT JOIN rating ON tabela_postow.id = rating.item_id GROUP BY users.id UNION ALL select users.id as user_id, users.profilowe as profilowe, users.imie as imie, users.nazwisko as nazwisko, sum(rate) as rating, users.o_mnie as o_mnie from tablica_komentarzy left join tabela_postow on id_postu_uzytkownika=tabela_postow.id right join users on users.id = tabela_postow.nick group by users.id UNION ALL SELECT users.id as user_id, users.profilowe as profilowe, users.imie as imie, users.nazwisko as nazwisko, sum(rating.rate) as rating, users.o_mnie as o_mnie FROM users LEFT JOIN tablica_komentarzy on users.id = tablica_komentarzy.nick LEFT JOIN rating ON tablica_komentarzy.Idkomentarzu = rating.item_id AND rating.type="kom" GROUP BY users.id UNION ALL select users.id as user_id, users.profilowe as profilowe, users.imie as imie, users.nazwisko as nazwisko, count(nick)*5 as rating, users.o_mnie as o_mnie from tablica_komentarzy right join users on tablica_komentarzy.nick = users.id group by users.id) s where user_id != 0 group by user_id order by rating desc;', function(err,list,fields){
+      var wyliczeniaQuery = "select users.profilowe as profilowe,users.email as email,users.id as user_id,users.imie as imie, users.nazwisko as nazwisko, IF(postulaty.ilosc IS NULL,0,postulaty.ilosc ) + IF(komentarze.ilosc IS NULL,0,komentarze.ilosc) + IF(rating.ilosc IS NULL,0,rating.ilosc) + IF(komentarze_obce.ilosc IS NULL, 0, komentarze_obce.ilosc) + IF(rating_obcy_kom.ilosc IS NULL,0, rating_obcy_kom.ilosc) + IF(rating_obcy_post.ilosc IS NULL, 0, rating_obcy_post.ilosc) as suma_pkt from (select id,imie,nazwisko,email,profilowe from users) users ";
+      var postulatyQuery = "left join (select 20*count(*) ilosc, id,nick from tabela_postow group by nick) postulaty on users.id = postulaty.nick ";
+      var komentarzeQuery = "left join (select 10*count(*) ilosc, nick from tablica_komentarzy group by nick) komentarze on users.id = komentarze.nick ";
+      var ratingQuery = "left join (select count(*) ilosc, user_id from rating group by user_id) rating on rating.user_id = users.id ";
+      var komentarzeObceQuery = "left join (select 5*count(*) ilosc, tabela_postow.nick as posty_user_id from tabela_postow left join tablica_komentarzy on tablica_komentarzy.id_postu_uzytkownika= tabela_postow.id  where tabela_postow.nick != 0 and tablica_komentarzy.rate > 0 group by tabela_postow.nick) komentarze_obce on komentarze_obce.posty_user_id = users.id ";
+      var ratingKomObcyQuery = "left join (select 0.5*count(*) ilosc,nick from rating left join tablica_komentarzy on rating.item_id = tablica_komentarzy.IdKomentarzu AND rating.type = 'kom' AND rating.rate > 0 where nick != 0 group by nick) rating_obcy_kom on rating_obcy_kom.nick = users.id ";
+      var ratingPostObcyQuery = "left join (select 0.5*count(*) ilosc,nick from rating left join tabela_postow on rating.item_id = tabela_postow.id AND rating.type = 'post' AND rating.rate > 0 where nick != 0 group by nick) rating_obcy_post on rating_obcy_post.nick = users.id where users.id != 0";
+      console.log(wyliczeniaQuery + postulatyQuery + komentarzeQuery + ratingQuery + komentarzeObceQuery + ratingKomObcyQuery + ratingPostObcyQuery);
+      connection.query(wyliczeniaQuery + postulatyQuery + komentarzeQuery + ratingQuery + komentarzeObceQuery + ratingKomObcyQuery + ratingPostObcyQuery, function(err,list){
+        if(err) throw err;
         res.render('kolonia.html', {title: 'Kolonia', data:rows, list : list, ciasta:ciastka, user_id: req.cookies.id,tiger_profilowy:0}); // tutaj przekazanie zmiennej do widoku
       });
     });

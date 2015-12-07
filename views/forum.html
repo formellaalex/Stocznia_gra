@@ -84,7 +84,7 @@
                   background: url('/images/layout_addons/like.png');
                   background-size: 100% 100%;
                   background-repeat: no-repeat;
-                  height: 8vh;
+                  height: 10vh;
                   /* background-position-y: 0.5rem; */
                   /* width: auto; */
                   vertical-align: middle;
@@ -95,7 +95,7 @@
                 background: url('/images/layout_addons/dislike.png');
               background-size: 100% 100%;
                   background-repeat: no-repeat;
-                  height: 8vh;
+                  height: 10vh;
                   /* background-position-y: 0.5rem; */
                   /* width: auto; */
                   vertical-align: middle;
@@ -752,7 +752,8 @@ label input {
                             <% if(postulaty.length){ 
                                       
                               for(var i = postulaty.length-1;i >=0;i--) { %>
-                              <%if(postulaty[i].id==capfile){%>
+                              <%if(postulaty[i].id==capfile){ var punkty_post = postulaty[i].suma_punktow_post%>
+
                               <p class="postulat"  style="position:inline float:left width:80%;color: #800000;"> <%= postulaty[i].tytul%> &nbsp;&nbsp;&nbsp;<%= postulaty[i].suma_punktow_post%> <img class="icon" src="/images/layout_addons/gra o stocznie_vectorized.png" style="max-width: 5%" /> </p>
                                     
                                 <%}else{%>
@@ -828,15 +829,15 @@ label input {
                         </div>
                         </div>  
                         <div class="large-2 small-2 columns">
-                          <p style="display: inline"><span style="  color: #800000;font-size:1.8rem;position:absolute;"> <%=vote_up_count%></span> </p>
+                          <span style="  color: #800000;font-size:1.8rem;position:absolute;"> <%=vote_up_count%></span> 
                           <form style="display:inline;  color: #800000;" action="/vote_up/<%=capfile%>/post/<%=capfile%>/<%=strona%>" method="post">  <button class="vote" id="vote_up" ></button> </form>
                         </div> 
                           <div class="large-2 small-2 columns">
-                          <p style="display: inline"><span style="color:black;font-size:1.8rem;position:absolute;"> <%=vote_down_count%> </span></p>
+                          <span style="color:black;font-size:1.8rem;position:absolute;"> <%=vote_down_count%> </span>
                           <form style="display: inline; color: white" action="/vote_down/<%=capfile%>/post/<%=capfile%>/<%=strona%>" method="post"> <button class="vote" id="vote_down"></button></form>
                           </div> 
                           <div class="large-3 small-3 columns">
-                          <p style="font-size: 1.8rem;display: inline;margin-left:3%;color:#800000"><%=(vote_up_count-vote_down_count)+(comments_count[0].ilosc-comments_count[1].ilosc)*5%> </p>
+                          <p style="font-size: 1.8rem;display: inline;margin-left:3%;color:#800000"><%=punkty_post%> </p>
                            <img class="icon" src="/images/layout_addons/gra o stocznie_vectorized.png" style="display: inline; max-width:32%"></img>
                            </div> 
                   </div>
