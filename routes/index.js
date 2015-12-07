@@ -571,7 +571,7 @@ router.get('/kolonisci', function(req, res) {
       var ratingQuery = "left join (select count(*) ilosc, user_id from rating group by user_id) rating on rating.user_id = users.id ";
       var komentarzeObceQuery = "left join (select 5*count(*) ilosc, tabela_postow.nick as posty_user_id from tabela_postow left join tablica_komentarzy on tablica_komentarzy.id_postu_uzytkownika= tabela_postow.id  where tabela_postow.nick != 0 and tablica_komentarzy.rate > 0 group by tabela_postow.nick) komentarze_obce on komentarze_obce.posty_user_id = users.id ";
       var ratingKomObcyQuery = "left join (select 0.5*count(*) ilosc,nick from rating left join tablica_komentarzy on rating.item_id = tablica_komentarzy.IdKomentarzu AND rating.type = 'kom' AND rating.rate > 0 where nick != 0 group by nick) rating_obcy_kom on rating_obcy_kom.nick = users.id ";
-      var ratingPostObcyQuery = "left join (select 0.5*count(*) ilosc,nick from rating left join tabela_postow on rating.item_id = tabela_postow.id AND rating.type = 'post' AND rating.rate > 0 where nick != 0 group by nick) rating_obcy_post on rating_obcy_post.nick = users.id where users.id != 0";
+      var ratingPostObcyQuery = "left join (select 0.5*count(*) ilosc,nick from rating left join tabela_postow on rating.item_id = tabela_postow.id AND rating.type = 'post' AND rating.rate > 0 where nick != 0 group by nick) rating_obcy_post on rating_obcy_post.nick = users.id where users.id != 0 order by suma_pkt DESC";
       console.log(wyliczeniaQuery + postulatyQuery + komentarzeQuery + ratingQuery + komentarzeObceQuery + ratingKomObcyQuery + ratingPostObcyQuery);
       connection.query(wyliczeniaQuery + postulatyQuery + komentarzeQuery + ratingQuery + komentarzeObceQuery + ratingKomObcyQuery + ratingPostObcyQuery, function(err,list){
         if(err) throw err;
@@ -591,11 +591,19 @@ router.get('/kolonisci/:nick?', function(req, res) {
   var data;
   if (req.cookies.remember){
     ciastka=req.cookies.remember;
-    console.log(req.params.nick + "aaaaaaaaaa");
     connection.query('SELECT * FROM users where id=' + connection.escape(req.params.nick) + ';', function(err, rows, fields) {
-      if (err) throw err;
-      connection.query('select user_id,profilowe, imie, nazwisko, sum(rating) as rating, o_mnie as o_mnie FROM (SELECT users.id as user_id,users.profilowe as profilowe, users.imie as imie, users.nazwisko as nazwisko, sum(rate) as rating ,users.o_mnie as o_mnie FROM users LEFT JOIN tabela_postow on users.id = tabela_postow.nick LEFT JOIN rating ON tabela_postow.id = rating.item_id GROUP BY users.id UNION ALL select users.id as user_id, users.profilowe as profilowe, users.imie as imie, users.nazwisko as nazwisko, sum(rate) as rating, users.o_mnie as o_mnie from tablica_komentarzy left join tabela_postow on id_postu_uzytkownika=tabela_postow.id right join users on users.id = tabela_postow.nick group by users.id UNION ALL SELECT users.id as user_id, users.profilowe as profilowe, users.imie as imie, users.nazwisko as nazwisko, sum(rating.rate) as rating, users.o_mnie as o_mnie FROM users LEFT JOIN tablica_komentarzy on users.id = tablica_komentarzy.nick LEFT JOIN rating ON tablica_komentarzy.Idkomentarzu = rating.item_id AND rating.type="kom" GROUP BY users.id UNION ALL select users.id as user_id, users.profilowe as profilowe, users.imie as imie, users.nazwisko as nazwisko, count(nick)*5 as rating, users.o_mnie as o_mnie from tablica_komentarzy right join users on tablica_komentarzy.nick = users.id group by users.id) s where user_id != 0 group by user_id order by rating desc;', function(err,list,fields){
-        res.render('kolonia.html', {title: 'Kolonia', data:rows, list : list, ciasta:ciastka, user_id: rows[0].id,tiger_profilowy:1}); // tutaj przekazanie zmiennej do widoku
+       if (err) throw err;
+      var wyliczeniaQuery = "select users.profilowe as profilowe,users.email as email,users.id as user_id,users.imie as imie, users.nazwisko as nazwisko, IF(postulaty.ilosc IS NULL,0,postulaty.ilosc ) + IF(komentarze.ilosc IS NULL,0,komentarze.ilosc) + IF(rating.ilosc IS NULL,0,rating.ilosc) + IF(komentarze_obce.ilosc IS NULL, 0, komentarze_obce.ilosc) + IF(rating_obcy_kom.ilosc IS NULL,0, rating_obcy_kom.ilosc) + IF(rating_obcy_post.ilosc IS NULL, 0, rating_obcy_post.ilosc) as suma_pkt from (select id,imie,nazwisko,email,profilowe from users) users ";
+      var postulatyQuery = "left join (select 20*count(*) ilosc, id,nick from tabela_postow group by nick) postulaty on users.id = postulaty.nick ";
+      var komentarzeQuery = "left join (select 10*count(*) ilosc, nick from tablica_komentarzy group by nick) komentarze on users.id = komentarze.nick ";
+      var ratingQuery = "left join (select count(*) ilosc, user_id from rating group by user_id) rating on rating.user_id = users.id ";
+      var komentarzeObceQuery = "left join (select 5*count(*) ilosc, tabela_postow.nick as posty_user_id from tabela_postow left join tablica_komentarzy on tablica_komentarzy.id_postu_uzytkownika= tabela_postow.id  where tabela_postow.nick != 0 and tablica_komentarzy.rate > 0 group by tabela_postow.nick) komentarze_obce on komentarze_obce.posty_user_id = users.id ";
+      var ratingKomObcyQuery = "left join (select 0.5*count(*) ilosc,nick from rating left join tablica_komentarzy on rating.item_id = tablica_komentarzy.IdKomentarzu AND rating.type = 'kom' AND rating.rate > 0 where nick != 0 group by nick) rating_obcy_kom on rating_obcy_kom.nick = users.id ";
+      var ratingPostObcyQuery = "left join (select 0.5*count(*) ilosc,nick from rating left join tabela_postow on rating.item_id = tabela_postow.id AND rating.type = 'post' AND rating.rate > 0 where nick != 0 group by nick) rating_obcy_post on rating_obcy_post.nick = users.id where users.id != 0 order by suma_pkt DESC";
+      console.log(wyliczeniaQuery + postulatyQuery + komentarzeQuery + ratingQuery + komentarzeObceQuery + ratingKomObcyQuery + ratingPostObcyQuery);
+      connection.query(wyliczeniaQuery + postulatyQuery + komentarzeQuery + ratingQuery + komentarzeObceQuery + ratingKomObcyQuery + ratingPostObcyQuery, function(err,list){
+        if(err) throw err;
+        res.render('kolonia.html', {title: 'Kolonia', data:rows, list : list, ciasta:ciastka, user_id: req.params.nick,tiger_profilowy:0}); // tutaj przekazanie zmiennej do widoku
       });
     });
   }
