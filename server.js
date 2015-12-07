@@ -418,7 +418,7 @@ app.use(function(err, req, res, next) {
     });
 });
 
-/*db_config = {
+db_config = {
   host     : '127.13.120.2',
   port     : '3306',
   user     : 'adminmPNjwgk',
