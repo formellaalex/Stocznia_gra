@@ -756,11 +756,11 @@ label input {
                               for(var i = postulaty.length-1;i >=0;i--) { %>
                               <%if(postulaty[i].id==capfile){ var punkty_post = postulaty[i].suma_punktow_post%>
 
-                              <p class="postulat"  style="position:inline float:left width:80%;color: #800000;"> <%= postulaty[i].tytul%> &nbsp;&nbsp;&nbsp;<%= postulaty[i].suma_punktow_post%> <img class="icon" src="/images/layout_addons/gra o stocznie_vectorized.png" style="max-width: 5%" /> </p>
+                              <p class="postulat"  style="position:inline float:left width:80%;color: #800000;"> <%= postulaty[i].tytul%> &nbsp;&nbsp;&nbsp;<%= postulaty[i].suma_punktow_post + 20 %> <img class="icon" src="/images/layout_addons/gra o stocznie_vectorized.png" style="max-width: 5%" /> </p>
                                     
                                 <%}else{%>
  
-                                    <p class="naglowek_postu"  style="position:inline float:left width:80%"> <a href="/forum/<%=strona%>/<%=postulaty[i].id%>" class="postulat black"> <%= postulaty[i].tytul%> &nbsp;&nbsp;&nbsp;<%= postulaty[i].suma_punktow_post%> <img class="icon" src="/images/layout_addons/gra o stocznie_vectorized.png" style="max-width: 5%" />  </a></p>
+                                    <p class="naglowek_postu"  style="position:inline float:left width:80%"> <a href="/forum/<%=strona%>/<%=postulaty[i].id%>" class="postulat black"> <%= postulaty[i].tytul%> &nbsp;&nbsp;&nbsp;<%= postulaty[i].suma_punktow_post + 20%> <img class="icon" src="/images/layout_addons/gra o stocznie_vectorized.png" style="max-width: 5%" />  </a></p>
                                 <%}%>
                                  
                                 <% } %>
