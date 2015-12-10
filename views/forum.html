@@ -896,7 +896,7 @@ label input {
                           <div style="width: 100%;">
                            <!--zalaczniki do pierwszych komentarzy --> 
                               <% if(postulaty4.length){
-                                postulaty4.reverse();
+                            
                                   for(var j = postulaty4.length-1;j >=0;j--) { %>
                                       <%if( postulaty4[j].idpost_kom === postulaty3[i].IdKomentarzu){%>
                                           <%if( postulaty4[j].rozszerzenie==="jpg"||postulaty4[j].rozszerzenie==="png"||postulaty4[j].rozszerzenie==="JPG"||postulaty4[j].rozszerzenie==="PNG"){%>
@@ -1012,13 +1012,15 @@ label input {
                             <%}else{%>
                             <form  class="test_form" style=" float:right " method="post"> <input type="hidden" name="delete_message" class="message" value=""/><button class="postulat white" style="border:none; background: none; margin:0;padding: 0"><img class="icon" src="/images/layout_addons/smietniczek_vectorized.png" ></button></form>
                             <!-- <form action="/delete/<%=postulaty[i].id%>" class="test_form" style=" float:right " method="post"> <input type="hidden" name="delete_message" class="message" value=""/><button class="postulat white" style="border:none; background: none; margin:0;padding: 0"><img class="icon" src="/images/layout_addons/smietniczek_vectorized.png" ></button></form> -->
-                            <!--<a href="/send/<%=postulaty[i].id%>" class="postulat black"><img class="icon1" src="/images/layout_addons/smietniczek_vectorized.png" ><span style="color:white">delete<span> </img></a>-->
+                            <!--<a href="/send/<%=postulaty[i].id%>" class="postulat black"><img class="icon1" src="/images/layout_addons/smietniczek_vectorized.png" ><span style="color:white">delete<span> </img></a>
+                            postulaty4.reverse();
+
+                          -->
                             <%}%>
                      
                           
                           <p class="tresc_postu tytul black"> <%= postulaty3[j].tresc %> </p>
                           <% if(postulaty4.length){
-                            postulaty4.reverse();
                               for(var h = postulaty4.length-1;h >=0;h--) { %>
                                   <%if( postulaty4[h].idpost_kom === postulaty3[j].IdKomentarzu){%>
                                     
