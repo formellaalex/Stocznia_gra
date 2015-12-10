@@ -293,7 +293,7 @@ var tiger;
     "left join (select 0.5*sum(rating.rate) punkty, item_id,id_postu_uzytkownika from rating left join tablica_komentarzy on " +
     "rating.item_id = tablica_komentarzy.IdKomentarzu where rating.user_id != tablica_komentarzy.nick AND rating.type='past_kom' " +
     "group by id_postu_uzytkownika) rating_obcy_kom on rating_obcy_kom.id_postu_uzytkownika = tabela_postow.id " +
-    "where tabela_postow.strona = '" + req.params.strona + "';";
+    "where tabela_postow.strona = '" + req.params.strona + "' ORDER BY suma_punktow_post ASC;";
     connection.query(postulaty +"SELECT idpost,pathfile FROM tabfile;select tabela_postow.id , tytul,tresc, nick, data_dodania, ilosc_click, imie, nazwisko from users,tabela_postow where tabela_postow.id="+connection.escape(471)+" and strona='"+req.params.strona+"'", function(err, result) {
       if (err) throw err;
 
@@ -336,7 +336,7 @@ router.get('/forum/:strona/:id', function(req,res){
     "left join (select 0.5*sum(rating.rate) punkty, item_id,id_postu_uzytkownika from rating left join tablica_komentarzy on " +
     "rating.item_id = tablica_komentarzy.IdKomentarzu where rating.user_id != tablica_komentarzy.nick AND rating.type='past_kom' " +
     "group by id_postu_uzytkownika) rating_obcy_kom on rating_obcy_kom.id_postu_uzytkownika = tabela_postow.id " +
-    "where tabela_postow.strona = '" + req.params.strona + "';";
+    "where tabela_postow.strona = '" + req.params.strona + "' ORDER BY suma_punktow_post ASC;";
 
     var comments_count = "select IF(swoje.punkty IS NULL,0,swoje.punkty) +  IF(obce_poz.punkty IS NULL,0, obce_poz.punkty) pozytywne "+
     ",IF(obce_neg.punkty IS NULL, 0, obce_neg.punkty) negatywne, tabela_postow.id from tabela_postow " +
@@ -350,7 +350,7 @@ router.get('/forum/:strona/:id', function(req,res){
     "tablica_komentarzy.id_postu_uzytkownika = tabela_postow.id where tablica_komentarzy.nick != " +
     "tabela_postow.nick and rate < 0 group by id_postu_uzytkownika) obce_neg on tabela_postow.id = obce_neg.id " +
     "WHERE strona='" + req.params.strona + "' AND tabela_postow.id=" + req.params.id + ";";
-    connection.query(postulaty + "SELECT idpost,pathfile,rozszerzenie,name_pic FROM tabfile WHERE idpost="+connection.escape(req.params.id)+" ;SELECT tabela_postow.id, tytul,tresc, nick, data_dodania, imie,czas_dodania, nazwisko,profilowe FROM users,tabela_postow WHERE nick=users.id AND tabela_postow.id="+connection.escape(req.params.id)+" AND strona='"+req.params.strona+"' ;SELECT SUM(if(rating.rate>0, 1, 0)) AS ilosc_like,SUM(if(rating.rate<0, 1, 0)) AS ilosc_dislike, IdKomentarzu,ilosc_podkomentarzy,id_parent, nick,czas_dodania_kom,profilowe, imie, nazwisko,tresc,komentarze.rate from rating RIGHT JOIN (SELECT* FROM tablica_komentarzy WHERE id_postu_uzytkownika="+connection.escape(req.params.id)+") as komentarze on item_id=IdKomentarzu right join users on users.id=komentarze.nick where type = 'past_kom' OR type IS NULL AND IdKomentarzu IS NOT NULL GROUP BY IdKomentarzu ORDER BY Idkomentarzu ASC;SELECT id_post_kom,pic_id_kom,idpost_kom,pathfile_kom,rozszerzenie,name_pic FROM tabfilekomentarze WHERE id_post_kom="+connection.escape(req.params.id)+" ORDER BY pic_id_kom ASC;" + comments_count ,function(err,result ) {
+    connection.query(postulaty + "SELECT idpost,pathfile,rozszerzenie,name_pic FROM tabfile WHERE idpost="+connection.escape(req.params.id)+" ;SELECT tabela_postow.id, tytul,tresc, nick, data_dodania, imie,czas_dodania, nazwisko,profilowe FROM users,tabela_postow WHERE nick=users.id AND tabela_postow.id="+connection.escape(req.params.id)+" AND strona='"+req.params.strona+"' ;SELECT SUM(if(rating.rate>0, 1, 0)) AS ilosc_like,SUM(if(rating.rate<0, 1, 0)) AS ilosc_dislike, IdKomentarzu,ilosc_podkomentarzy,id_parent, nick,czas_dodania_kom,profilowe, imie, nazwisko,tresc,komentarze.rate from rating RIGHT JOIN (SELECT* FROM tablica_komentarzy WHERE id_postu_uzytkownika="+connection.escape(req.params.id)+") as komentarze on item_id=IdKomentarzu right join users on users.id=komentarze.nick where type = 'past_kom' OR type IS NULL AND IdKomentarzu IS NOT NULL GROUP BY IdKomentarzu ORDER BY czas_dodania_kom ASC;SELECT id_post_kom,pic_id_kom,idpost_kom,pathfile_kom,rozszerzenie,name_pic FROM tabfilekomentarze WHERE id_post_kom="+connection.escape(req.params.id)+" ORDER BY pic_id_kom ASC;" + comments_count ,function(err,result ) {
     if (err) throw err;
     get_user(req.cookies.id, req.params.id,function(err,data){
       if(err){

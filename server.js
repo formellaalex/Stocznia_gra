@@ -417,7 +417,7 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
-/*
+
 db_config = {
   host     : '127.13.120.2',
   port     : '3306',
@@ -427,7 +427,7 @@ db_config = {
   multipleStatements: true 
 
 };
-*/
+/*
 
 db_config = {
   host     : 'us-cdbr-iron-east-01.cleardb.net',
@@ -436,7 +436,7 @@ db_config = {
   database : 'heroku_fd1c348c48d7c8c',
   multipleStatements: true 
 }
-
+*/
 function handleDisconnect() {
   connection = mysql.createConnection(db_config); // Recreate the connection, since
                                                   // the old one cannot be reused.
