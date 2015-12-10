@@ -797,7 +797,7 @@ label input {
                  
                    
                     <% if(postulaty1.length){
-                      postulaty1.reverse();
+                      
                           for(var i = postulaty1.length-1;i >=0;i--) { %>
                               <%if( postulaty1[i].rozszerzenie==="jpg"||postulaty1[i].rozszerzenie==="png"||postulaty1[i].rozszerzenie==="JPG"||postulaty1[i].rozszerzenie==="PNG" ){%>
                                <img class="display" src="<%=postulaty1[i].pathfile%>" width="90%" height="auto" alt="Błąd" style="margin-bottom: 5%" />
@@ -1013,7 +1013,6 @@ label input {
                             <form  class="test_form" style=" float:right " method="post"> <input type="hidden" name="delete_message" class="message" value=""/><button class="postulat white" style="border:none; background: none; margin:0;padding: 0"><img class="icon" src="/images/layout_addons/smietniczek_vectorized.png" ></button></form>
                             <!-- <form action="/delete/<%=postulaty[i].id%>" class="test_form" style=" float:right " method="post"> <input type="hidden" name="delete_message" class="message" value=""/><button class="postulat white" style="border:none; background: none; margin:0;padding: 0"><img class="icon" src="/images/layout_addons/smietniczek_vectorized.png" ></button></form> -->
                             <!--<a href="/send/<%=postulaty[i].id%>" class="postulat black"><img class="icon1" src="/images/layout_addons/smietniczek_vectorized.png" ><span style="color:white">delete<span> </img></a>
-                            postulaty4.reverse();
 
                           -->
                             <%}%>
