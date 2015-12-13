@@ -800,7 +800,7 @@ label input {
                       
                           for(var i = postulaty1.length-1;i >=0;i--) { %>
                               <%if( postulaty1[i].rozszerzenie==="jpg"||postulaty1[i].rozszerzenie==="png"||postulaty1[i].rozszerzenie==="JPG"||postulaty1[i].rozszerzenie==="PNG" ){%>
-                               <img class="display" src="<%=postulaty1[i].pathfile%>" width="90%" height="auto" alt="Błąd" style="margin-bottom: 5%" />
+                               <a href="<%=postulaty1[i].pathfile%>"><img class="display" src="<%=postulaty1[i].pathfile%>" width="90%" height="auto" alt="Błąd" style="margin-bottom: 5%" /> </a>
                               <%}else{ %>
                               <p class="zalaczniki"> <a href="<%=postulaty1[i].pathfile%>"> <%=postulaty1[i].name_pic%></a></p><%}%>
                             
@@ -900,7 +900,7 @@ label input {
                                   for(var j = postulaty4.length-1;j >=0;j--) { %>
                                       <%if( postulaty4[j].idpost_kom === postulaty3[i].IdKomentarzu){%>
                                           <%if( postulaty4[j].rozszerzenie==="jpg"||postulaty4[j].rozszerzenie==="png"||postulaty4[j].rozszerzenie==="JPG"||postulaty4[j].rozszerzenie==="PNG"){%>
-                                              <img src="<%=postulaty4[j].pathfile_kom%>"   class="display"  width="90%" heigth="auto" alt="Błąd" style="margin-bottom: 5%;"/>
+                                              <a href="<%=postulaty4[j].pathfile_kom%>"><img src="<%=postulaty4[j].pathfile_kom%>"   class="display"  width="90%" heigth="auto" alt="Błąd" style="margin-bottom: 5%;"/></a>
                                           <%}else{ %>
                                               <p class="zalaczniki"> <a href="<%=postulaty4[j].pathfile_kom%>"> <%=postulaty4[j].name_pic%></a></p><%}%>
                                           <%}%>
@@ -1020,7 +1020,7 @@ label input {
                                   <%if( postulaty4[h].idpost_kom === postulaty3[j].IdKomentarzu){%>
                                     
                                    <%if( postulaty4[h].rozszerzenie==="jpg"||postulaty4[h].rozszerzenie==="png"|| postulaty4[h].rozszerzenie==="JPG"||postulaty4[h].rozszerzenie==="PNG" ){%>
-                                      <img src="<%=postulaty4[h].pathfile_kom%>" class="display"    width="100%" heigth="auto" alt="Błąd" />
+                                      <a href="<%=postulaty4[h].pathfile_kom%>"><img src="<%=postulaty4[h].pathfile_kom%>" class="display zdjecie_podkomentarz" width="100%" heigth="auto" alt="Błąd" /> </a>
                                   <%}else{ %>
                                    <p class="zalaczniki" style="left:20px"> <a href="<%=postulaty4[h].pathfile_kom%>"> <%=postulaty4[h].name_pic%></a></p><%}%>
                                   <%}%>
@@ -1029,6 +1029,7 @@ label input {
                           <a href="/kolonisci/<%=postulaty3[j].nick%>" > 
                             <img style="display: inline" src="<%=postulaty3[j].profilowe%>" class="display" width="10%" heigth="auto" alt="brak zdjęcia" />
                             <p style="display: inline" class="users black" id="tworca_postu"><%= postulaty3[j].imie %> <%= postulaty3[j].nazwisko %> <span style="margin-left: 10%"> <%=postulaty3[j].czas_dodania_kom%></span></p></a>
+
                             <div style="float:right ">
                           <span style="color:black"><%=postulaty3[j].ilosc_like%></span><form style="display:inline;color: white" action="/vote_up/<%=postulaty3[j].IdKomentarzu%>/kom/<%=capfile%>/<%=strona%>" method="post"><button class="vote" id="vote_up_kom" ></button> </form>
                           <span style="color:#800000"><%= postulaty3[j].ilosc_dislike %></span><form style="display: inline; color: white" action="/vote_down/<%=postulaty3[j].IdKomentarzu%>/kom/<%=capfile%>/<%=strona%>" method="post"> <button class="vote" id="vote_down_kom"></button></form>

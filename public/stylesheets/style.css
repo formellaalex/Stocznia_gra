@@ -17,6 +17,10 @@ a{
     padding-left: 10%;
 }
 
+.zdjecie_podkomentarz{
+    margin-bottom: 5%;
+}
+
 .link{
     font-style: italic;
 }
