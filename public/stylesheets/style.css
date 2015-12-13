@@ -13,6 +13,10 @@ a{
     color: black;
 }
 
+.hidenlevel{
+    padding-left: 10%;
+}
+
 .link{
     font-style: italic;
 }
