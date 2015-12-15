@@ -81,7 +81,7 @@ $(document).ready(function(){
 	}
 
 	$( ".test_form" ).submit(function( event ) {
-		  var message = prompt("Wpisz powód zgłoszenia", "Zgłaszam postulat do usunięcia, gdyż");
+		  var message = prompt("Wpisz powód zgłoszenia", "Np. zgłaszam postulat do usunięcia, gdyż...");
 		  if(message == null){
 		  	return false;
 		  }
