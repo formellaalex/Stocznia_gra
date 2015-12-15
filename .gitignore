@@ -1,3 +1,9 @@
-public/uploads/
-public/uploads1/
-public/uploads1komentarze/
+public/
+*.png
+*.PNG
+*.jpg
+*.JPG
+*.gif
+*.GIF
+*.bmp
+*.BMP
