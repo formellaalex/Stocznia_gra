@@ -14,9 +14,40 @@ a{
 }
 
 .hidenlevel{
-    padding-left: 7%;
+    margin-left:10%;
+    width:90%;
+
+border-bottom:2px solid black;
+
+
 }
 
+.hidenlevel #vote_down_kom,.hidenlevel #vote_up_kom{
+width: 30%;
+padding:0;
+margin:0;
+height:auto;
+
+  background: none;
+  background-size: 60% 60%;
+  background-repeat: no-repeat;
+ /* height: 3em;
+  width: auto;*/
+  border: none;
+}
+.block{
+
+    display:inline-block;
+>>>>>>> fb7bcb93e2f7c3c848764e65ac51244da2667d23
+}
+
+.wid25{
+    float: right;
+    width:25%;
+}
+.width75{
+    width:75%;
+}
 .zdjecie_podkomentarz{
     margin-bottom: 5%;
 }
