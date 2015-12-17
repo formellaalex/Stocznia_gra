@@ -1007,14 +1007,9 @@ label input {
                   <% for (var j=postulaty3.length-1;j>=0;j--){%>
                     <%if(postulaty3[j].id_parent=== postulaty3[i].IdKomentarzu){ %> 
                       <div class="hidenlevel" id="p<%=postulaty3[j].id_parent%>" style="border-top-style: solid; border-top-color: black;padding-bottom: 0%">
-                          <%if(321==idcookies){%>
-                            <a href="/delete/<%=postulaty3[j].IdKomentarzu%>"><img class="icon1" src="/images/layout_addons/smietniczek_vectorized.png" ><p></p></img></a>
-                            <%}else{%>
-                            <form  class="test_form" style=" float:right " method="post"> <input type="hidden" name="delete_message" class="message" value=""/><button class="postulat white" style="border:none; background: none; margin:0;padding: 0"><img class="icon" src="/images/layout_addons/smietniczek_vectorized.png" ></button></form>
-                            <%}%>
-                     
+                            <form  class="test_form" styl method="post"> <input type="hidden" name="delete_message" class="message" value=""/><button class="postulat white" style="border:none; background: none; margin:0;padding: 0"><img class="icon" src="/images/layout_addons/smietniczek_vectorized.png" ></button></form>
                           
-                          <p class="tresc_postu tytul black"> <%= postulaty3[j].tresc %> </p>
+                          
                           <% if(postulaty4.length){
                               for(var h = postulaty4.length-1;h >=0;h--) { %>
                                   <%if( postulaty4[h].idpost_kom === postulaty3[j].IdKomentarzu){%>
