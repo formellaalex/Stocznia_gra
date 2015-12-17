@@ -889,7 +889,7 @@ label input {
                            
                           for(var i=postulaty3.length-1;i>=0;i--){ %>
                           <% if(postulaty3[i].id_parent===null){%>
-                          <div class = "prostokat" style="width: 100%;">
+                          <div class = "" style="width: 100%;">
                           <!-- usuwanie postu   background-color:rgba(224, 212, 177,0.3);-->
                       <p class="tresc_postu tytul black"> <%= postulaty3[i].tresc %> </p>
                                               
@@ -907,7 +907,7 @@ label input {
                                   
                                       <% } %>
                               <% } %> 
-                              <div style="background-color:rgba(255,255,255,0.5)">
+                              <div style="background-color:rgba(255,255,255,0.5); border-bottom:2px solid black; display: inline-block; width: 100%;">
                                 <div class="row"  style="height:55px">
                                   <div class="large-1 small-1 columns" style="">
                                    <a class="klasa1 iloscpodkom" style="color:black;vertical-align:middle;  padding-left: 10px;top: 9px;" id="<%=postulaty3[i].IdKomentarzu%>"><%=postulaty3[i].ilosc_podkomentarzy%>
@@ -921,7 +921,7 @@ label input {
                                     <img style="display: inline" src="<%=postulaty3[i].profilowe%>" class="display" width="40px" heigth="auto" alt="brak zdjęcia" /></a>
 
                                   </div>
-                                  <a href="/kolonisci/<%=postulaty3[i].nick%>"style="margin-left: 3%" > 
+                                  <a href="/kolonisci/<%=postulaty3[i].nick%>" style="margin-left: 3%" > 
                                   <p style="display: inline;vertical-align:middle" class="users black" id="tworca_postu"><%= postulaty3[i].imie %> <%= postulaty3[i].nazwisko %> 
                                     </p></a>
                                  <!-- <p style="margin-right:5%;;vertical-align:middle ;float:right"> <%=postulaty3[i].czas_dodania_kom%></p>-->
@@ -938,7 +938,7 @@ label input {
                                   <form style="display: inline; color: white" action="/vote_down/<%=postulaty3[i].IdKomentarzu%>/past_kom/<%=capfile%>/<%=strona%>" method="post"> <button class="vote"  style="margin-bottom:0px" id="vote_down_kom1"></button></form>
                                 </div>
                                 <div class="large-3 small-3 columns" >
-                                  <button class="klasa ukryj_dodaj_komentarz_przycisk_w_menu" style="min-width:30%;  margin-bottom: 0px;: right;margin-right: 10px;;" id="<%=postulaty3[i].IdKomentarzu%>"> . .   .  . </button><p style="margin-right:5%;margin-bottom:0px;vertical-align:middle;font-size:12px ;float:right"> z dnia <%=postulaty3[i].czas_dodania_kom%></p>
+                                  <button class="klasa ukryj_dodaj_komentarz_przycisk_w_menu" style="min-width:30%;  margin-bottom: 0px;float:right;margin-right: 10px;;" id="<%=postulaty3[i].IdKomentarzu%>"> . .   .  . </button><p style="margin-right:5%;margin-bottom:0px;vertical-align:middle;font-size:12px ;float:right"> z dnia <%=postulaty3[i].czas_dodania_kom%></p>
                                 </div>
                               </div>
                           </div>
@@ -1006,7 +1006,7 @@ label input {
 
                   <% for (var j=postulaty3.length-1;j>=0;j--){%>
                     <%if(postulaty3[j].id_parent=== postulaty3[i].IdKomentarzu){ %> 
-                      <div class="hidenlevel" id="p<%=postulaty3[j].id_parent%>" style="border-top-style: solid; border-top-color: black;padding-bottom: 0%">
+                      <div class="hidenlevel" id="p<%=postulaty3[j].id_parent%>" >
                           <%if(321==idcookies){%>
                             <a href="/delete/<%=postulaty3[j].IdKomentarzu%>"><img class="icon1" src="/images/layout_addons/smietniczek_vectorized.png" ><p></p></img></a>
                             <%}else{%>
@@ -1026,13 +1026,26 @@ label input {
                                   <%}%>
                               <% } %>
                           <% } %> 
-                          <a href="/kolonisci/<%=postulaty3[j].nick%>" > 
-                            <img style="display: inline" src="<%=postulaty3[j].profilowe%>" class="display" width="10%" heigth="auto" alt="brak zdjęcia" />
-                            <p style="display: inline" class="users black" id="tworca_postu"><%= postulaty3[j].imie %> <%= postulaty3[j].nazwisko %> <span style="margin-left: 10%"> <%=postulaty3[j].czas_dodania_kom%></span></p></a>
+                          <a href="/kolonisci/<%=postulaty3[j].nick%>" class="block width75"> 
+                            <img style="display: inline" src="<%=postulaty3[j].profilowe%>" class="display" width="10%" heigth="auto" alt="brak zdj" />
+                            <p style="display: inline;margin-left:3%" class="users black" id="tworca_postu"><%= postulaty3[j].imie %> <%= postulaty3[j].nazwisko %> 
+                              <span style="margin-left: 10%"> <%=postulaty3[j].czas_dodania_kom%></span>
+                            </p>
+                          </a>
 
-                            <div style="float:right ">
-                          <span style="color:black"><%=postulaty3[j].ilosc_like%></span><form style="display:inline;color: white" action="/vote_up/<%=postulaty3[j].IdKomentarzu%>/kom/<%=capfile%>/<%=strona%>" method="post"><button class="vote" id="vote_up_kom" ></button> </form>
-                          <span style="color:#800000"><%= postulaty3[j].ilosc_dislike %></span><form style="display: inline; color: white" action="/vote_down/<%=postulaty3[j].IdKomentarzu%>/kom/<%=capfile%>/<%=strona%>" method="post"> <button class="vote" id="vote_down_kom"></button></form>
+                        <div  class="block wid25">
+                          <span style="color:black"><%=postulaty3[j].ilosc_like%></span>
+                          <form style="display:inline;color: white" action="/vote_up/<%=postulaty3[j].IdKomentarzu%>/kom/<%=capfile%>/<%=strona%>" method="post">
+                            <button class="vote" id="vote_up_kom" > 
+                              <img style="width:100%;" src="/images/layout_addons/like.png">
+                            </button> 
+                          </form>
+                          <span style="color:#800000"><%= postulaty3[j].ilosc_dislike %></span>
+                          <form style="display: inline; color: white" action="/vote_down/<%=postulaty3[j].IdKomentarzu%>/kom/<%=capfile%>/<%=strona%>" method="post">
+                            <button class="vote" id="vote_down_kom">
+                              <img style="width:100%;" src="/images/layout_addons/dislike.png">
+                            </button>
+                          </form>
                         </div>
                       </div>
 
