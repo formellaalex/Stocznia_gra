@@ -1008,23 +1008,24 @@ label input {
                     <%if(postulaty3[j].id_parent=== postulaty3[i].IdKomentarzu){ %> 
                       <div class="hidenlevel" id="p<%=postulaty3[j].id_parent%>" >
                           <%if(321==idcookies){%>
-                            <a href="/delete/<%=postulaty3[j].IdKomentarzu%>"><img class="icon1" src="/images/layout_addons/smietniczek_vectorized.png" ><p></p></img></a>
-                            <%}else{%>
-                            <form  class="test_form" style=" float:right " method="post"> <input type="hidden" name="delete_message" class="message" value=""/><button class="postulat white" style="border:none; background: none; margin:0;padding: 0"><img class="icon" src="/images/layout_addons/smietniczek_vectorized.png" ></button></form>
-                            <%}%>
-                            <% postulaty3[j].tresc %>
-                          
-                          <% if(postulaty4.length){
-                              for(var h = postulaty4.length-1;h >=0;h--) { %>
-                                  <%if( postulaty4[h].idpost_kom === postulaty3[j].IdKomentarzu){%>
-
-                                   <%if( postulaty4[h].rozszerzenie==="jpg"||postulaty4[h].rozszerzenie==="png"|| postulaty4[h].rozszerzenie==="JPG"||postulaty4[h].rozszerzenie==="PNG" ){%>
-                                      <a href="<%=postulaty4[h].pathfile_kom%>"><img src="<%=postulaty4[h].pathfile_kom%>" class="display zdjecie_podkomentarz" width="100%" heigth="auto" alt="Błąd" /> </a>
-                                  <%}else{ %>
-                                   <p class="zalaczniki" style="left:20px"> <a href="<%=postulaty4[h].pathfile_kom%>"> <%=postulaty4[h].name_pic%></a></p><%}%>
-                                  <%}%>
-                              <% } %>
-                          <% } %> 
+                             <a href="/delete/<%=postulaty3[j].IdKomentarzu%>"><img class="icon1" src="/images/layout_addons/smietniczek_vectorized.png" ><p></p></img></a>
+                             <%}else{%>
+                             <form  class="test_form" style=" float:right " method="post"> <input type="hidden" name="delete_message" class="message" value=""/><button class="postulat white" style="border:none; background: none; margin:0;padding: 0"><img class="icon" src="/images/layout_addons/smietniczek_vectorized.png" ></button></form>
+                             <%}%>
+                      
+                           
+                           <p class="tresc_postu tytul black"> <%= postulaty3[j].tresc %> </p>
+                           <% if(postulaty4.length){
+                               for(var h = postulaty4.length-1;h >=0;h--) { %>
+                                   <%if( postulaty4[h].idpost_kom === postulaty3[j].IdKomentarzu){%>
+                                     
+                                    <%if( postulaty4[h].rozszerzenie==="jpg"||postulaty4[h].rozszerzenie==="png"|| postulaty4[h].rozszerzenie==="JPG"||postulaty4[h].rozszerzenie==="PNG" ){%>
+                                       <a href="<%=postulaty4[h].pathfile_kom%>"><img src="<%=postulaty4[h].pathfile_kom%>" class="display zdjecie_podkomentarz" width="100%" heigth="auto" alt="Błąd" /> </a>
+                                   <%}else{ %>
+                                    <p class="zalaczniki" style="left:20px"> <a href="<%=postulaty4[h].pathfile_kom%>"> <%=postulaty4[h].name_pic%></a></p><%}%>
+                                   <%}%>
+                               <% } %>
+                           <% } %> 
                           <a href="/kolonisci/<%=postulaty3[j].nick%>" class="block width75"> 
                             <img style="display: inline" src="<%=postulaty3[j].profilowe%>" class="display" width="10%" heigth="auto" alt="brak zdj" />
                             <p style="display: inline;margin-left:3%" class="users black" id="tworca_postu"><%= postulaty3[j].imie %> <%= postulaty3[j].nazwisko %> 
