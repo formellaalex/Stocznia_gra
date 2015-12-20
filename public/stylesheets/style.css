@@ -23,7 +23,7 @@ border-bottom:2px solid black;
 }
 
 .hidenlevel #vote_down_kom,.hidenlevel #vote_up_kom{
-width: 30%;
+width: 25%;
 padding:0;
 margin:0;
 height:auto;
@@ -38,7 +38,7 @@ height:auto;
 .block{
 
     display:inline-block;
->>>>>>> fb7bcb93e2f7c3c848764e65ac51244da2667d23
+
 }
 
 .wid25{
@@ -47,6 +47,7 @@ height:auto;
 }
 .width75{
     width:75%;
+    height:50px;
 }
 .zdjecie_podkomentarz{
     margin-bottom: 5%;
