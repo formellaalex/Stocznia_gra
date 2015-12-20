@@ -123,8 +123,11 @@ label{
 }
 
 .dark_red{
-    font-style: normal;
     color: #800000;
+}
+
+.italic{
+    font-style: italic;
 }
 
 .stoczniowiec{
