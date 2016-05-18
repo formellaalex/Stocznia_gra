@@ -420,8 +420,8 @@ app.use(function(err, req, res, next) {
 });
 
 db_config = {
-  host     : '127.13.120.2',
-  port     : '3306',
+  host     : 'localhost',
+  socketPath: '/var/run/mysqld/mysqld.sock',
   user     : 'adminmPNjwgk',
   password : 'dhby1WSwYuxP',
   database : 'graostocznie',
@@ -463,14 +463,6 @@ function handleDisconnect() {
 handleDisconnect();
 
 module.exports = app;
-
-fs.writeFile("pliczek.txt", process.env.OPENSHIFT_MYSQL_DB_HOST, function(err) {
-    if(err) {
-        return console.log(err);
-    }
-
-    console.log("The file was saved!");
-}); 
 
 app.listen(server_port, server_ip_address, function () {
   console.log( "Listening on " + server_ip_address + ", server_port " + server_port + ", host: " + process.env.OPENSHIFT_MYSQL_DB_HOST );

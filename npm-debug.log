@@ -1,14 +1,14 @@
 0 info it worked if it ends with ok
-1 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'start' ]
-2 info using npm@1.4.28
-3 info using node@v0.10.33
+1 verbose cli [ '/usr/bin/nodejs', '/usr/bin/npm', 'start' ]
+2 info using npm@1.4.21
+3 info using node@v0.10.25
 4 verbose run-script [ 'prestart', 'start', 'poststart' ]
 5 info prestart Calodobowe@0.0.0
 6 info start Calodobowe@0.0.0
 7 verbose unsafe-perm in lifecycle true
 8 info Calodobowe@0.0.0 Failed to exec start script
 9 error Calodobowe@0.0.0 start: `node server.js`
-9 error Exit status 8
+9 error Exit status 127
 10 error Failed at the Calodobowe@0.0.0 start script.
 10 error This is most likely a problem with the Calodobowe package,
 10 error not with npm itself.
@@ -17,10 +17,10 @@
 10 error You can get their info via:
 10 error     npm owner ls Calodobowe
 10 error There is likely additional logging output above.
-11 error System Linux 3.13.0-46-generic
-12 error command "/usr/local/bin/node" "/usr/local/bin/npm" "start"
-13 error cwd /home/lask/Stocznia_gra
-14 error node -v v0.10.33
-15 error npm -v 1.4.28
+11 error System Linux 4.2.0-36-generic
+12 error command "/usr/bin/nodejs" "/usr/bin/npm" "start"
+13 error cwd /home/formel/stocznia2016/binary
+14 error node -v v0.10.25
+15 error npm -v 1.4.21
 16 error code ELIFECYCLE
 17 verbose exit [ 1, true ]
