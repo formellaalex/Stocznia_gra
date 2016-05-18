@@ -24,8 +24,8 @@ var index = require('./routes/index');
 //module exp
 var app =  module.exports = express();
 //var server = require('../server');
-var server_port = process.env.OPENSHIFT_NODEJS_PORT || 3000
-var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
+var server_port = 3000
+var server_ip_address = '127.0.0.1'
 
 
 // view engine setup
@@ -462,10 +462,10 @@ function handleDisconnect() {
 
 handleDisconnect();
 
-module.exports = app;
+//module.exports = app;
 
-app.listen(server_port, server_ip_address, function () {
-  console.log( "Listening on " + server_ip_address + ", server_port " + server_port + ", host: " + process.env.OPENSHIFT_MYSQL_DB_HOST );
+app.listen(server_port, function () {
+  console.log( "Listening on server_port " + server_port);
 });
 //jeszcze mi nie kasuj będę tego potrzebował do wylogowywaniaF
 /*app.get('/', function(req, res){
@@ -488,15 +488,13 @@ app.post('/', function(req, res){
 });*/
 
 
-/*
-  <% if(postulaty.length){ 
-                                
-                        for(var i = postulaty1.length-1;i >=0;i--) { %>
-               <!--   <p class="naglowek_postu"> <a href="/przeszlosc/451"> <%= postulaty[i].tytul%> </a></p>-->
-,postulaty1:rows[1]
-                            <p class="gjhg"> <a href="<%=postulaty1[i].pathfile%>"> <%= postulaty1[i].idpost%> <%=postulaty1[i].pathfile%></a></p> 
-                      <!--    <p class="naglowek_postu"> <a href="/przeszlosc/<%=i%>"> <%= postulaty[i].tytul%> </a></p>-->
-                        <% } %>
-                
-                    <% } %>
-                    */
+// var express = require('express');
+// var app = express();
+
+// app.get('/', function(req, res){
+//   res.send('Hello World');
+// });
+
+// var server = app.listen(3000, function(){
+//   console.log('Magic is happening on port 3000')
+// });
