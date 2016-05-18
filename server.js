@@ -420,10 +420,10 @@ app.use(function(err, req, res, next) {
 });
 
 db_config = {
-  host     : '1ubuntu-512mb-fra1-01graostocznie',
+  host     : '127.13.120.2',
   port     : '3306',
-  user     : 'root',
-  password : 'delficka777',
+  user     : 'adminmPNjwgk',
+  password : 'dhby1WSwYuxP',
   database : 'graostocznie',
   multipleStatements: true 
 
