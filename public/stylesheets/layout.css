@@ -1,0 +1,18 @@
+body {
+	background : url("/images/layout/background_small.jpg");
+	background-size: 100% 100%;
+	background-attachment: fixed;
+	padding: 20px 200px 0px 200px;
+}
+
+.line-footer {
+	position: absolute;
+    bottom: 0;
+    left: 0;
+    max-width: 100%;
+}
+
+#slider {
+	position: relative;
+    min-height: 400px;
+}

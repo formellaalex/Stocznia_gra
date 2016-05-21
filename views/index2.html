@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+
+
+<html class="no-js" lang="en" > 
+
+    <head>
+    
+        <meta charset="utf-8" />
+        
+        <meta name="viewport" content="width=device-width" />
+        <link rel="stylesheet" href="Zurb/css/foundation.css" />
+        <link rel="stylesheet" href="/stylesheets/style.css" />
+        <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="bootstrap/dist/css/bootstrap-theme.min.css" />
+        <link rel="stylesheet" href="stylesheets/pierwszyEkran.css"/>
+        <script src="Zurb/js/vendor/custom.modernizr.js"></script>
+
+        <script src="Zurb/js/vendor/jquery.js"></script>
+        
+        <script src="Zurb/js/foundation.min.js"></script>
+       
+        <script src="/javascripts/funkcje_ajax.js"> </script>
+         <script src="bootstrap/dist/js/bootstrap.min.js"></script>   
+
+    </head>
+
+<!--
+	<body id="logowanie" style="background: url('/images/layout/background1.png');">
+-->
+<body id="logowanie">
+
+  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="false">
+
+  <!-- Indicators -->
+ <!-- <ol class="carousel-indicators">
+    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+  </ol>
+-->
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner hello" style="" role="listbox">
+    
+    <div class="item active tlo1">
+    <!--<a class="right carousel-control"style="margin-top:85vh" href="#carousel-example-generic" role="button" data-slide="next">
+      galeria
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>-->
+
+                          <div class="row" id="log_div" style="">
+                              <form method="post" action="/log">
+                                  <div style="display: block">
+                                      <div style="display: inline-block">  
+                                          <input type='text' name='email' placeholder="E-mail"/>
+                                      </div>
+                                  </div>
+                                  <div style:"display:block">
+                                      <div style="display: inline-block">  
+                                          <input type='password' name='haslo' placeholder="Hasło"/>
+                                      </div>
+                                  </div>
+                                  <button id="zaloguj" type='submit' onlick="zalogowano()"></button>
+                              </form>
+                              <a href="/register" class="important_link">  Nie masz konta? Zarejestruj się. </a>
+                              <br>
+                              <br>
+                              <br>
+                          </div>
+      <div class="carousel-caption">
+        <div class="container">
+          <div class="row" style="padding-bottom:30px; ">
+          <h3 style="text-align: center;background-color:rgba(0,0,0,0.5);display: table;margin: auto"> <%= info %> </h3>
+            <div class="col-md-3 tloButton" id="czlowiekZeStoczni"><p>CZŁOWIEK ZE STOCZNI</p></div>
+            <div class="col-md-3 tloButton" id="zasady"><p>ZASADY</p></div>
+            <div class="col-md-3 tloButton" onclick="show_log_div()"><p>LOGOWANIE</p></div>
+            <div class="col-md-3 tloButton"  href="#carousel-example-generic" role="button" data-slide="next"><p>GALERIA<span class="glyphicon glyphicon-chevron-right"></span></p></div>
+          </div>
+           <div class="row">
+
+            <div class="col-xs-6   col-sm-3  col-md-3  col-lg-3"><img class="xstyle" src="images/pierwszyEkran/logo0.png"></img></div>
+            <a href="http://www.intbau.org/" target="_blank"><div style="width:130px"class="col-xs-6   col-sm-3  col-md-3  col-lg-3 formSize"><img src="images/pierwszyEkran/logo3.png"></img></div></a>
+            <a href="http://www.creativefutur.eu/" target="_blank"><div style="padding-right:0"  class="col-xs-6   col-sm-3  col-md-3  col-lg-3 formSize"><img src="images/pierwszyEkran/logo1.png"></img></div></a>
+            <a href="http://www.uws.ac.uk/home/ " target="_blank"><div style="padding-left:0" class="col-xs-6   col-sm-3  col-md-3  col-lg-3 formSize"><img src="images/pierwszyEkran/logo2.png"></img></div></a>
+            
+          </div>
+        </div><!--container-->
+      </div><!--carousel-caption-->
+    </div><!--tlo1-->
+
+    <div class="item tlo2" style="background:white" style="color:black;">
+    <!--<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>-->
+    <a class="right carousel-control " id="holl" href="#carousel-example-generic" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+    <div class="carousel-caption" style="top: 0px;">
+      <!--lewa strona-->
+      <div class="col-md-6 bialetlo">
+        <p style="font-size: 25px;line-height: 25px;"><span style="color:red">G</span>aleria <span style="color:red">S</span>ztuki <span style="color:red">K</span>rytycznej <span style="color:red;letter-spacing:6px">STOCZNIA</span> prezentuje:
+        </p>
+   
+        <p>
+          Centarlny fragment muralu Iwony Zając " Stocznia " z roku 2004, Przedstawiający Stoczniową Viktorię  (lub Nike).
+        </p>
+        <p style="text-align:right;font-size:13px;line-height:13px;margin-top: 0px;margin-right-value: 0px;margin-bottom: 0px;
+        margin-left-value: 0px;">
+          fot. Roman Sebastyański (2006)
+        </p>
+        <img src="images/pierwszyEkran/TUTAJ.png" style="width:87%" />
+        <div class="col-md-10" style="padding-left: 0px;">
+        <p style="font-size:15px">
+          Mural " Stocznia " (o łącznej powieszchni ok. 250m2) został wykonany techniką szablonów i znajdował  się na zewnętrznej części stoczniowego muru przy ul. Jana z Kolna, w okolicach budynku 141B (dawnego biura projektowgo) oraz bramy nr 3. Prezentował wypowiedzi stoczniowców, którzy przepracowali w tym miejscu około 40 lat.
+        <br>
+          Wraz ze zburzeniem muru w styczniu 2013 roku, w celu poszerzenia ul. jana z kolna (w przyszłości), dzieło zostało przeniesione do przestrzeni wirtualnej w ramach projektu " <a href="http://www.stoczniaweterze.com/" target="_blank" style="text-decoration: underline;"> Stocznia w eterze </a> ".
+        </p>
+
+        </div>
+        <div class="col-md-2">
+        <a href="http://www.stoczniaweterze.com/" target="_blank"><img src="images/pierwszyEkran/sto1.png" style="width:80%" /> </a> <a href="http://www.stoczniaweterze.com/" target="_blank"><p style="font-size:10px">Stocznia w eterze<p></a>
+        </div>
+      </div>
+      <!--prawa strona-->
+      <div class="col-md-6 bialetlo">
+        <div style="padding-top:4vh;transform:rotate(-10deg); -webkit-transform:rotate(-10deg); 
+-moz-transform:rotate(-10deg); -o-transform:rotate(-10deg); font-size:14px"><p>
+        Wystawa czynna w dniach <span style="color:red">1-31 listopada 2015 (7/24)</span> <br>
+        przygotował : Roman Sebastyański</p>
+        </div>
+
+
+        <p style="font-size:15px; padding-top:13vh; ">Iwona Zając jest pionierką astystycznej kolonizacji dawnych terenów Stoczni Gdańskiej od roku 2002. Posiadła pracownie w "Centrali" (dawnym budynku centrali telefonicznej i zakładowego radiowęzła).<br><br>W latach 2003 i 2004 zoranizowała Międzynarowy Plener Młodych Artystów " <a href="https://konfrontacje.wordpress.com/ "  target="_blank" style="text-decoration: underline;">Stocznia-spojrzenie z zewnątrz / Konfrontacje </a> " - wspólnie z brytyjską artystką Ell Southern z Bristolu i artystka z Warszawy Ewa Majewska. Podczas tego pleneru stworzyła cykl obrazów olejnych " Po godzinach " zestawionych z 12 obrazami stoczniowców ze Stowarzyszenia Artystów Amatorów, które działało w Stoczni do połowy lat 80. Kiedyś wisiały w halach, biurach, czy szatniach. W 2007 roku została wyrzucona ze swojej pracowni (i ze Stoczni) wraz ze wszystkimi Kolonistami z "Centrali" przez właściciela terenu - duńską firme BPTO<p>
+             <div class="col-md-8"><a href="https://konfrontacje.wordpress.com/ "  target="_blank"><img style="max-width:75%" src="images/pierwszyEkran/plakat.jpg"></a><p style="font-size:10px;line-height:10px">Pocztówka promująca projekt (z archiwum Romana Sebastyańskiego)</p></img></div>
+             <div class="col-md-4"><a href=" https://konfrontacje.wordpress.com/category/iwona-zajac/ " target="_blank" ><img style="max-width:80%" src="images/pierwszyEkran/helo.jpg"></a><p style="font-size:10px;line-height:10px">Autoportret artystki z galerii " <a href=" https://konfrontacje.wordpress.com/category/iwona-zajac/ "  target="_blank" style="text-decoration: underline;">po godzinach</a>  " </p></img></div>
+      </div> 
+    </div>
+
+    </div><!--tlo2-->
+
+    <div class="item tlo3">
+    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control"href="#carousel-example-generic" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+      <div class="carousel-caption">
+        <h3>AUTOR<h3>
+        <hr class="przerywnik">
+        <p>kilka słów o autorze</p>
+      </div>
+
+    </div><!--tlo3-->
+
+    <div class="item tlo4">
+    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control"href="#carousel-example-generic" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+      <div class="carousel-caption">
+        <h3>AUTOR<h3>
+        <hr class="przerywnik">
+        <p>kilka słów o autorze</p>
+      </div>
+
+    </div><!--tlo4-->
+
+    <div class="item tlo5">
+    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control"href="#carousel-example-generic" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+      <div class="carousel-caption">
+        <h3>AUTOR<h3>
+        <hr class="przerywnik">
+        <p>kilka słów o autorze</p>
+      </div>
+
+    </div><!--tlo5-->
+
+    <div class="item tlo6">
+    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control"href="#carousel-example-generic" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+      <div class="carousel-caption">
+        <h3>AUTOR<h3>
+        <hr class="przerywnik">
+        <p>kilka słów o autorze</p>
+      </div>
+
+    </div><!--tlo6-->
+
+    hello
+  </div>
+
+  <!-- Controls   <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>-->
+
+</div>
+       <!-- <script>
+          window.fbAsyncInit = function() {
+            FB.init({
+              appId      : '855301441198555',
+              xfbml      : true,
+              version    : 'v2.2'
+            });
+          };
+
+          (function(d, s, id){
+             var js, fjs = d.getElementsByTagName(s)[0];
+             if (d.getElementById(id)) {return;}
+             js = d.createElement(s); js.id = id;
+             js.src = "//connect.facebook.net/en_US/sdk.js";
+             fjs.parentNode.insertBefore(js, fjs);
+           }(document, 'script', 'facebook-jssdk'));
+        </script>
+            
+      
+        <div class="row">
+            <div class="small-3 small-centered columns" id="header">
+                    <h4 id="welcome_title"> <%= info %> </h4>
+            </div>
+         </div>
+
+
+        <div class="row" style="text-align: center"> 
+            <div class="large-4 small-12 columns" style="text-align: center">
+              <div class="row">
+                  <div class="large-12 small-12 columns" id="przeszlosc_start">
+                  </div>
+                  <div class="large-12 small-12 columns">
+                      <h5 class="opis"> CO JEST NASZYM WSPÓLNYM DZIEDZICTWEM STOCZNI GDAŃSKIEJ, KTÓRE CHCEMY ZACHOWAĆ I ROZWIJAĆ? </h5>
+                      
+                  </div>
+              </div>
+            </div>
+
+            <div class="large-4 small-12 columns" style="text-align: center">
+                <div class="row">
+                  <div class="large-12 small-12 columns" id="kolonia_start">
+
+                  </div>
+
+                  <div class="large-12 small-12 columns">
+                       <h5 class="opis"> KOLONIZUJMY  MENTALNIE DAWNE TERENY STOCZNI GDAŃSKIEJ!!! </h5>
+                      </br>  
+                      <h6 class="important_link"> <a style="color: white"> Człowiek ze stoczni </a> </h6>
+                      </br>
+                      <h6 class="important_link"> <a href="/reguly" style="color: white"> Reguły gry </a> </h6>
+                      </br>
+                      <h6 class="important_link"> <a onclick="show_log_div()" style="color: white"> Logowanie </a> </h6>
+                      <div>
+                          <div class="row" id="log_div">
+                              <form method="post" action="/log">
+                                  <div style="display: block">
+                                      <div style="display: inline-block">  
+                                          <input type='text' name='lemail' placeholder="E-mail"/>
+                                      </div>
+                                  </div>
+                                  <div style:"display:block">
+                                      <div style="display: inline-block">  
+                                          <input type='password' name='lhaslo' placeholder="Hasło"/>
+                                      </div>
+                                  </div>
+                                  <button id="zaloguj" type='submit' onlick="zalogowano()"></button>
+                              </form>
+                              <a href="/register" class="important_link">  Nie masz konta? Zarejestruj się. </a>
+                              <br>
+                              <br>
+                              <br>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+
+            </div>
+            <div class="large-4 small-12 columns" style="text-align: center">
+              <div class="row">
+                  <div class="large-12 small-12 columns" id="przyszlosc_start">
+
+                  </div>
+                  <div class="large-12 small-12 columns">
+                    <h5 class="opis">JAK CHCEMY ZACHOWAĆ, PRZEKSZTAŁCAĆ I ROZWIJAĆ NASZE DZIEDZICTWO STOCZNI GDAŃSKIEJ?</h5>
+                  </div>
+              </div>
+            </div>
+        </div>
+        <br>
+            <br>
+        <footer id="sentence_bottom">
+        </footer> -->
+
+      <script>
+     document.getElementById('zasady').addEventListener('click', function() { location.href = '/zasady'; }, false);
+     document.getElementById('czlowiekZeStoczni').addEventListener('click', function() { location.href = '/czlowiek_ze_stoczni'; }, false);
+     </script> 
+</body>
+
+</html>
