@@ -1,88 +1,103 @@
 <!DOCTYPE html>
-
-
 <html class="no-js" lang="en" > 
-
     <head>
-    
         <meta charset="utf-8" />
-        
         <meta name="viewport" content="width=device-width" />
-        <link rel="stylesheet" href="Zurb/css/foundation.css" />
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css" />
         <link rel="stylesheet" href="stylesheets/style.css" />
+        <link rel="stylesheet" href="stylesheets/layout.css" />
         <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
         <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-        
-        
-        <script src="Zurb/js/vendor/custom.modernizr.js"></script>
-
-        <script src="Zurb/js/vendor/jquery.js"></script>
-        
-        <script src="Zurb/js/foundation.min.js"></script>
         <script src="/javascripts/funkcje_ajax.js"> </script>
             
     </head>
-
-
 	<body>
-
-        <script>
-        </script>
-
-
-          <div class="row">
-            <div class="small-3 small-centered columns" id="header">
-                    
-            </div>
-         </div>
-         <div class="row" style="height: 100%;margin-bottom:10%">
-            <div class="small-3 small-centered columns">
-                 <div id="register">
-                    <h3 style="text-align: center;color: white"> Rejestracja </h3>
-                    </br>
+    <header class="row">
+      <div class="col-xs-1">
+      </div>
+        <div class="col-xs-4">
+          <a href="/graostocznie"> <img class="img-responsive" src="/images/icons/gra-o-stocznie-logotyp.png" alt="Gra o stocznie"/> </a>
+        </div>
+        <div class="col-xs-2">
+          <div class="graostocznie-logo-header">
+            <img class="img-responsive" src="/images/icons/gos-logo.png" alt="Gra o stocznie"/>
+          </div>
+        </div>
+        <div class="col-xs-4">
+          <img class="img-responsive" src="/images/icons/hanza-logo.png" alt="Gra o stocznie"/>
+        </div>
+        <div class="col-xs-1">
+      </div>
+      </header>
+    <section>
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-4">
+                 <div class="register-block">
+                    <h3 class="white text-center register-title"> Rejestracja </h3>
                     <h3 class="dark_red" style="text-align: center"> <%= monit %> </h3>
-                    <br />
-                    <form method="post" action="/add_user" onsubmit='return validate("#password","#repeat_password","#email")'>
-
-                        <input type='text' name='imie' placeholder="Imie uczestnika"/>
-                        <input type='text' name='nazwisko' placeholder="Nazwisko uczestnika"/>
-                        <input type='text' name='email' id='email' placeholder="E-mail"/>
-                        <input type='password' name='haslo' id='password' placeholder="Hasło"/>
-                        <input type='password' name='phaslo' id='repeat_password' placeholder="Powtórz hasło"/>
-                        <p id="pDodatkInfo"> + Informacje dodatkowe</p>
+                    <form method="post" action="/add_user" onsubmit='return validate("#password","#repeatPassword","#email")'>
+                        <input class="form-control" type='text' name='_name' placeholder="Imie uczestnika"/>
+                        <input class="form-control" type='text' name='surname' placeholder="Nazwisko uczestnika"/>
+                        <input class="form-control" type='text' name='email' id='email' placeholder="E-mail"/>
+                        <input class="form-control" type='password' name='password' id='password' placeholder="Hasło"/>
+                        <input class="form-control" type='password' name='rpassword' id='repeatPassword' placeholder="Powtórz hasło"/>
+                        <h3 class="white" id="pDodatkInfo"> + Informacje dodatkowe</h3>
                         <div id="informacjeDodatkoweRejestracja" style="display:none">
-                          <textarea name="o_mnie" placeholder="O sobie" cols="10" rows="10"></textarea>
+                          <textarea class="form-control" name="about_me" placeholder="O sobie" cols="10" rows="10"></textarea>
                         </div>
                         <div style="text-align: center">
-                             <button id="zarejestruj"> </button>
+                            <button class="register-submit"> </button>
                         </div>
-                       
                     </form>
                 </div>
             </div>
          </div>
-
-        
-        <footer id="sentence_bottom"></a>  
-        
-
-<!-- <form method="post" action="/create">
-               
-                <input type='submit' />
-            </form>-->
-<!--<form method="post" action="/usunieciewartoscipoczatkowejkolumny">
-               <label > usun </label>
-                <input type='submit' />
-            </form>-->
-
-<!-- <script src="javascripts/cookies.js" />
-
-
-        <script>
-            $(document).foundation();
-
-            $(document).foundation('joyride', 'start');
-        </script> -->
+    </section>
+         
+    <footer class="text-center footer">
+        <img class="line-footer" class="img-responsive" src="/images/layout/line_above_icons.png" />
+        <div class="row">
+            <span>
+              <img class="footer-icon-bar" src="/images/icons/to-head.png" />
+            </span>
+            <span>
+              <a href="/"> <img class="footer-icon-bar" src="/images/icons/home.png" /> </a>
+            </span>
+            <span>
+              <a href="/login"> <img class="footer-icon-bar" src="/images/icons/log.png" /> </a>
+            </span>
+            <span>
+              <a href="/kolonista"> <img class="footer-icon-bar" src="/images/icons/user.png" /> </a>
+            </span>
+            <span>
+              <a href="/kolonia"> <img class="footer-icon-bar" src="/images/icons/kolonia.png" /> </a>
+            </span>
+            <span>
+              <img class="footer-icon-bar" src="/images/icons/mailbox.png" />
+            </span>
+            <span>
+              <img class="footer-icon-bar" src="/images/icons/admin.png" />
+            </span>
+            <span>
+              <a href="/reguly"> <img class="footer-icon-bar" src="/images/icons/rules.png" />  </a>
+            </span>
+            <span>
+              <a href="/postulaty "><img class="footer-icon-bar" src="/images/icons/write-pos.png" /> </a>
+            </span>
+            <span>
+              <img class="footer-icon-bar" src="/images/icons/info.png" />
+            </span>
+            <span>
+              <img class="footer-icon-bar" src="/images/icons/gallery.png" />
+            </span>
+            <span>
+              <img class="footer-icon-bar" src="/images/icons/partners.png" />
+            </span>
+            <span>
+              <img class="footer-icon-bar" src="/images/icons/to-down.png" />
+            </span>
+        </div>
+  </footer> 
 </body>
-
 </html>

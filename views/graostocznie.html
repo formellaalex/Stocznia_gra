@@ -16,7 +16,7 @@
   <div class="col-xs-1">
   </div>
     <div class="col-xs-4">
-      <a href="/graostocznie"> <img class="img-responsive" src="/images/icons/gra-o-stocznie-logotyp.png" alt="Gra o stocznie"/> </a>
+      <a href="/graostocznie"> <img class="img-responsive" src="/images/icons/gra-o-stocznie-logotyp-hover.png" alt="Gra o stocznie"/> </a>
     </div>
     <div class="col-xs-2">
       <div class="graostocznie-logo-header">
@@ -30,20 +30,17 @@
   </div>
   </header>
 
-  <section class="text-center">
-  <div class="row hidden-xs text-center" id="slider">
-    <div class="slider-container">
-      <img class="slider-frame" src="images/layout/slider-border.png" />
-      <div id="slides">
-        <img src="images/pierwszyEkran/plakat.jpg">
-        <img src="images/pierwszyEkran/plakat.jpg">
-        <img src="images/pierwszyEkran/plakat.jpg">
-        <img src="images/pierwszyEkran/plakat.jpg">
-        <a href="#" class="slidesjs-previous slidesjs-navigation"><i class="icon-chevron-left icon-large"></i></a>
-        <a href="#" class="slidesjs-next slidesjs-navigation"><i class="icon-chevron-right icon-large"></i></a>
-      </div>
+  <section>
+    <div class="row dotted-block">
+    <div class="col-md-2">
+      <span> <img class="forum-header-icon" src="/images/icons/add-post.png" /> </span>
+      <span> <img class="forum-header-icon" src="/images/icons/add-post.png" /> </span>
     </div>
-  </div>
+
+    <div class="row">
+      <div class="col-md-12">
+      </div>
+    </div> 
   </section>
 
   <footer class="text-center footer">
@@ -53,16 +50,16 @@
           <img class="footer-icon-bar" src="/images/icons/to-head.png" />
         </span>
         <span>
-          <a href="/"> <img class="footer-icon-bar" src="/images/icons/home.png" /> </a>
+          <img class="footer-icon-bar" src="/images/icons/home.png" />
         </span>
         <span>
-          <a href="/login"> <img class="footer-icon-bar" src="/images/icons/log.png" /> </a>
+          <img class="footer-icon-bar" src="/images/icons/logout.png" />
         </span>
         <span>
-          <a href="/kolonista"> <img class="footer-icon-bar" src="/images/icons/user.png" /> </a>
+          <img class="footer-icon-bar" src="/images/icons/user.png" />
         </span>
         <span>
-          <a href="/kolonia"> <img class="footer-icon-bar" src="/images/icons/kolonia.png" /> </a>
+          <img class="footer-icon-bar" src="/images/icons/kolonia.png" />
         </span>
         <span>
           <img class="footer-icon-bar" src="/images/icons/mailbox.png" />
@@ -71,10 +68,10 @@
           <img class="footer-icon-bar" src="/images/icons/admin.png" />
         </span>
         <span>
-          <a href="/reguly"> <img class="footer-icon-bar" src="/images/icons/rules.png" />  </a>
+          <img class="footer-icon-bar" src="/images/icons/rules.png" />
         </span>
         <span>
-          <a href="/postulaty "><img class="footer-icon-bar" src="/images/icons/write-pos.png" /> </a>
+          <img class="footer-icon-bar" src="/images/icons/write-pos.png" />
         </span>
         <span>
           <img class="footer-icon-bar" src="/images/icons/info.png" />
@@ -93,13 +90,6 @@
 
 </body>
 <script>
-    $(function() {
-      $('#slides').slidesjs({
-        width: 667,
-        height: 290,
-        navigation: false
-      });
-    });
     $(document).ready(function() {
        $(".footer-icon-bar").hover(
         function() {
@@ -112,6 +102,6 @@
        }); 
     });
     
-  </script>
+</script>
 
 </html>

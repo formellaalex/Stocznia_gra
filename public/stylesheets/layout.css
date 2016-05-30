@@ -7,6 +7,7 @@ body {
 
 .line-footer {
     max-width: 100%;
+    padding-bottom: 15px;
 }
 
 .graostocznie-logo-header {
@@ -28,4 +29,33 @@ body {
 	margin-left: 0 !important;
 	padding-right: 0 !important;
 	margin-right: 0 !important;
+}
+
+.forum-header-icon {
+  width: 40%;
+}
+
+.dotted-block {
+  border-bottom-style: dotted;
+  color: white;
+  padding-bottom: 1%;
+}
+
+.register-block input, textarea {
+  margin-bottom: 4%;
+}
+
+.register-title  {
+  margin-top: 10%;
+}
+
+.register-submit {
+    background: url("/images/layout_addons/stworz_konto.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    border: none;
+    min-height: 36.75px;
+    min-width: 176px;
+    margin-top: 10%;
+    margin-bottom: 8%;
 }
