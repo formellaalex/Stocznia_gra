@@ -3,9 +3,7 @@ var encode = require( 'hashcode' ).hashCode;
 var hash = encode().value( "my string value" ); 
 var md5 = require('md5');
 var router = express.Router();
-
-var sendgrid = require("sendgrid")("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");
-var email = new sendgrid.Email();
+var email = require("./email.js");
 
 var zalogowano = false;
 var zarazPoZalogowaniu = true;
@@ -24,6 +22,43 @@ function tokenGen(length)
   }
   return str;
 }
+
+router.post('/add_user', function(req,res){
+  var token = tokenGen(19);
+  var post  = {
+    _name: req.body._name, surname: req.body.surname,email: req.body.email,
+    password: req.body.haslo, profile_img: "/default/batman.jpg",about_me: req.body.about_me,
+    active: token
+   };
+  connection.query('SELECT email from users where email="' + req.body.email +'";', function(err,czyTenSamMail){
+    if(czyTenSamMail.length == 0){
+        connection.query('INSERT INTO users SET ?', post, function(err, result)
+            {
+              if (err) console.log("Error inserting : %s ",err );
+                  connection.query('SELECT MAX(id) as id from users', function(err, insertId){
+                  monit = "Na podany w formularzu email został wysłany link aktywacyjny. Proszę otworzyć skrzynkę mailową i zapoznać się z treścią otrzymanego maila, aby dokończyć rejestrację.";
+                  
+                  var values = {
+                    msg: "Dupadupaduap",
+                    from: "stoczniagame@gmail.com",
+                    to: "formella.alex@gmail.com",
+                    subject: "Testowy temat"
+                  }
+                  email.postfixSend(values, function(err){
+                      if(err) res.redirect('/error');
+                      else res.redirect("/activation");
+                  });
+                  
+              });
+      });
+    }
+    else{
+      monit = "Podany email już isnieje w naszej bazie. Proszę zarejestrować się na inny adres.";
+      res.redirect('/register');
+    }
+  });
+});
+
 
 router.get('/error', function(req,res){
   res.render("error.html");
@@ -62,12 +97,10 @@ router.get("/activate/:id/:hash",function(req,res){
     if(result.length > 0){
       connection.query("UPDATE users SET aktywne = NULL WHERE id=" + connection.escape(req.params.id), function(err,result2){
         if(err){
-
           res.render("/error");
         }
         else{
           monit = "Konto zostało aktywowane. Możesz się teraz zalogować.";
-          console.log(result2);
           res.redirect("/activation");
         }
       });
@@ -75,44 +108,10 @@ router.get("/activate/:id/:hash",function(req,res){
     else{
       monit = "Link aktywacyjny jest niepoprawny lub konto zostało już aktywowane.";
       res.redirect("/activation");
-
     }
   });
   monit = "";
 });
-
-//Dodaj uzytkownika
-router.post('/add_user', function(req,res){
-  var token = tokenGen(19);
-  var post  = {
-    _name: req.body._name, surname: req.body.surname,email: req.body.email,
-    password: req.body.haslo, profile_img: "/default/batman.jpg",about_me: req.body.about_me,
-    active: token
-   };
-  connection.query('SELECT email from users where email="' + req.body.email +'";', function(err,czyTenSamMail){
-    if(czyTenSamMail.length == 0){
-        connection.query('INSERT INTO users SET ?', post, function(err, result)
-            {
-              if (err)
-                  console.log("Error inserting : %s ",err );
-                  connection.query('SELECT MAX(id) as id from users', function(err, insertId){
-                  monit = "Na podany w formularzu email został wysłany link aktywacyjny. Proszę otworzyć skrzynkę mailową i zapoznać się z treścią otrzymanego maila, aby dokończyć rejestrację.";
-                  email.addTo(req.body.email);
-                  email.setFrom("stoczniagame@gmail.com");
-                  email.setSubject("Rejestracja w Grze o Stocznie");
-                  email.setHtml("To już ostatni krok do rozpoczęcia Gry o stocznię! Kliknij w poniższy link aby aktywować swoje konto : \n http://www.gra-o-stocznie.org.pl/activate/" + insertId[0].id + "/" + token.toString());
-                  sendgrid.send(email);
-                  res.redirect("/activation");
-              });
-      });
-    }
-    else{
-      monit = "Podany email już isnieje w naszej bazie. Proszę zarejestrować się na inny adres.";
-      res.redirect('/register');
-    }
-  });
-});
-
 
 router.get('/register', function(req,res){
     res.render("register.html", {monit:monit});

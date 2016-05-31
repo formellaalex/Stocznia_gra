@@ -36,7 +36,7 @@
                  <div class="register-block">
                     <h3 class="white text-center register-title"> Rejestracja </h3>
                     <h3 class="dark_red" style="text-align: center"> <%= monit %> </h3>
-                    <form method="post" action="/add_user" onsubmit='return validate("#password","#repeatPassword","#email")'>
+                    <form method="POST" action="/add_user" onsubmit='return validate("#password","#repeatPassword","#email")'>
                         <input class="form-control" type='text' name='_name' placeholder="Imie uczestnika"/>
                         <input class="form-control" type='text' name='surname' placeholder="Nazwisko uczestnika"/>
                         <input class="form-control" type='text' name='email' id='email' placeholder="E-mail"/>
