@@ -27,9 +27,10 @@ router.post('/add_user', function(req,res){
   var token = tokenGen(19);
   var post  = {
     _name: req.body._name, surname: req.body.surname,email: req.body.email,
-    password: req.body.haslo, profile_img: "/default/batman.jpg",about_me: req.body.about_me,
+    password: req.body.password, profile_img: "/default/batman.jpg",about_me: req.body.about_me,
     active: token
    };
+   console.log(post);
   connection.query('SELECT email from users where email="' + req.body.email +'";', function(err,czyTenSamMail){
     if(czyTenSamMail.length == 0){
         connection.query('INSERT INTO users SET ?', post, function(err, result)
@@ -68,8 +69,17 @@ router.get('/', function(req, res) {
   res.render("index.html");
 });
 
-router.get('/postulaty', function(req,res) {
+router.get('/graostocznie', function(req,res) {
+  connection.query(
+    "SELECT title,message,posts.points,added,_name,surname FROM posts LEFT JOIN users ON users.id = posts.id;", 
+    function(err, postulaty) {
+      if (err) console.log(err);
+      res.render("graostocznie.html", {postulaty: postulaty});
+    });
+});
 
+router.get("/dodaj_postulat", function(req, res) {
+  res.render("dodaj_postulat.html");
 });
 
 router.get('/mapa', function(req,res) {

@@ -35,10 +35,56 @@ body {
   width: 40%;
 }
 
+.add-post-header-icon {
+  width: 10%;
+}
+
+.offset-half {
+  margin-left: 4.666666%;
+}
+
 .dotted-block {
   border-bottom-style: dotted;
   color: white;
   padding-bottom: 1%;
+}
+
+.dotted-all-block {
+  border-bottom-style: dotted;
+  color: white;
+  padding-bottom: 1%;
+}
+
+.posts-write-title {
+  border-style: dotted;
+  color: white;
+  margin-bottom: 10px;
+  height: 10vh;
+}
+
+.posts-write-message {
+  border-top-style: dotted;
+  border-left-style: dotted;
+  border-right-style: dotted;
+  color: white;
+  padding-bottom: 1%;
+  height: 46vh;
+}
+
+.posts-title-textarea {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.transparent-textarea {
+  border: none;
+  overflow: auto;
+  outline: none;
+  background-color: transparent;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 }
 
 .register-block input, textarea {
@@ -58,4 +104,8 @@ body {
     min-width: 176px;
     margin-top: 10%;
     margin-bottom: 8%;
+}
+
+.margin-top-5 {
+  margin-top: 15px;
 }
