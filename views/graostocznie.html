@@ -31,14 +31,67 @@
   </header>
 
   <section>
-    <div class="row dotted-block">
-    <div class="col-md-2">
-      <a href="/dodaj_postulat"> <span> <img class="forum-header-icon" src="/images/icons/add-post.png" /> </span> </a>
-      <span> <img class="forum-header-icon" src="/images/icons/add-post.png" /> </span>
+    <div class="row post-list-block">
+      <div class="col-xs-2" style="margin-bottom: 5px;">
+        <a href="/dodaj_postulat"> <span> <img class="post-list-icon-1" src="/images/icons/add-post.png" />   </span> </a>
+        <span> <img class="post-list-icon-1" src="/images/icons/add-post.png" /> </span>
+      </div>
     </div>
-
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-xs-12 ">
+        <% for (var i=0; i<postulaty.length; i++) { %>
+          <div class="post-list-block">
+            <div class="row">
+              <div class="col-xs-1" style="width: 4.66666% !important" >
+                <div class="post-show-more">
+                  <img class="icon post-list-icon-1" src="/images/icons/more.png"/> 
+                </div>
+                <div>
+                  <img class="icon post-list-icon-1" src="/images/icons/add-post.png"/>
+                </div>
+              </div>
+              <div class="col-xs-1 text-center">
+                <img class="post-list-icon-2" src="/images/icons/add-post.png" />
+                <p class="user-icon-caption"><%=postulaty[i]._name%></p>
+              </div>
+              <div class="col-xs-5">
+                <a href="/postulat/<%=postulaty[i].posts_id%>"> <p class="post-title-text"><%=postulaty[i].title%></p> </a>
+              </div>
+              <div class="col-xs-5 text-right">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <p> <%=postulaty[i].added%> </p>
+                  </div>
+                  <div class="col-xs-2">
+                    <img class="icon post-list-icon-1" src="/images/icons/like-pos.png"/> 
+                  </div>
+                  <div class="col-xs-2">
+                    <img class="icon post-list-icon-1" src="/images/icons/like-neg.png"/> 
+                  </div>
+                  <div class="col-xs-2">
+                    <img class="icon post-list-icon-1" src="/images/icons/comment-pos.png"/> 
+                  </div>
+                  <div class="col-xs-2">
+                    <img class="icon post-list-icon-1" src="/images/icons/comment-neg.png"/> 
+                  </div>
+                  <div class="col-xs-4">
+                    <img class="icon post-list-icon-1" src="/images/icons/edit.png"/> 
+                    <img class="icon post-list-icon-1" src="/images/icons/comment.png"/> 
+                    <img class="icon post-list-icon-1" src="/images/icons/trash.png"/> 
+                  </div>
+                </div>
+                
+              </div>
+              
+            </div>
+            <div class="row hidden post-message">
+              <div class="col-xs-1" style="width: 4.66666% !important" ></div>
+              <div class="col-xs-10 col-xs-offset-1 post-message-text">
+                <p> <%= postulaty[i].message %> </p>
+              </div>
+            </div>
+          </div>
+        <%}%>
       </div>
     </div> 
   </section>
@@ -47,61 +100,48 @@
     <img class="line-footer" class="img-responsive" src="/images/layout/line_above_icons.png" />
     <div class="row">
         <span>
-          <img class="footer-icon-bar" src="/images/icons/to-head.png" />
+          <img class="icon footer-icon-bar" src="/images/icons/to-head.png" />
         </span>
         <span>
-          <img class="footer-icon-bar" src="/images/icons/home.png" />
+          <img class="icon footer-icon-bar" src="/images/icons/home.png" />
         </span>
         <span>
-          <img class="footer-icon-bar" src="/images/icons/logout.png" />
+          <img class="icon footer-icon-bar" src="/images/icons/logout.png" />
         </span>
         <span>
-          <img class="footer-icon-bar" src="/images/icons/user.png" />
+          <img class="icon footer-icon-bar" src="/images/icons/user.png" />
         </span>
         <span>
-          <img class="footer-icon-bar" src="/images/icons/kolonia.png" />
+          <img class="icon footer-icon-bar" src="/images/icons/kolonia.png" />
         </span>
         <span>
-          <img class="footer-icon-bar" src="/images/icons/mailbox.png" />
+          <img class="icon footer-icon-bar" src="/images/icons/mailbox.png" />
         </span>
         <span>
-          <img class="footer-icon-bar" src="/images/icons/admin.png" />
+          <img class="icon footer-icon-bar" src="/images/icons/admin.png" />
         </span>
         <span>
-          <img class="footer-icon-bar" src="/images/icons/rules.png" />
+          <img class="icon footer-icon-bar" src="/images/icons/rules.png" />
         </span>
         <span>
-          <img class="footer-icon-bar" src="/images/icons/write-pos.png" />
+          <img class="icon footer-icon-bar" src="/images/icons/write-pos.png" />
         </span>
         <span>
-          <img class="footer-icon-bar" src="/images/icons/info.png" />
+          <img class="icon footer-icon-bar" src="/images/icons/info.png" />
         </span>
         <span>
-          <img class="footer-icon-bar" src="/images/icons/gallery.png" />
+          <img class="icon footer-icon-bar" src="/images/icons/gallery.png" />
         </span>
         <span>
-          <img class="footer-icon-bar" src="/images/icons/partners.png" />
+          <img class="icon footer-icon-bar" src="/images/icons/partners.png" />
         </span>
         <span>
-          <img class="footer-icon-bar" src="/images/icons/to-down.png" />
+          <img class="icon footer-icon-bar" src="/images/icons/to-down.png" />
         </span>
       </div>
   </footer>
-
 </body>
-<script>
-    $(document).ready(function() {
-       $(".footer-icon-bar").hover(
-        function() {
-          var path = $(this).attr('src').split(".")[0] + "-hover.png";
-          $(this).attr('src', path);
-       },
-       function() {
-        var path = $(this).attr('src').replace("-hover", "");
-        $(this).attr('src', path);
-       }); 
-    });
-    
-</script>
+<script type="text/javascript" src="/javascripts/main.js"></script>
+<script type="text/javascript" src="/javascripts/posts.js"></script>
 
 </html>

@@ -10,6 +10,11 @@ body {
     padding-bottom: 15px;
 }
 
+.user-icon-caption {
+  font-size: 0.8vw;
+  text-align: center;
+}
+
 .graostocznie-logo-header {
 	max-width: 80px;
 }
@@ -25,18 +30,42 @@ body {
 } 
 
 .nopadding {
-	padding-left: 0 !important;
-	margin-left: 0 !important;
-	padding-right: 0 !important;
-	margin-right: 0 !important;
+	padding: 0;
 }
 
 .forum-header-icon {
   width: 40%;
 }
+button.add-post-header-icon {
+  width: 10%;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+}
+
+.post-title-text {
+  font-size: 2.5vw;
+}
+
+.post-message-text {
+  font-size: 1.4vw;
+}
+
+.post-list-icon-1 {
+  height: 5vh;
+}
+
+.post-list-icon-2 {
+  height: 10vh;
+}
+
+button.add-post-header-icon img{
+  width: 100%;
+}
 
 .add-post-header-icon {
   width: 10%;
+  cursor: pointer;
 }
 
 .offset-half {
@@ -49,12 +78,22 @@ body {
   padding-bottom: 1%;
 }
 
-.dotted-all-block {
-  border-bottom-style: dotted;
+.dotted-textarea {
+  border-style: dotted;
   color: white;
-  padding-bottom: 1%;
+  overflow: auto;
+  outline: none;
+  background-color: transparent;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 }
 
+.post-list-block {
+  border-bottom-style: dotted;
+  color: white;
+  margin-bottom: 10px;
+}
 .posts-write-title {
   border-style: dotted;
   color: white;
@@ -77,6 +116,14 @@ body {
   height: 100%;
 }
 
+.comment-block {
+  border-top-style: dotted;
+  padding-top: 10px;
+}
+
+.comment-message {
+  font-size: 1.3vw;
+}
 .transparent-textarea {
   border: none;
   overflow: auto;

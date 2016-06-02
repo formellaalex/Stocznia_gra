@@ -69,17 +69,55 @@ router.get('/', function(req, res) {
   res.render("index.html");
 });
 
-router.get('/graostocznie', function(req,res) {
+
+router.get('/postulaty', function(req,res) {
   connection.query(
-    "SELECT title,message,posts.points,added,_name,surname FROM posts LEFT JOIN users ON users.id = posts.id;", 
+    "SELECT posts.id as posts_id,title,message,posts.points,added,_name,surname FROM posts JOIN users ON users.id = posts.id;", 
     function(err, postulaty) {
       if (err) console.log(err);
       res.render("graostocznie.html", {postulaty: postulaty});
     });
 });
 
+router.get("/postulat/:id", function(req,res) {
+  connection.query(
+    "SELECT posts.id as posts_id,title,message,posts.points,added,_name,surname FROM posts JOIN users ON users.id = posts.id WHERE posts.id="+connection.escape(req.params.id)+";", 
+    function(err, postulat) {
+      if (err) console.log(err);
+      connection.query("SELECT message,added,users._name as _name from comments JOIN users on users.id = comments.users_id WHERE posts_id="+connection.escape(req.params.id)+";",
+      function(err,komentarze){
+        if(err) console.log(err);
+        console.log(komentarze);
+        res.render("postulat.html", {postulat: postulat, komentarze: komentarze});
+      });
+    });
+});
+
 router.get("/dodaj_postulat", function(req, res) {
   res.render("dodaj_postulat.html");
+});
+
+router.post("/dodaj_komentarz", function(req, res) {
+  var post = {message: req.body.message, posts_id: req.body.posts_id, users_id: 1};
+  connection.query('INSERT INTO comments SET ?', post, function(err, result){
+    if (err) console.log("err");
+    res.redirect('/postulat/' + req.body.posts_id);
+  });
+});
+
+router.post("/publikuj_postulat", function(req, res) {
+  var body = {
+    title: req.body.title, message: req.body.message, users_id: 1
+  };
+  connection.query("INSERT INTO posts SET ?", body, function(err,result){
+    if(err) {
+      console.log(err);
+      res.redirect("/error");
+    }
+    else {
+      res.redirect("/graostocznie")
+    } 
+  });
 });
 
 router.get('/mapa', function(req,res) {

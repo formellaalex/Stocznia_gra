@@ -2,13 +2,13 @@ var express = require('express');
   formidable = require('formidable'),
   http = require('http'),
   util = require('util'),
-  fs   = require('fs-extra');
-  path = require('path');
-  logger = require('morgan');
-  mysql = require('mysql');
-  cookieParser = require('cookie-parser');
-  bodyParser = require('body-parser');
-  connection_db  = require('express-myconnection'); 
+  fs   = require('fs-extra'),
+  path = require('path'),
+  logger = require('morgan'),
+  mysql = require('mysql'),
+  cookieParser = require('cookie-parser'),
+  bodyParser = require('body-parser'),
+  connection_db  = require('express-myconnection'),
   index = require('./routes/index');
 
 
@@ -26,11 +26,7 @@ app.use(logger('dev'));
 app.use(cookieParser('sgdkdk'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-
 app.use(express.static(path.join(__dirname, 'public')));
-
-
 app.use('/', index);
 app.use('/kolonia',index);
 
@@ -129,7 +125,7 @@ function handleDisconnect() {
 
 handleDisconnect();
 
-//module.exports = app;
+module.exports = app;
 
 app.listen(server_port, function () {
   console.log( "Listening on server_port " + server_port);

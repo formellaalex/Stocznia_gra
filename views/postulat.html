@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" > 
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="/bootstrap/css/bootstrap-theme.min.css" />
+        <link rel="stylesheet" href="/stylesheets/layout.css" />
+        <link rel="stylesheet" href="/stylesheets/slider.css" />
+        <script src="/javascripts/jquery-2.2.4.min.js"></script>
+        <script src="/bootstrap/js/bootstrap.min.js"></script>
+        <script src="/javascripts/jquery.slides.min.js"></script>
+    </head>
+<body>
+  <header class="row">
+  <div class="col-xs-1">
+  </div>
+    <div class="col-xs-4">
+      <a href="/graostocznie"> <img class="img-responsive" src="/images/icons/gra-o-stocznie-logotyp-hover.png" alt="Gra o stocznie"/> </a>
+    </div>
+    <div class="col-xs-2">
+      <div class="graostocznie-logo-header">
+        <img class="img-responsive" src="/images/icons/gos-logo.png" alt="Gra o stocznie"/>
+      </div>
+    </div>
+    <div class="col-xs-4">
+      <img class="img-responsive" src="/images/icons/hanza-logo.png" alt="Gra o stocznie"/>
+    </div>
+    <div class="col-xs-1">
+  </div>
+  </header>
+
+  <section>
+    <div class="row post-list-block">
+      <div class="col-xs-2" style="margin-bottom: 5px;">
+        <a href="/dodaj_postulat"> <span> <img class="post-list-icon-1" src="/images/icons/add-post.png" />   </span> </a>
+        <span> <img class="post-list-icon-1" src="/images/icons/add-post.png" /> </span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 post-list-block">
+        <% if(postulat[0] != null){ %>
+            <div class="row">
+              <div class="col-xs-1 text-center">
+                <img class="post-list-icon-2" src="/images/icons/add-post.png" />
+                <p class="user-icon-caption"><%=postulat[0]._name%></p>
+              </div>
+              <div class="col-xs-6">
+                <p class="post-title-text"><%=postulat[0].title%></p>
+              </div>
+              <div class="col-xs-5 text-right">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <p> <%=postulat[0].added%> </p>
+                  </div>
+                  <div class="col-xs-2">
+                    <img class="icon post-list-icon-1" src="/images/icons/like-pos.png"/> 
+                  </div>
+                  <div class="col-xs-2">
+                    <img class="icon post-list-icon-1" src="/images/icons/like-neg.png"/> 
+                  </div>
+                  <div class="col-xs-2">
+                    <img class="icon post-list-icon-1" src="/images/icons/comment-pos.png"/> 
+                  </div>
+                  <div class="col-xs-2">
+                    <img class="icon post-list-icon-1" src="/images/icons/comment-neg.png"/> 
+                  </div>
+                  <div class="col-xs-4">
+                    <img class="icon post-list-icon-1" src="/images/icons/edit.png"/> 
+                    <img class="icon post-list-icon-1" id="comments-add" src="/images/icons/comment.png"/> 
+                    <img class="icon post-list-icon-1" src="/images/icons/trash.png"/> 
+                  </div>
+                </div>
+                
+              </div>
+              
+            </div>
+            <div class="row post-message">
+              <div class="col-xs-10 col-xs-offset-1 post-message-text">
+                <p> <%= postulat[0].message %> </p>
+              </div>
+            </div>
+            <div class="row hidden" id="comments-window">
+              <form action="/dodaj_komentarz" id="comments-form" method="POST">
+                <div class="col-xs-10 col-xs-offset-1">
+                  <textarea name="message" class="posts-title-textarea dotted-textarea" placeholder="TUTAJ NALEŻY WPISAĆ TREŚĆ KOMENTARZA"></textarea>
+                  <input type="hidden" name="posts_id" value="<%=postulat[0].posts_id%>"/>
+                </div>
+              </form>
+            </div>
+
+            <div class="row">
+              <div class="col-xs-11 col-xs-offset-1">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <% for (var i=0; i<komentarze.length; i++) { %>
+                        <div class="row comment-block">
+                          <div class="col-xs-1 " style="width: 4.66666% !important;" >
+                            <div class="post-show-more">
+                              <img class="icon post-list-icon-1" src="/images/icons/more.png"/> 
+                            </div>
+                            <div>
+                              <img class="icon post-list-icon-1" src="/images/icons/add-post.png"/>
+                            </div>
+                          </div>
+                          <div class="col-xs-1 text-center">
+                            <img class="post-list-icon-2" src="/images/icons/add-post.png" />
+                            <p class="user-icon-caption"><%=komentarze[i]._name%></p>
+                          </div>
+                          <div class="col-xs-5">
+                            <p class="comment-message"><%=komentarze[i].message%>
+                          </div>
+                          <div class="col-xs-5 text-right nopadding">
+                            <div class="row" >
+                              <div class="col-xs-12 nopadding">
+                                <p> <%=komentarze[i].added%> </p>
+                              </div>
+                              <div class="col-xs-2 nopadding">
+                                <img class="icon post-list-icon-1" src="/images/icons/like-pos.png"/> 
+                              </div>
+                              <div class="col-xs-2 nopadding">
+                                <img class="icon post-list-icon-1" src="/images/icons/like-neg.png"/> 
+                              </div>
+                              <div class="col-xs-2 nopadding">
+                                <img class="icon post-list-icon-1" src="/images/icons/comment-pos.png"/> 
+                              </div>
+                              <div class="col-xs-2 nopadding">
+                                <img class="icon post-list-icon-1" src="/images/icons/comment-neg.png"/> 
+                              </div>
+                              <div class="col-xs-4 nopadding">
+                                <img class="icon post-list-icon-1" src="/images/icons/edit.png"/> 
+                                <img class="icon post-list-icon-1" src="/images/icons/comment.png"/> 
+                                <img class="icon post-list-icon-1" src="/images/icons/trash.png"/> 
+                              </div>
+                            </div>         
+                          </div>
+                        </div>
+                    <%}%>
+                  </div>
+                </div>
+              </div>
+            </div>
+        <%}%>
+      </div>
+    </div> 
+  </section>
+
+  <footer class="text-center footer">
+    <img class="line-footer" class="img-responsive" src="/images/layout/line_above_icons.png" />
+    <div class="row">
+        <span>
+          <img class="icon footer-icon-bar" src="/images/icons/to-head.png" />
+        </span>
+        <span>
+          <img class="icon footer-icon-bar" src="/images/icons/home.png" />
+        </span>
+        <span>
+          <img class="icon footer-icon-bar" src="/images/icons/logout.png" />
+        </span>
+        <span>
+          <img class="icon footer-icon-bar" src="/images/icons/user.png" />
+        </span>
+        <span>
+          <img class="icon footer-icon-bar" src="/images/icons/kolonia.png" />
+        </span>
+        <span>
+          <img class="icon footer-icon-bar" src="/images/icons/mailbox.png" />
+        </span>
+        <span>
+          <img class="icon footer-icon-bar" src="/images/icons/admin.png" />
+        </span>
+        <span>
+          <img class="icon footer-icon-bar" src="/images/icons/rules.png" />
+        </span>
+        <span>
+          <img class="icon footer-icon-bar" src="/images/icons/write-pos.png" />
+        </span>
+        <span>
+          <img class="icon footer-icon-bar" src="/images/icons/info.png" />
+        </span>
+        <span>
+          <img class="icon footer-icon-bar" src="/images/icons/gallery.png" />
+        </span>
+        <span>
+          <img class="icon footer-icon-bar" src="/images/icons/partners.png" />
+        </span>
+        <span>
+          <img class="icon footer-icon-bar" src="/images/icons/to-down.png" />
+        </span>
+      </div>
+  </footer>
+</body>
+<script type="text/javascript" src="/javascripts/main.js"></script>
+<script type="text/javascript" src="/javascripts/posts.js"></script>
+
+</html>
