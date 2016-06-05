@@ -35,10 +35,10 @@
     <div class="slider-container">
       <img class="slider-frame" src="images/layout/slider-border.png" />
       <div id="slides">
-        <img src="images/pierwszyEkran/plakat.jpg">
-        <img src="images/pierwszyEkran/plakat.jpg">
-        <img src="images/pierwszyEkran/plakat.jpg">
-        <img src="images/pierwszyEkran/plakat.jpg">
+        <img class="index-slider" src="images/pierwszyEkran/stocznia.jpg">
+        <img class="index-slider" src="images/pierwszyEkran/stocznia.jpg">
+        <img class="index-slider" src="images/pierwszyEkran/stocznia.jpg">
+        <img class="index-slider" src="images/pierwszyEkran/tlo6.jpg">
         <a href="#" class="slidesjs-previous slidesjs-navigation"><i class="icon-chevron-left icon-large"></i></a>
         <a href="#" class="slidesjs-next slidesjs-navigation"><i class="icon-chevron-right icon-large"></i></a>
       </div>
@@ -49,69 +49,58 @@
   <footer class="text-center footer">
     <img class="line-footer" class="img-responsive" src="/images/layout/line_above_icons.png" />
     <div class="row">
-        <span>
-          <img class="footer-icon-bar" src="/images/icons/to-head.png" />
+        <span data-toggle="tooltip" title="Na górę">
+          <img class="icon footer-icon-bar" src="/images/icons/to-head.png" />
         </span>
-        <span>
-          <a href="/"> <img class="footer-icon-bar" src="/images/icons/home.png" /> </a>
+        <span data-toggle="tooltip" title="Strona główna">
+          <a href="/"> <img class="icon footer-icon-bar" src="/images/icons/home.png" /> </a>
         </span>
-        <span>
-          <a href="/login"> <img class="footer-icon-bar" src="/images/icons/log.png" /> </a>
+        <span data-toggle="tooltip" title="Wyloguj">
+          <img class="icon footer-icon-bar" src="/images/icons/logout.png" />
         </span>
-        <span>
-          <a href="/kolonista"> <img class="footer-icon-bar" src="/images/icons/user.png" /> </a>
+        <span data-toggle="tooltip" title="Użytkownik">
+          <img class="icon footer-icon-bar" src="/images/icons/user.png" />
         </span>
-        <span>
-          <a href="/kolonia"> <img class="footer-icon-bar" src="/images/icons/kolonia.png" /> </a>
+        <span data-toggle="tooltip" title="Kolonia">
+          <img class="icon footer-icon-bar" src="/images/icons/kolonia.png" />
         </span>
-        <span>
-          <img class="footer-icon-bar" src="/images/icons/mailbox.png" />
+        <span data-toggle="tooltip" title="Skrzynka odbiorcza">
+          <img class="icon footer-icon-bar" src="/images/icons/mailbox.png" />
         </span>
-        <span>
-          <img class="footer-icon-bar" src="/images/icons/admin.png" />
+        <span data-toggle="tooltip" title="Kontakt do admina">
+          <img class="icon footer-icon-bar" src="/images/icons/admin.png" />
         </span>
-        <span>
-          <a href="/reguly"> <img class="footer-icon-bar" src="/images/icons/rules.png" />  </a>
+        <span data-toggle="tooltip" title="Reguły gry">
+          <img class="icon footer-icon-bar" src="/images/icons/rules.png" />
         </span>
-        <span>
-          <a href="/postulaty "><img class="footer-icon-bar" src="/images/icons/write-pos.png" /> </a>
+        <span data-toggle="tooltip" title="Napisz postulat">
+          <a href="dodaj_postulat"><img class="icon footer-icon-bar" src="/images/icons/write-pos.png" /> </a>
         </span>
-        <span>
-          <img class="footer-icon-bar" src="/images/icons/info.png" />
+        <span data-toggle="tooltip" title="Informacje o grze">
+          <img class="icon footer-icon-bar" src="/images/icons/info.png" />
         </span>
-        <span>
-          <img class="footer-icon-bar" src="/images/icons/gallery.png" />
+        <span data-toggle="tooltip" title="Galeria">
+          <img class="icon footer-icon-bar" src="/images/icons/gallery.png" />
         </span>
-        <span>
-          <img class="footer-icon-bar" src="/images/icons/partners.png" />
+        <span data-toggle="tooltip" title="Partnerzy">
+          <img class="icon footer-icon-bar" src="/images/icons/partners.png" />
         </span>
-        <span>
-          <img class="footer-icon-bar" src="/images/icons/to-down.png" />
+        <span data-toggle="tooltip" title="W dół">
+          <img class="icon footer-icon-bar" src="/images/icons/to-down.png" />
         </span>
       </div>
   </footer>
 
 </body>
 <script>
-    $(function() {
-      $('#slides').slidesjs({
-        width: 667,
-        height: 290,
-        navigation: false
-      });
+  $(function() {
+    $('#slides').slidesjs({
+      width: 667,
+      height: 280,
+      navigation: false
     });
-    $(document).ready(function() {
-       $(".footer-icon-bar").hover(
-        function() {
-          var path = $(this).attr('src').split(".")[0] + "-hover.png";
-          $(this).attr('src', path);
-       },
-       function() {
-        var path = $(this).attr('src').replace("-hover", "");
-        $(this).attr('src', path);
-       }); 
-    });
-    
-  </script>
-
+  });
+</script>
+<script type="text/javascript" src="/javascripts/main.js"></script>
+<script type="text/javascript" src="/javascripts/posts.js"></script>
 </html>

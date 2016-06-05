@@ -150,7 +150,7 @@ router.post("/like_post", function(req,res) {
 });
 
 router.post("/like_comment", function(req,res) {
-  connection.query("SELECT posts_id from like_posts where posts_id="+ connection.escape(req.body.posts_id) + " and users_id=1;",
+  connection.query("SELECT comments_id from like_comments where posts_id="+ connection.escape(req.body.posts_id) + " and users_id=1;",
   function(err, likes) {
     if(!likes.length) {
       likesBody = {users_id: 1, rate_pos: 1, posts_id: req.body.posts_id};
@@ -171,14 +171,14 @@ router.post("/like_comment", function(req,res) {
 });
 
 router.post("/like_subcomment", function(req,res) {
-  connection.query("SELECT posts_id from like_posts where posts_id="+ connection.escape(req.body.posts_id) + " and users_id=1;",
+  connection.query("SELECT subcomments_id from like_subcomments where posts_id="+ connection.escape(req.body.posts_id) + " and users_id=1;",
   function(err, likes) {
     if(!likes.length) {
       likesBody = {users_id: 1, rate_pos: 1, posts_id: req.body.posts_id};
       if(req.body.rate < 0) {
         likesBody = {users_id: 1, rate_neg: -1, posts_id: req.body.posts_id};
       }
-      connection.query("INSERT INTO like_posts SET ?", likesBody, function(err, result){
+      connection.query("INSERT INTO like_subcomments SET ?", likesBody, function(err, result){
         if(err) console.log("ERROR" + err);
         else{
           res.redirect("back");
