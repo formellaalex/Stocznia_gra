@@ -24,4 +24,11 @@ $(document).ready(function() {
 	        $("#comments-form").submit();
 	    }
 	});
+
+	$("#subcomments-form textarea").keypress(function(event) {
+	    if (event.which == 13) {
+	        event.preventDefault();
+	        $("#subcomments-form").submit();
+	    }
+	});
 });

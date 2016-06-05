@@ -1,10 +1,19 @@
 var express = require('express');
+var formidable = require("formidable");
 var encode = require( 'hashcode' ).hashCode;
 var hash = encode().value( "my string value" ); 
 var md5 = require('md5');
 var router = express.Router();
 var email = require("./email.js");
-
+var multer  =   require('multer');
+var storage =   multer.diskStorage({
+  destination: function (req, file, callback) {
+    callback(null, './public/uploads');
+  },
+  filename: function (req, file, callback) {
+    callback(null, file.originalname);
+  }
+});
 var zalogowano = false;
 var zarazPoZalogowaniu = true;
 var info = "";
@@ -22,6 +31,24 @@ function tokenGen(length)
   }
   return str;
 }
+
+var upload = multer({ storage : storage }).array('posts_photo',5);
+
+router.post('/add_photo',function(req,res){
+
+    upload(req,res,function(err) {
+        if(err) {
+            return res.end("Error uploading file." + err);
+        }
+        if(req.files.length > 0) {
+          res.end("File is uploaded" + req.files[0].filename);
+        }
+        else {
+          res.end("File was not uploaded");
+        }
+        
+    });
+});
 
 router.post('/add_user', function(req,res){
   var token = tokenGen(19);
@@ -72,7 +99,7 @@ router.get('/', function(req, res) {
 
 router.get('/postulaty', function(req,res) {
   connection.query(
-    "SELECT posts.id as posts_id,title,message,posts.points,added,_name,surname FROM posts JOIN users ON users.id = posts.id;", 
+    "SELECT posts.id as posts_id,title,message,added,_name,surname,sum(rate_pos) as likes_pos, sum(rate_neg) as likes_neg FROM posts JOIN users ON users.id= posts.users_id LEFT JOIN like_posts on like_posts.posts_id = posts.id group by posts.id;", 
     function(err, postulaty) {
       if (err) console.log(err);
       res.render("graostocznie.html", {postulaty: postulaty});
@@ -81,20 +108,87 @@ router.get('/postulaty', function(req,res) {
 
 router.get("/postulat/:id", function(req,res) {
   connection.query(
-    "SELECT posts.id as posts_id,title,message,posts.points,added,_name,surname FROM posts JOIN users ON users.id = posts.id WHERE posts.id="+connection.escape(req.params.id)+";", 
+    "SELECT posts.id as posts_id,title,message,added,_name,surname,sum(rate_pos) as likes_pos, sum(rate_neg) as likes_neg FROM posts JOIN users ON users.id= posts.users_id LEFT JOIN like_posts on like_posts.posts_id = posts.id where posts.id = "+connection.escape(req.params.id)+" group by posts.id", 
     function(err, postulat) {
       if (err) console.log(err);
-      connection.query("SELECT message,added,users._name as _name from comments JOIN users on users.id = comments.users_id WHERE posts_id="+connection.escape(req.params.id)+";",
+      connection.query("SELECT comments.id as comments_id,message,added,users._name AS _name, sum(rate_pos) as likes_pos, sum(rate_neg) as likes_neg FROM comments JOIN users ON users.id = comments.users_id LEFT JOIN like_comments ON like_comments.comments_id = comments.id WHERE posts_id="+connection.escape(req.params.id)+" group by comments.id;",
       function(err,komentarze){
         if(err) console.log(err);
-        console.log(komentarze);
-        res.render("postulat.html", {postulat: postulat, komentarze: komentarze});
+        connection.query("SELECT subcomments.id as subcomments_id,subcomments.message as message,subcomments.comments_id, subcomments.added as added,users._name AS _name,sum(rate_pos) as likes_pos, sum(rate_neg) as likes_neg FROM subcomments JOIN comments on comments.id= subcomments.comments_id JOIN users  ON users.id = subcomments.users_id LEFT JOIN like_subcomments ON like_subcomments.subcomments_id = subcomments.id WHERE posts_id="+connection.escape(req.params.id)+" group by subcomments.id",
+        function(err, subcomments){
+          connection.query("SELECT path,title from posts_files where posts_id=" + connection.escape(req.params.id) + ";", function(err,photos){
+            res.render("postulat.html", {postulat: postulat, komentarze: komentarze, subcomments: subcomments, photos: photos});
+          });
+        });
       });
     });
 });
 
 router.get("/dodaj_postulat", function(req, res) {
   res.render("dodaj_postulat.html");
+});
+
+router.post("/like_post", function(req,res) {
+  connection.query("SELECT posts_id from like_posts where posts_id="+ connection.escape(req.body.posts_id) + " and users_id=1;",
+  function(err, likes) {
+    if(!likes.length) {
+      likesBody = {users_id: 1, rate_pos: 1, posts_id: req.body.posts_id};
+      if(req.body.rate < 0) {
+        likesBody = {users_id: 1, rate_neg: -1, posts_id: req.body.posts_id};
+      }
+      connection.query("INSERT INTO like_posts SET ?", likesBody, function(err, result){
+        if(err) console.log("ERROR" + err);
+        else{
+          res.redirect("back");
+        }
+      });
+    }
+    else{
+      res.redirect("back");
+    }
+  });
+});
+
+router.post("/like_comment", function(req,res) {
+  connection.query("SELECT posts_id from like_posts where posts_id="+ connection.escape(req.body.posts_id) + " and users_id=1;",
+  function(err, likes) {
+    if(!likes.length) {
+      likesBody = {users_id: 1, rate_pos: 1, posts_id: req.body.posts_id};
+      if(req.body.rate < 0) {
+        likesBody = {users_id: 1, rate_neg: -1, posts_id: req.body.posts_id};
+      }
+      connection.query("INSERT INTO like_comments SET ?", likesBody, function(err, result){
+        if(err) console.log("ERROR" + err);
+        else{
+          res.redirect("back");
+        }
+      });
+    }
+    else{
+      res.redirect("back");
+    }
+  });
+});
+
+router.post("/like_subcomment", function(req,res) {
+  connection.query("SELECT posts_id from like_posts where posts_id="+ connection.escape(req.body.posts_id) + " and users_id=1;",
+  function(err, likes) {
+    if(!likes.length) {
+      likesBody = {users_id: 1, rate_pos: 1, posts_id: req.body.posts_id};
+      if(req.body.rate < 0) {
+        likesBody = {users_id: 1, rate_neg: -1, posts_id: req.body.posts_id};
+      }
+      connection.query("INSERT INTO like_posts SET ?", likesBody, function(err, result){
+        if(err) console.log("ERROR" + err);
+        else{
+          res.redirect("back");
+        }
+      });
+    }
+    else{
+      res.redirect("back");
+    }
+  });
 });
 
 router.post("/dodaj_komentarz", function(req, res) {
@@ -105,20 +199,61 @@ router.post("/dodaj_komentarz", function(req, res) {
   });
 });
 
+router.post("/add_subcomment", function(req, res) {
+  var post = {message: req.body.message, comments_id: req.body.comments_id, users_id: 1};
+  console.log(post);
+  connection.query('INSERT INTO subcomments SET ?', post, function(err, result){
+    if (err) console.log(err);
+
+    res.redirect('/postulat/' + req.body.posts_id);
+  });
+});
+
 router.post("/publikuj_postulat", function(req, res) {
+  upload(req,res,function(err) {
+    if(err) {
+      console.log("Error uploading file." + err);
+      res.redirect("/error");
+    }
+    else {
+      if(req.files.length > 0) {
+        addPost(req,res,function(insertId){
+          var query = "INSERT into posts_files SET ?";
+          req.files.forEach(function(file){
+            var filepath = "./uploads/" + file.originalname;
+            var image = {path: filepath, posts_id: insertId,title: "Tytuł"};
+            connection.query(query, image, function(result, err){
+              if(err) console.log(err);
+            });
+          });
+        });        
+      }
+      else {
+        addPost(req,res, null);
+      }
+    }
+  });
+  res.redirect("/postulaty");
+});
+
+
+function addPost(req,res,callback) {
   var body = {
     title: req.body.title, message: req.body.message, users_id: 1
   };
   connection.query("INSERT INTO posts SET ?", body, function(err,result){
+    console.log(result);
     if(err) {
       console.log(err);
       res.redirect("/error");
     }
     else {
-      res.redirect("/graostocznie")
-    } 
+      if(callback != null) {
+        callback(result.insertId);
+      }
+    }
   });
-});
+}
 
 router.get('/mapa', function(req,res) {
   if (req.cookies.remember) {
@@ -177,18 +312,13 @@ router.get('/zasady', function(req,res){
 
 //Dodaj post
 router.post('/add_post', function(req,res){
-  if (req.cookies.remember){
+  
   var post = {tytul: req.body.tytul, tresc: req.body.tresc, nick: req.cookies.id};
   connection.query('INSERT INTO tabela_postow SET ?', post, function(err, result){
     if (err)
       console.log("Error inserting : %s ",err );
     res.redirect('/przeszlosc');
   });
-
-  }
-  else{
-    res.redirect('/logowanie');
-  }
 });
 
 router.get('/forget', function(req, res){

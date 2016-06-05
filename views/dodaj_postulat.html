@@ -21,7 +21,7 @@
   <div class="col-xs-1">
   </div>
     <div class="col-xs-4">
-      <a href="/graostocznie"> <img class="img-responsive" src="/images/icons/gra-o-stocznie-logotyp-hover.png" alt="Gra o stocznie"/> </a>
+      <a href="/postulaty"> <img class="img-responsive" src="/images/icons/gra-o-stocznie-logotyp-hover.png" alt="Gra o stocznie"/> </a>
     </div>
     <div class="col-xs-2">
       <div class="graostocznie-logo-header">
@@ -36,41 +36,41 @@
   </header>
 
   <section>
-    <div class="row">
-    <div class="col-xs-4">
-      <span>
-          <img class="add-post-header-icon" src="/images/icons/close.png" onclick="backPage()" />
-      </span>
-      <span>
-        <button class="add-post-header-icon" form="add-post-form">
-          <img src="/images/icons/share.png" />
-        </button>
-      </span>
-      <span> <img class="add-post-header-icon" src="/images/icons/add-photo.png" /> </span>
-      <span> <img class="add-post-header-icon" src="/images/icons/add-film.png" /> </span>
-    </div>
-    </div>
-    <div class="row margin-top-5">
-      <form method="POST" id="add-post-form" action="/publikuj_postulat">
+    <form enctype="multipart/form-data" method="POST" id="add-post-form" action="/publikuj_postulat">
+      <div class="row">
+        <div class="col-xs-4">
+          <span>
+              <img class="add-post-header-icon" src="/images/icons/close.png" onclick="backPage()" />
+          </span>
+          <span>
+            <button class="add-post-header-icon" form="add-post-form">
+              <img src="/images/icons/share.png" />
+            </button>
+          </span>
+          <span> <label for="add-photo-input" id="add-photo-label"> <img class="add-post-header-icon" src="/images/icons/add-photo.png" /> </label> </span>
+          <input form="add-post-form" name="posts_photo" type="file" id="add-photo-input" multiple />
+          <span> <img class="add-post-header-icon" src="/images/icons/add-film.png" /> </span>
+        </div>
+      </div>
+      <div class="row margin-top-5">
         <div class="col-xs-11 offset-half">
           <div class="row">
             <div class="col-xs-1">
               <img class="user-avatar-forum img-responsive" src="/images/icons/close.png" />
             </div>
             <div class="col-xs-7 posts-write-title">
-            <textarea name="title" class="posts-title-textarea transparent-textarea" placeholder="TUTAJ NALEŻY WPISAĆ TREŚĆ POSTULATU, TYTUŁ, GŁÓWNE HASŁO! MASZ DO DYSPOZYCJI 250 ZNAKÓW..."></textarea>
+            <textarea name="title" class="posts-title-textarea transparent-textarea" placeholder="TUTAJ NALEŻY WPISAĆ TREŚĆ POSTULATU, TYTUŁ, GŁÓWNE HASŁO! MASZ DO DYSPOZYCJI 250 ZNAKÓW..." form="add-post-form"></textarea>
             </div>
           </div>
           <input type="hidden" name="posts_id" value="1" />
           <div class="row">
             <div class="col-xs-9 col-xs-offset-1 posts-write-message">
-              <textarea name="message" class="posts-title-textarea transparent-textarea" placeholder="TUTAJ NALEŻY WPISAĆ TREŚĆ POSTULATU, TYTUŁ, GŁÓWNE HASŁO! MASZ DO DYSPOZYCJI 250 ZNAKÓW..."></textarea>
+              <textarea name="message" class="posts-title-textarea transparent-textarea" placeholder="TUTAJ NALEŻY WPISAĆ TREŚĆ POSTULATU, TYTUŁ, GŁÓWNE HASŁO! MASZ DO DYSPOZYCJI 250 ZNAKÓW..." form="add-post-form"></textarea>
             </div>
           </div>
         </div>
-      </form>
-
-    </div> 
+      </div>
+    </form> 
   </section>
 
   <footer class="text-center footer">

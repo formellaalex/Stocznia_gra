@@ -1,8 +1,43 @@
+@font-face {
+    font-family: 'stocznia_body';
+    src: url('/fonts/Oswald-DemiBold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'stocznia_title';
+    src: url('/fonts/Oswald-Stencil.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 body {
 	background : url("/images/layout/background_small.jpg");
 	background-size: 100% 100%;
 	background-attachment: fixed;
 	padding: 1% 10% 0 10%;
+  font-family: 'stocznia_body';
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+a:hover {
+  color: white;
+}
+
+.subcomments-window {
+  display: none;
+}
+
+#add-photo-input {
+  display: none;
+}
+
+#add-photo-label {
+  width: 100%;
+  display: inline;
 }
 
 .line-footer {
@@ -36,6 +71,11 @@ body {
 .forum-header-icon {
   width: 40%;
 }
+button.add-like {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+}
 button.add-post-header-icon {
   width: 10%;
   background-color: transparent;
@@ -45,10 +85,13 @@ button.add-post-header-icon {
 
 .post-title-text {
   font-size: 2.5vw;
+  font-family: 'stocznia_title' !important;
+
 }
 
 .post-message-text {
   font-size: 1.4vw;
+  font-family: 'stocznia_body';
 }
 
 .post-list-icon-1 {
@@ -119,6 +162,10 @@ button.add-post-header-icon img{
 .comment-block {
   border-top-style: dotted;
   padding-top: 10px;
+}
+
+.subcomments-block {
+  display: none;
 }
 
 .comment-message {

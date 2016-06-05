@@ -21,10 +21,12 @@
   width: 97%;
   position: relative;
   left: 1.5%;
+
 }
 
 .slider-container {
   margin: 0 auto;
+  padding-bottom: 10px;
 }
 
 @media (max-width: 767px) {

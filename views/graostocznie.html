@@ -16,7 +16,7 @@
   <div class="col-xs-1">
   </div>
     <div class="col-xs-4">
-      <a href="/graostocznie"> <img class="img-responsive" src="/images/icons/gra-o-stocznie-logotyp-hover.png" alt="Gra o stocznie"/> </a>
+      <a href="/postulaty"> <img class="img-responsive" src="/images/icons/gra-o-stocznie-logotyp-hover.png" alt="Gra o stocznie"/> </a>
     </div>
     <div class="col-xs-2">
       <div class="graostocznie-logo-header">
@@ -54,29 +54,55 @@
                 <img class="post-list-icon-2" src="/images/icons/add-post.png" />
                 <p class="user-icon-caption"><%=postulaty[i]._name%></p>
               </div>
-              <div class="col-xs-5">
+              <div class="col-xs-6">
                 <a href="/postulat/<%=postulaty[i].posts_id%>"> <p class="post-title-text"><%=postulaty[i].title%></p> </a>
               </div>
-              <div class="col-xs-5 text-right">
+              <div class="col-xs-4 text-right">
                 <div class="row">
                   <div class="col-xs-12">
                     <p> <%=postulaty[i].added%> </p>
                   </div>
-                  <div class="col-xs-2">
-                    <img class="icon post-list-icon-1" src="/images/icons/like-pos.png"/> 
+                  <div class="col-xs-2 col-xs-offset-6">
+                    <form action="/like_post" method="POST">
+                      <input type="hidden" name="rate" value="1" />
+                      <input type="hidden" name="posts_id" value="<%=postulaty[i].posts_id%>">
+                      <button class="add-like">
+                        <img class="icon post-list-icon-1" src="/images/icons/like-pos.png"/>
+                      </button>
+                    </form>
+                    <p> 
+                      <%if(postulaty[i].likes_pos == null) {%>
+                        0 
+                      <%}else{%>
+                        <%=postulaty[i].likes_pos%>
+                      <%}%>
+                    </p> 
                   </div>
                   <div class="col-xs-2">
-                    <img class="icon post-list-icon-1" src="/images/icons/like-neg.png"/> 
+                    <form action="/like_post" method="POST">
+                      <input type="hidden" name="rate" value="-1" />
+                      <input type="hidden" name="posts_id" value="<%=postulaty[i].posts_id%>">
+                      <button class="add-like">
+                        <img class="icon post-list-icon-1" src="/images/icons/like-neg.png"/>
+                      </button>
+                    </form>
+                    <p> 
+                      <%if(postulaty[i].likes_neg == null) {%>
+                        0 
+                      <%}else{%>
+                        <%=postulaty[i].likes_neg%>
+                      <%}%>
+                    </p>  
                   </div>
                   <div class="col-xs-2">
-                    <img class="icon post-list-icon-1" src="/images/icons/comment-pos.png"/> 
+                    <!-- konsultacja <img class="icon post-list-icon-1" src="/images/icons/comment-pos.png"/> 
                   </div>
                   <div class="col-xs-2">
                     <img class="icon post-list-icon-1" src="/images/icons/comment-neg.png"/> 
                   </div>
                   <div class="col-xs-4">
                     <img class="icon post-list-icon-1" src="/images/icons/edit.png"/> 
-                    <img class="icon post-list-icon-1" src="/images/icons/comment.png"/> 
+                    <img class="icon post-list-icon-1" src="/images/icons/comment.png"/>  -->
                     <img class="icon post-list-icon-1" src="/images/icons/trash.png"/> 
                   </div>
                 </div>
@@ -96,7 +122,7 @@
     </div> 
   </section>
 
-  <footer class="text-center footer">
+  <footer class="text-center footer ">
     <img class="line-footer" class="img-responsive" src="/images/layout/line_above_icons.png" />
     <div class="row">
         <span>
