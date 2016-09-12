@@ -4,7 +4,11 @@ html, body{
 	height: 100%;
     font-size: 22px;
 }
-
+body:not(#logowanie) {
+    background: url("/images/layout/background.png");
+    background-size: 100%;
+    background-attachment: fixed;
+}
 a{
     color: black;
 }
