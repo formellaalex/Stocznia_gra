@@ -259,7 +259,7 @@ router.get('/forget', function(req, res){
   res.clearCookie('id');
   res.clearCookie('pos');
   info = "";
-  res.redirect('back');
+  res.redirect('/');
   zarazPoZalogowaniu = true;
 });
 
@@ -479,7 +479,7 @@ router.get('/deletepostulat/:id?', function(req,res){
 
   if (req.cookies.remember){
     ciastka=req.cookies.remember;
-     var id = req.params.id;   
+     var id = req.params.id;
         connection.query("DELETE FROM tabela_postow WHERE id = ? ; DELETE FROM tabfile WHERE idpost="+connection.escape(id),[id], function(err, rows)
         //connection.query("DELETE FROM tablica_komentarzy  WHERE IdKomentarzu = ?",[id], function(err, rows)
         {
@@ -572,13 +572,20 @@ router.get('/edit', function(req,res){
 
 //Strona glowna
 router.get('/glowna', function(req, res){
-  console.log(hash);
-  res.render('zalogowano_initial.html', {title: 'zalogowano', user_pos: req.cookies.pos, przyciskKolonia: 'kolonia'});
+  var logged = false;
+  if(req.cookies.remember) {
+    logged = true;
+  }
+  res.render('zalogowano_initial.html', {title: 'zalogowano', logged: logged, przyciskKolonia: 'kolonia'});
 
 });
 
 router.get('/kolonia', function(req, res){
-  res.render('zalogowano.html', {title: 'zalogowano', user_pos: req.cookies.pos, przyciskKolonia: 'koloniastoczniazaznaczone'});
+  var logged = false;
+  if(req.cookies.remember) {
+    logged = true;
+  }
+  res.render('zalogowano.html', {title: 'zalogowano', logged: logged, przyciskKolonia: 'koloniastoczniazaznaczone'});
 });
 
 //Lista kolonistow
