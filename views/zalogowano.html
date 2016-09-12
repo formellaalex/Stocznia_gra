@@ -47,27 +47,28 @@
         </div>    
     </div>
 <footer id="sentence_bottom">
-    <a id="wyloguj"href="/forget" style="width: 20.7%;position: fixed; bottom: 0; right: 0;background: url('images/layout_addons/wyloguj.png');background-size: contain;background-repeat: no-repeat;height:0; padding-top: 4.4%;">WYLOGUJ</a>
-    <form  class="test_form" style="
-    position: fixed;
-    bottom: 0;
-    right: 70%;
-    -webkit-transform: rotate(20deg);
-    -moz-transform: rotate(90deg);
-    -o-transform: rotate(90deg);
-    writing-mode: tb-rl;
-    z-index: 900;
-    " > <input type="hidden" name="delete_message" class="message" value=""/><button class="postulat white" style="
-    border:none; 
-    background: none; 
-    margin:0;
-    padding: 0"><p style="
-    font-family: 'stocznia_body', Helvetica, sans-serif;
-    color: red;  
-    font-size: 17px;
-    font-weight:400;
-    margin-bottom: -1rem;">ADMIN</p></button></form>
-
+    <%if(user_pos) {%>
+        <a id="wyloguj"href="/forget" style="width: 20.7%;position: fixed; bottom: 0; right: 0;background: url('images/layout_addons/wyloguj.png');background-size: contain;background-repeat: no-repeat;height:0; padding-top: 4.4%;">WYLOGUJ</a>
+        <form  class="test_form" style="
+        position: fixed;
+        bottom: 0;
+        right: 70%;
+        -webkit-transform: rotate(20deg);
+        -moz-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        writing-mode: tb-rl;
+        z-index: 900;
+        " > <input type="hidden" name="delete_message" class="message" value=""/><button class="postulat white" style="
+        border:none; 
+        background: none; 
+        margin:0;
+        padding: 0"><p style="
+        font-family: 'stocznia_body', Helvetica, sans-serif;
+        color: red;  
+        font-size: 17px;
+        font-weight:400;
+        margin-bottom: -1rem;">ADMIN</p></button></form>
+    <%}%>
 </footer>
 </body>
 

@@ -35,7 +35,7 @@ router.get('/aktualnosci', function(req,res){
       res.render("aktualnosci.html");
   }
   else{
-    res.redirect('/logowanie');
+    res.redirect('/');
   }
   
 });
@@ -46,7 +46,7 @@ router.get('/przestrzen_temp', function(req,res){
       res.render("przestrzen_temp.html");
   }
   else{
-    res.redirect('/logowanie');
+    res.redirect('/');
   }
   
 });
@@ -247,7 +247,7 @@ router.post('/add_post', function(req,res){
 
   }
   else{
-    res.redirect('/logowanie');
+    res.redirect('/');
   }
 });
 
@@ -491,7 +491,7 @@ router.get('/deletepostulat/:id?', function(req,res){
         });
   }
   else{
-    res.redirect('/logowanie');
+    res.redirect('/');
   }
 });
 
@@ -517,7 +517,7 @@ router.post('/delete/:id?', function(req,res){
         });
   }
   else{
-    res.redirect('/logowanie');
+    res.redirect('/');
   }
 });
 
@@ -535,29 +535,27 @@ router.post('/log', function(req,res){
          res.cookie('remember', req.body.email, { maxAge: minute, httpOnly: true});
          res.cookie('id', rows[0].id);
          info = "";
-         res.redirect('/');
+         res.redirect('/glowna');
       }
       else{
         info = "Konto nie zostało jeszcze aktywowane.";
-        res.redirect('/logowanie');
+        res.redirect('/');
       }
        
     }
     else{
       info = "Nieprawidłowy login lub hasło.";
-      res.redirect('/logowanie');
+      res.redirect('/');
     }
   });
 });
 
-//Logowanie
-router.get('/logowanie', function(req, res){
+router.get('/', function(req, res){
   if(req.cookies.remember){
-    res.redirect('/');
+    res.redirect('/glowna');
   }
   else{
-    console.log(tokenGen(20));
-      res.render("index.html", {info:info});  
+    res.render("index.html", {info:info});  
   }
   info = "";
 });
@@ -567,26 +565,26 @@ router.get('/edit', function(req,res){
     res.render("edit.html", {info: info});
   }
   else{
-    res.redirect('/logowanie');
+    res.redirect('/');
   }
   info = "";
 });
 
 //Strona glowna
-router.get('/', function(req, res){
+router.get('/glowna', function(req, res){
   console.log(hash);
   res.render('zalogowano_initial.html', {title: 'zalogowano', user_pos: req.cookies.pos, przyciskKolonia: 'kolonia'});
 
 });
 
 router.get('/kolonia', function(req, res){
-      res.render('zalogowano.html', {title: 'zalogowano', user_pos: req.cookies.pos, przyciskKolonia: 'koloniastoczniazaznaczone'});
+  res.render('zalogowano.html', {title: 'zalogowano', user_pos: req.cookies.pos, przyciskKolonia: 'koloniastoczniazaznaczone'});
 });
 
 //Lista kolonistow
 router.get('/kolonisci', function(req, res) {
   var data;
-  if (req.cookies.remember){
+  if (req.cookies.remember) {
     ciastka=req.cookies.remember;
     connection.query('SELECT * FROM users where id=' + req.cookies.id + ';', function(err, rows, fields) {
       if (err) throw err;
@@ -605,8 +603,8 @@ router.get('/kolonisci', function(req, res) {
     });
   }
 
-  else{
-  res.redirect('/logowanie');
+  else {
+  res.redirect('/');
  }
 
 });
@@ -614,7 +612,7 @@ router.get('/kolonisci', function(req, res) {
 //Profil usera
 router.get('/kolonisci/:nick?', function(req, res) {
   var data;
-  if (req.cookies.remember){
+  if (req.cookies.remember) {
     ciastka=req.cookies.remember;
     connection.query('SELECT * FROM users where id=' + connection.escape(req.params.nick) + ';', function(err, rows, fields) {
        if (err) throw err;
@@ -634,7 +632,7 @@ router.get('/kolonisci/:nick?', function(req, res) {
   }
 
   else{
-  res.redirect('/logowanie');
+  res.redirect('/');
  }
 
 });
@@ -662,7 +660,7 @@ router.post('/uaktualnij', function(req,res){
           });
   }
   else{
-    res.redirect('/logowanie');
+    res.redirect('/');
   }
         
 });
@@ -690,7 +688,7 @@ router.post('/zmiana_hasla',function(req,res){
   });
 }
   else{
-    res.redirect('/logowanie');
+    res.redirect('/');
   }
   
 });
