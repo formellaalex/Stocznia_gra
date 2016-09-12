@@ -24,8 +24,8 @@ var index = require('./routes/index');
 //module exp
 var app =  module.exports = express();
 //var server = require('../server');
-var server_port = process.env.OPENSHIFT_NODEJS_PORT || 3000
-var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
+var server_port = 3000;
+var server_ip_address = '127.0.0.1';
 
 
 // view engine setup
@@ -426,7 +426,6 @@ db_config = {
   password : 'dhby1WSwYuxP',
   database : 'graostocznie',
   multipleStatements: true 
-
 };
 
 // db_config = {
@@ -474,16 +473,8 @@ handleDisconnect();
 
 module.exports = app;
 
-fs.writeFile("pliczek.txt", process.env.OPENSHIFT_MYSQL_DB_HOST, function(err) {
-    if(err) {
-        return console.log(err);
-    }
-
-    console.log("The file was saved!");
-}); 
-
-app.listen(server_port, server_ip_address, function () {
-  console.log( "Listening on " + server_ip_address + ", server_port " + server_port + ", host: " + process.env.OPENSHIFT_MYSQL_DB_HOST );
+app.listen(server_port, function () {
+  console.log( "Listening on " + server_ip_address);
 });
 //jeszcze mi nie kasuj będę tego potrzebował do wylogowywaniaF
 /*app.get('/', function(req, res){
