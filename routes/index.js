@@ -609,7 +609,6 @@ router.get('/kolonisci', function(req, res) {
       });
     });
   }
-
   else {
   res.redirect('/');
  }

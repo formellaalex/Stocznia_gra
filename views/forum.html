@@ -725,7 +725,13 @@ label input {
                 <div class="row">
                     <div class="large-8 small-8 columns"><h3 style="font-family: 'stocznia_body', Helvetica, sans-serif;color: black;"> NASZE POSTULATY </h3>
                     <h5 style="font-family: 'stocznia_body', Helvetica, sans-serif;color: black;"> CO zachować (i dlaczego)? </h5> <br /></div>
-                    <div class="large-4 small-4 columns" style="padding:0"> <br><button style="background: url('/images/layout_addons/dodaj_postulat.png');background-size: 100% 100%; width: 18rem; height: 3rem; border: none;margin: 0;position: absolute;top:0;right: 0" class="napisz_postulat_btn"></button>  </div>
+                    <%if(ciasta == null){%>
+                    <a href="/">
+                        <div class="large-4 small-4 columns" style="padding:0"> <br><button style="background: url('/images/layout_addons/dodaj_postulat.png');background-size: 100% 100%; width: 18rem; height: 3rem; border: none;margin: 0;position: absolute;top:0;right: 0" class="napisz_postulat_btn"></button>  </div>
+                    </a>
+                    <%} else { %>
+                      <div class="large-4 small-4 columns" style="padding:0"> <br><button style="background: url('/images/layout_addons/dodaj_postulat.png');background-size: 100% 100%; width: 18rem; height: 3rem; border: none;margin: 0;position: absolute;top:0;right: 0" class="napisz_postulat_btn"></button>  </div>
+                    <%}%>
                 </div>
                 <div id="tablica_postulatow" style="height: auto%; overflow-y: auto">
                     <div class="row" id="wykujPostulat"  style="width: 100%"> 
@@ -815,8 +821,12 @@ label input {
                           <p style="display: inline; margin-left: 5%;font-size: 1.2rem" class="users black" id="tworca_postu"><%= postulaty2[0].imie %> <%= postulaty2[0].nazwisko %> <span style="margin-left: 10%"><%=postulaty2[0].czas_dodania%></span></p>
 
                         </a>        
-                      
-                          <button  style="display: inline;   margin-right: 20px;  float: right;"  class="ukryj_dodaj_komentarz" > .</button>
+                          <%if(ciasta == null){%>
+                            <a href="/"><button  style="display: inline;   margin-right: 20px;  float: right;"  class="ukryj_dodaj_komentarz"> . </button> </a>
+                          <%} else {%>
+                            <button  style="display: inline;   margin-right: 20px;  float: right;"   class="ukryj_dodaj_komentarz" > .</button>
+                          <%}%>
+                          
                    <!--   </div>-->
                   </div> 
 
@@ -833,12 +843,22 @@ label input {
                         </div>
                         </div>  
                         <div class="large-2 small-2 columns">
-                          <span style="  color: #800000;font-size:1.8rem;position:absolute;"> <%=vote_up_count%></span> 
-                          <form style="display:inline;  color: #800000;" action="/vote_up/<%=capfile%>/post/<%=capfile%>/<%=strona%>" method="post">  <button class="vote" id="vote_up" ></button> </form>
+                          <span style="  color: #800000;font-size:1.8rem;position:absolute;"> <%=vote_up_count%></span>
+                          <%if(ciasta == null) {%>
+                            <a href="/"> 
+                              <form style="display:inline;  color: #800000;"> <button type="button" class="vote" id="vote_up" ></button> </form> </a>
+                          <%} else {%>
+                            <form style="display:inline;  color: #800000;" action="/vote_up/<%=capfile%>/post/<%=capfile%>/<%=strona%>" method="post">  <button class="vote" id="vote_up" ></button> </form>
+                          <%}%>
                         </div> 
                           <div class="large-2 small-2 columns">
                           <span style="color:black;font-size:1.8rem;position:absolute;"> <%=vote_down_count%> </span>
-                          <form style="display: inline; color: white" action="/vote_down/<%=capfile%>/post/<%=capfile%>/<%=strona%>" method="post"> <button class="vote" id="vote_down"></button></form>
+                            <%if(ciasta == null) {%>
+                              <a href="/"> 
+                                <form style="display:inline;  color: #800000;"> <button type="button" class="vote" id="vote_down" ></button> </form> </a>
+                            <%} else {%>
+                              <form style="display:inline;  color: #800000;" action="/vote_down/<%=capfile%>/post/<%=capfile%>/<%=strona%>" method="post">  <button class="vote" id="vote_down" ></button> </form>
+                            <%}%>
                           </div> 
                           <div class="large-3 small-3 columns">
                           <p style="font-size: 1.8rem;display: inline;margin-left:3%;color:#800000"><%=punkty_post%> </p>
@@ -873,8 +893,9 @@ label input {
                                   <input style="display: inline" type="radio" name="comment_type" value="-1"/> <span> <img src="/images/layout_addons/dislike.png" style="max-width: 50%"/> </span> </br>
                               </div>
                               <div class="large-4 small-6 columns">
-                                <button class="submit" style="margin: 0;float: right;"> Publikuj </button> 
-
+                                <% if(ciasta != null) { %>
+                                  <button class="submit" style="margin: 0;float: right;"> Publikuj </button>
+                                <% } %>                                
                               </div>
                           </div>
                           <div class="row">
@@ -932,11 +953,20 @@ label input {
                              <!--<div class="row" style="margin-left:3%" >-->
                                 <div class="large-1  small-1 columns supklasa"  >
                                   <span style="color:#800000;font-size:1.6rem"> <%=postulaty3[i].ilosc_like%></span>
-                                  <form style="display:inline;color: white" action="/vote_up/<%=postulaty3[i].IdKomentarzu%>/past_kom/<%=capfile%>/<%=strona%>" method="post"><button class="vote" style="margin-bottom:0px"  id="vote_up_kom1" ></button> </form>
+                                  <% if(ciasta == null) { %>
+                                    <a href="/"> <form style="display:inline;color: white"><button class="vote" type="button" style="margin-bottom:0px"  id="vote_up_kom1" ></button> </form> </a>
+                                  <% } else { %>
+                                    <form style="display:inline;color: white" action="/vote_up/<%=postulaty3[i].IdKomentarzu%>/past_kom/<%=capfile%>/<%=strona%>" method="post"><button class="vote" style="margin-bottom:0px"  id="vote_up_kom1" ></button> </form>
+                                  <% } %>
+                                  
                                 </div>
                                 <div class="large-1 small-1 columns supklasa" >
                                   <span style="color:black;font-size:1.6rem"><%= postulaty3[i].ilosc_dislike %></span>
-                                  <form style="display: inline; color: white" action="/vote_down/<%=postulaty3[i].IdKomentarzu%>/past_kom/<%=capfile%>/<%=strona%>" method="post"> <button class="vote"  style="margin-bottom:0px" id="vote_down_kom1"></button></form>
+                                  <% if(ciasta == null) { %>
+                                    <a href="/"> <form style="display:inline;color: white"><button class="vote" type="button" style="margin-bottom:0px"  id="vote_up_kom1" ></button> </form> </a>
+                                  <% } else { %>
+                                    <form style="display:inline;color: white" action="/vote_down/<%=postulaty3[i].IdKomentarzu%>/past_kom/<%=capfile%>/<%=strona%>" method="post"><button class="vote" style="margin-bottom:0px"  id="vote_down_kom1" ></button> </form>
+                                  <% } %>
                                 </div>
                                 <div class="large-3 small-3 columns" >
                                   <button class="klasa ukryj_dodaj_komentarz_przycisk_w_menu" style="min-width:30%;  margin-bottom: 0px;float:right;margin-right: 10px;;" id="<%=postulaty3[i].IdKomentarzu%>"> . .   .  . </button><p style="margin-right:5%;margin-bottom:0px;vertical-align:middle;font-size:12px ;float:right"> z dnia <%=postulaty3[i].czas_dodania_kom%></p>
@@ -971,7 +1001,10 @@ label input {
                                   <input style="display: inline" type="radio" name="comment_type" value="-1"/> <span> <img src="/images/layout_addons/dislike.png" style="max-width: 45%"/> </span> </br>
                               </div>
                               <div class="large-4 small-6 columns">
-                                <button class="submit" style="margin: 0;float: right;"> Publikuj </button> 
+                                <% if(ciasta != null) { %>
+                                   <button class="submit" style="margin: 0;float: right;"> Publikuj </button> 
+                                <% } %>
+                               
                                 
                               </div>
                           </div>
@@ -1036,17 +1069,34 @@ label input {
 
                         <div  class="block wid25">
                           <span style="color:black"><%=postulaty3[j].ilosc_like%></span>
-                          <form style="display:inline;color: white" action="/vote_up/<%=postulaty3[j].IdKomentarzu%>/kom/<%=capfile%>/<%=strona%>" method="post">
-                            <button class="vote" id="vote_up_kom" > 
-                              <img style="width:100%;" src="/images/layout_addons/like.png">
-                            </button> 
-                          </form>
+                          <% if(ciasta == null){ %>
+                              <form style="display:inline;color: white">
+                                <a href="/"> <button class="vote" id="vote_up_kom" type="button" > 
+                                  <img style="width:100%;" src="/images/layout_addons/like.png">
+                                </button> </a>
+                              </form>
+                          <% } else { %>
+                              <form style="display:inline;color: white" action="/vote_up/<%=postulaty3[j].IdKomentarzu%>/kom/<%=capfile%>/<%=strona%>" method="post">
+                                <button class="vote" id="vote_up_kom" > 
+                                  <img style="width:100%;" src="/images/layout_addons/like.png">
+                                </button> 
+                              </form>
+                          <% } %>
+                          
                           <span style="color:#800000"><%= postulaty3[j].ilosc_dislike %></span>
-                          <form style="display: inline; color: white" action="/vote_down/<%=postulaty3[j].IdKomentarzu%>/kom/<%=capfile%>/<%=strona%>" method="post">
-                            <button class="vote" id="vote_down_kom">
-                              <img style="width:100%;" src="/images/layout_addons/dislike.png">
-                            </button>
+                          <% if(ciasta == null){ %>
+                              <form style="display:inline;color: white">
+                                <a href="/"> <button class="vote" id="vote_down_kom" type="button" > 
+                                  <img style="width:100%;" src="/images/layout_addons/dislike.png">
+                                </button> </a>
                           </form>
+                          <% } else { %>
+                              <form style="display:inline;color: white" action="/vote_down/<%=postulaty3[j].IdKomentarzu%>/kom/<%=capfile%>/<%=strona%>" method="post">
+                                <button class="vote" id="vote_up_kom" > 
+                                  <img style="width:100%;" src="/images/layout_addons/dislike.png">
+                                </button> 
+                              </form>
+                          <% } %>
                         </div>
                       </div>
 
